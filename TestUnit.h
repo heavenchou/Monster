@@ -6,7 +6,7 @@
 class TestUnit
 {
     public:
-        void RunAllTest();  // ︽场代刚
+        static void RunAllTest();  // ︽场代刚
 
         TestUnit();
         virtual ~TestUnit();
