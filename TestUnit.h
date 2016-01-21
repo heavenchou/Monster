@@ -2,12 +2,12 @@
 #define TESTUNIT_H
 
 #include <iostream>
+#include <regex>
 
 class TestUnit
 {
     public:
-        static void RunAllTest();  // 行全部測試
-
+        static void RunAllTest();
         TestUnit();
         virtual ~TestUnit();
     protected:

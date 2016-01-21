@@ -8,7 +8,7 @@ CMonster::CMonster(string sFileListFileName,
 					string sMainIndexFileName)
 {
 	// 初值歸零
-	///BuildFileList = 0;
+	BuildFileList = 0;
 	///WordIndex = 0;
 	OpPatten = "()&,+*-";		// 算運用的 Patten
 
@@ -26,7 +26,7 @@ CMonster::CMonster(string sFileListFileName,
 	}
 
 	// 先處理 build file list
-	///OpenBuildList();
+	OpenBuildList();
 	///OpenWordIndex();
 	///OpenMainIndex();
 
@@ -47,4 +47,12 @@ CMonster::~CMonster(void)
     */
 }
 //---------------------------------------------------------------------------
-
+void CMonster::OpenBuildList(void)
+{
+	BuildFileList = new CFileList(FileListFileName);
+    cout << "open buildfilelist" ;
+	if(!BuildFileList->Initial()) {	// ???? error check
+        cout << "Open buildfilelist error!";
+	}
+}
+//---------------------------------------------------------------------------

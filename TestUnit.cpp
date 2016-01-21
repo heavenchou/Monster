@@ -16,4 +16,9 @@ void TestUnit::RunAllTest()
 {
     cout << "Test OK!" << endl;
 
+    string s ("subject");
+    regex e ("(sub)(.*)");
+
+    if (regex_match (s,e))
+        cout << "string object matched\n";
 }

@@ -28,7 +28,7 @@ int main()
 // °õ¦æ¥þ¤åÀË¯Á
 void RunFullTextSearch()
 {
-    string sBuildList = "buildlist.txt";
+    string sBuildList = "D:\\Data\\c\\_CodeBlocks\\Monster\\bin\\Debug\\buildlist.txt";
     string sWordIndex = "wordindex.ndx";
     string sMainIndex = "main.ndx";
 

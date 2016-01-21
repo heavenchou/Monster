@@ -6,9 +6,9 @@
 #include <iostream>
 using namespace std;
 
+#include "FileList.h"
 /**
 #include "SearchWord.h"
-#include "FileList.h"
 #include "WordIndex.h"
 #include "MainIndex.h"
 #include "PostfixStack.h"
@@ -25,14 +25,14 @@ class CMonster
 
     public:		// User declarations
 
-        string MainIndexFileName;		// 主要的 index 的檔名
-        string WordIndexFileName;		// word index 檔名
-        string FileListFileName;		// file list 檔名
-        string OpPatten;       			// 運算用的 Patten
+        string MainIndexFileName;		    // 主要的 index 的檔名
+        string WordIndexFileName;		    // word index 檔名
+        string FileListFileName;		    // file list 檔名
+        string OpPatten;       			    // 運算用的 Patten
         ///TStringList * SearchWordList;		// 存放每一個檢索的詞, 日後塗色會用到
         ///TmyIntList * FileFound;				// 存放每一檔找到的數量
         ///TmyPostfixStack * PostfixStack;		// 運算用的
-        string OKSentence;				// 已經分析過的, 例如 佛陀 & 阿難 變成 S&S
+        string OKSentence;				    // 已經分析過的, 例如 佛陀 & 阿難 變成 S&S
         int MaxSearchWordNum;				// 檢索詞中最多可出現的字串數,   "佛陀 & 阿羅漢" 就算 2 個
         ///TmySearchWord ** swWord;			// 每一個檢索字串的指標, 最多 20 個, 例如 "佛陀 & 阿羅漢" 就算 2 個
 

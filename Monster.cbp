@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="FileList.cpp" />
+		<Unit filename="FileList.h" />
 		<Unit filename="Monster.cpp" />
 		<Unit filename="Monster.h" />
 		<Unit filename="TestUnit.cpp" />
