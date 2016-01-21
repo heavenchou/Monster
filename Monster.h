@@ -7,9 +7,9 @@
 using namespace std;
 
 #include "FileList.h"
+#include "WordIndex.h"
 /**
 #include "SearchWord.h"
-#include "WordIndex.h"
 #include "MainIndex.h"
 #include "PostfixStack.h"
 #include "IntList.h"

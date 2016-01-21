@@ -27,7 +27,7 @@ CMonster::CMonster(string sFileListFileName,
 
 	// ¥ý³B²z build file list
 	OpenBuildList();
-	///OpenWordIndex();
+	OpenWordIndex();
 	///OpenMainIndex();
 
 	///PostfixStack = new TmyPostfixStack;
@@ -50,9 +50,24 @@ CMonster::~CMonster(void)
 void CMonster::OpenBuildList(void)
 {
 	BuildFileList = new CFileList(FileListFileName);
-    cout << "open buildfilelist" ;
-	if(!BuildFileList->Initial()) {	// ???? error check
-        cout << "Open buildfilelist error!";
+	if(!BuildFileList->Initial())
+    {	// ???? error check
+        cout << "Open BuildList error!";
 	}
+}
+//---------------------------------------------------------------------------
+void CMonster::OpenWordIndex(void)
+{
+	WordIndex = new CWordIndex(WordIndexFileName);
+
+	if(!WordIndex->Initial())
+    {	// ???? error check
+        cout << "Open WordIndex error!";
+	}
+}
+//---------------------------------------------------------------------------
+void CMonster::OpenMainIndex(void)
+{
+	//MainIndex = new CMainIndex(MainIndexFileName);	// ???? error check
 }
 //---------------------------------------------------------------------------

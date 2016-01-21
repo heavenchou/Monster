@@ -38,6 +38,8 @@
 		<Unit filename="Monster.h" />
 		<Unit filename="TestUnit.cpp" />
 		<Unit filename="TestUnit.h" />
+		<Unit filename="WordIndex.cpp" />
+		<Unit filename="WordIndex.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
 		<Extensions>
