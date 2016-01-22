@@ -28,7 +28,7 @@ CMonster::CMonster(string sFileListFileName,
 	// 先處理 build file list
 	OpenBuildList();
 	OpenWordIndex();
-	///OpenMainIndex();
+	OpenMainIndex();
 
 	///PostfixStack = new TmyPostfixStack;
 	///FileFound = new TmyIntList(BuildFileList->FileCount);	// 存放每一檔找到的結果
@@ -68,6 +68,6 @@ void CMonster::OpenWordIndex(void)
 //---------------------------------------------------------------------------
 void CMonster::OpenMainIndex(void)
 {
-	//MainIndex = new CMainIndex(MainIndexFileName);	// ???? error check
+	MainIndex = new CMainIndex(MainIndexFileName);	// ???? error check
 }
 //---------------------------------------------------------------------------

@@ -30,7 +30,7 @@ void RunFullTextSearch()
 {
     string sBuildList = "D:\\Data\\c\\_CodeBlocks\\Monster\\bin\\Debug\\buildlist.txt";
     string sWordIndex = "D:\\Data\\c\\_CodeBlocks\\Monster\\bin\\Debug\\wordindex.ndx";
-    string sMainIndex = "main.ndx";
+    string sMainIndex = "D:\\Data\\c\\_CodeBlocks\\Monster\\bin\\Debug\\main.ndx";
 
     CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// «Å§i¥þ¤åÀË¯Á
     /*
