@@ -34,8 +34,15 @@
 		</Compiler>
 		<Unit filename="FileList.cpp" />
 		<Unit filename="FileList.h" />
+		<Unit filename="Int2List.cpp" />
+		<Unit filename="Int2List.h" />
+		<Unit filename="IntList.h" />
+		<Unit filename="MainIndex.cpp" />
+		<Unit filename="MainIndex.h" />
 		<Unit filename="Monster.cpp" />
 		<Unit filename="Monster.h" />
+		<Unit filename="PostfixStack.cpp" />
+		<Unit filename="PostfixStack.h" />
 		<Unit filename="TestUnit.cpp" />
 		<Unit filename="TestUnit.h" />
 		<Unit filename="WordIndex.cpp" />
