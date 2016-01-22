@@ -1,0 +1,81 @@
+# depslib dependency file v1.0
+1453484948 source:d:\data\c\_codeblocks\monster\testunit.cpp
+	"TestUnit.h"
+
+1453487461 d:\data\c\_codeblocks\monster\testunit.h
+	<iostream>
+	<vector>
+
+1453450723 source:d:\data\c\_codeblocks\monster\main.cpp
+	"main.h"
+
+1453135441 d:\data\c\_codeblocks\monster\main.h
+	<iostream>
+	"TestUnit.h"
+	"Monster.h"
+
+1453450723 source:d:\data\c\_codeblocks\monster\monster.cpp
+	"Monster.h"
+
+1453450752 d:\data\c\_codeblocks\monster\monster.h
+	<iostream>
+	"FileList.h"
+	"WordIndex.h"
+	"MainIndex.h"
+	"SearchWord.h"
+	"PostfixStack.h"
+	"IntList.h"
+
+1065950034 d:\data\c\_codeblocks\monster\searchword.h
+	<vcl\vcl.h>
+	"WordData.h"
+	"WordIndex.h"
+	"MainIndex.h"
+	"FileList.h"
+	"Int2List.h"
+
+1075925770 d:\data\c\_codeblocks\monster\worddata.h
+	"BitList.h"
+
+1036406636 d:\data\c\_codeblocks\monster\bitlist.h
+
+1453402116 d:\data\c\_codeblocks\monster\wordindex.h
+	<iostream>
+	<fstream>
+	<stdlib.h>
+	<vector>
+
+1453450637 d:\data\c\_codeblocks\monster\mainindex.h
+	<fstream>
+	<iostream>
+
+1453366504 d:\data\c\_codeblocks\monster\filelist.h
+	<iostream>
+	<fstream>
+	<stdlib.h>
+
+1453481943 d:\data\c\_codeblocks\monster\int2list.h
+	<iostream>
+	<vector>
+
+1453482296 d:\data\c\_codeblocks\monster\postfixstack.h
+	"Int2List.h"
+	"FileList.h"
+
+1036598100 d:\data\c\_codeblocks\monster\intlist.h
+
+1453366556 source:d:\data\c\_codeblocks\monster\filelist.cpp
+	"FileList.h"
+
+1453452299 source:d:\data\c\_codeblocks\monster\mainindex.cpp
+	"MainIndex.h"
+
+1453402551 source:d:\data\c\_codeblocks\monster\wordindex.cpp
+	"WordIndex.h"
+
+1453482121 source:d:\data\c\_codeblocks\monster\int2list.cpp
+	"Int2List.h"
+
+1453482362 source:d:\data\c\_codeblocks\monster\postfixstack.cpp
+	"PostfixStack.h"
+
