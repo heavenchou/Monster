@@ -15,7 +15,8 @@ int main()
     if(cInput == '1')
     {
         cout << "執行程式測試中..." << endl;
-        TestUnit::RunAllTest();
+        TestUnit myTest;
+        myTest.RunAllTest();
     }
     else if(cInput =='2')
     {
