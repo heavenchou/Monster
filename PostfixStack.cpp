@@ -92,7 +92,6 @@ inline void CPostfixStack::PushOpStack(string sOp)
 // 執行運算
 void CPostfixStack::Run(void)
 {
-    /**
 	if(OpStackPoint <= 0) return;						// 沒有任何運算符號, 所以離開
 	if(QueryStackPoint < 2) return;						// 有問題, 不可能小於2
 	if(Level != LevelStack[OpStackPoint-1]) return;		// 層級不對, 不能運算
@@ -112,6 +111,7 @@ void CPostfixStack::Run(void)
 			QueryStackPoint--;
 			QueryStack[QueryStackPoint-1]->OrIt(QueryStack[QueryStackPoint]);
 			break;
+			/**
 		case '+':
 			QueryStackPoint--;
 			QueryStack[QueryStackPoint-1]->NearIt(QueryStack[QueryStackPoint]);
@@ -124,8 +124,8 @@ void CPostfixStack::Run(void)
 			QueryStackPoint--;
 			QueryStack[QueryStackPoint-1]->ExcludeIt(QueryStack[QueryStackPoint]);
 			break;
+			*/
 	}
-	*/
 }
 //---------------------------------------------------------------------------
 // 傳回資料的筆數, 不是傳回結果, 若失敗傳回 -1

@@ -16,8 +16,8 @@ class CInt2List
 
         //int FileCount;					// 檔案數目
         //int * Ints;						// 開頭的指標
-        ///TList * Int2s;						// 裡面放 TPoint 物件, 每一個 point 表示某一詞的範圍
-        vector <pair <int,int> > Int2s;
+        //TList * Int2s;
+        vector <pair <int,int> > Int2s;     // 裡面放 pair 物件, 每一個 pari 表示某一詞的範圍
         //int Total;
         int NearNum;				// Near 運算的範圍
         int BeforeNum;				// Before 運算的範圍

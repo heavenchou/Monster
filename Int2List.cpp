@@ -48,22 +48,16 @@ void CInt2List::Delete(int iNum)
 	Int2s.erase(Int2s.begin()+iNum-1);
 }
 //---------------------------------------------------------------------------
-// 運算子多載
+// 運算子多載 =
 void CInt2List::operator=(CInt2List * ilTarget)
 {
+    Copy(ilTarget);
 }
 //---------------------------------------------------------------------------
 // 將資料 copy 過來
 void CInt2List::Copy(CInt2List * ilTarget)
 {
     Int2s = ilTarget->Int2s;
-
-	//ClearAll();
-	//for (int i=0; i<ilTarget->Int2s->Count; i++)
-	//{
-	//	Add((TPoint *)ilTarget->Int2s->Items[i]);
-	//}
-
     // SearchString = ilTarget->SearchString;  copy 還是不要去改搜尋字串比較好
 }
 //---------------------------------------------------------------------------
@@ -71,23 +65,21 @@ void CInt2List::Copy(CInt2List * ilTarget)
 void CInt2List::operator&=(CInt2List * ilTarget)
 {
 }
-/*
 //---------------------------------------------------------------------------
 // 若二者都有資料, 就二者合併
 void CInt2List::AndIt(CInt2List * ilTarget)
 {
 	// 只要有一個人是 0 , 就玩不下去了
 
-    string sSearchString = "(" + SearchString + "&" + ilTarget->SearchString + ")";     // 變成 "(word1&word2)"
-	if(Int2s->Count ==0 || ilTarget->Int2s->Count == 0)
+    SearchString = "(" + SearchString + "&" + ilTarget->SearchString + ")";     // 變成 "(word1&word2)"
+	if(Int2s.size() ==0 || ilTarget->Int2s.size() == 0)
 	{
 		ClearAll();
 	}
 	else	//接下來就要將二人合併了
 	{
-		OrIt(ilTarget);
+		//OrIt(ilTarget);
     }
-    SearchString = sSearchString;     // 變成 "(word1&word2)"
 }
 //---------------------------------------------------------------------------
 // 運算子多載
@@ -99,37 +91,73 @@ void CInt2List::operator|=(CInt2List * ilTarget)
 void CInt2List::OrIt(CInt2List * ilTarget)
 {
 	int iIndex = 0;		// 移動中的指標
-	TPoint * tpPtr1, *tpPtr2;
+	//TPoint * tpPtr1, *tpPtr2;
+	pair<int, int> tpPtr1, tpPtr2;
 
-    string sSearchString = "(" + SearchString + "," + ilTarget->SearchString + ")";     // 變成 "(word1,word2)"
-	if(Int2s->Count == 0)	// 我自己沒有資料
+    SearchString = "(" + SearchString + "," + ilTarget->SearchString + ")";     // 變成 "(word1,word2)"
+
+	if(Int2s.size() == 0)	// 我自己沒有資料
 	{
 		Copy(ilTarget);
-        SearchString = sSearchString;
 		return;
 	}
 
-	if(ilTarget->Int2s->Count == 0)		// 對方沒有資料
+	if(ilTarget->Int2s.size() == 0)		// 對方沒有資料
     {
-        SearchString = sSearchString;
 		return;
     }
 
-	for(int i=0; i<ilTarget->Int2s->Count; i++)
+    /*
+    // 這一段有點奇怪, 為什麼不能改成底下那樣?... 原來沒錯了, 因為最後是用 Insert, 不是插入在最後
+	for(int i=0; i<ilTarget.Int2s.size; i++)
 	{
 		tpPtr1 =  (TPoint *) Int2s->Items[iIndex];
 		tpPtr2 =  (TPoint *) ilTarget->Int2s->Items[i];
 		while(tpPtr2->x >= tpPtr1->x)
 		{
 			iIndex++;
-			if(iIndex == Int2s->Count) break;
+			if(iIndex == Int2s.size) break;
 			tpPtr1 =  (TPoint *) Int2s->Items[iIndex];
 		}
 		TPoint * tpNew = new TPoint(tpPtr2->x, tpPtr2->y);	// 這裡花了一天半去捉 bug 10/19 '03
 		Int2s->Insert(iIndex,tpNew);
 	}
-    SearchString = sSearchString;
+	*/
+
+    // 雖然 vector 也可以插入, 但效率不好, 所以改用其他方法, 手動將二個 vector 合併成一個
+
+    vector <pair <int,int> > pairTmp;
+
+	for(int i=0; i<ilTarget->Int2s.size(); i++)
+	{
+		tpPtr1 = Int2s[iIndex];
+		tpPtr2 = ilTarget->Int2s[i];
+		if(iIndex < Int2s.size())
+        {
+            while(tpPtr2.first >= tpPtr1.first)
+            {
+                pairTmp.push_back(tpPtr1);
+
+                iIndex++;
+                tpPtr1 = Int2s[iIndex];
+                if(iIndex == Int2s.size()) break;
+            }
+        }
+        pairTmp.push_back(tpPtr2);
+	}
+
+    // 可能還有還沒處理完的, 要繼續處理
+    while(iIndex < Int2s.size())
+    {
+        pairTmp.push_back(tpPtr1);
+        iIndex++;
+        tpPtr1 = Int2s[iIndex];
+    }
+
+	Int2s = pairTmp;
 }
+
+/*
 //---------------------------------------------------------------------------
 // 若二者靠近至某一個程度, 則變成一個範圍
 void CInt2List::NearIt(CInt2List * ilTarget)

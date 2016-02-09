@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <vector>
+//---------------------
+#include "Int2List.h"
+//---------------------
 using namespace std;
 
 class TestUnit
