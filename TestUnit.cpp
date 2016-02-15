@@ -67,6 +67,57 @@ void TestUnit::Test_Int2List()
     AreEqual((int)i2l3->Int2s[1].first , 5, "Int2List OrIt 後的第二筆 .first 是 5");
     AreEqual((int)i2l3->Int2s[4].second , 36, "Int2List OrIt 後的第五筆 .second 是 36");
 
+    // 測試 NearIT
+    //             (50,52) , (100,102) ,                     (200,202)
+    // (1,3)(45, 48),                  (110,113) , (140, 143)
+    // 結果 (45, 52)         (100,113)
+
+    CInt2List * i2l5 = new CInt2List;
+    i2l5->Add(50,52);
+    i2l5->Add(100,102);
+    i2l5->Add(200,202);
+
+    CInt2List * i2l6 = new CInt2List;
+    i2l6->Add(1,3);
+    i2l6->Add(45, 48);
+    i2l6->Add(110,113);
+    i2l6->Add(140, 143);
+
+    i2l5->NearIt(i2l6);
+
+    AreEqual((int)i2l5->Int2s.size() , 2, "Int2List NearIT 後的 size 是 2");
+    AreEqual((int)i2l5->Int2s[0].first , 45, "Int2List NearIT 後的第一筆 .first 是 45");
+    AreEqual((int)i2l5->Int2s[1].second , 113, "Int2List NearIT 後的第二筆 .second 是 113");
+
+
+    // 測試 BeforeIt
+    //         (50,52) ,       (100,102)             (200,202)
+    // (45, 48),      (60, 63)        (110,113) ,            (210, 213)
+    // 結果 (50, 63)           (100,113) ,           (200, 213)
+
+    CInt2List * i2l7 = new CInt2List;
+    i2l7->Add(50,52);
+    i2l7->Add(100,102);
+    i2l7->Add(200,202);
+
+    CInt2List * i2l8 = new CInt2List;
+    i2l8->Add(45, 48);
+    i2l8->Add(60, 63);
+    i2l8->Add(110,113);
+    i2l8->Add(210, 213);
+
+    i2l7->BeforeIt(i2l8);
+
+    AreEqual((int)i2l7->Int2s.size() , 3, "Int2List BeforeIt 後的 size 是 3");
+    AreEqual((int)i2l7->Int2s[0].first , 50, "Int2List BeforeIt 後的第一筆 .first 是 50");
+    AreEqual((int)i2l7->Int2s[2].second , 213, "Int2List BeforeIt 後的第三筆 .second 是 213");
+
+    for(int i=0; i<i2l7->Int2s.size(); i++)
+    {
+        auto j = i2l7->Int2s[i];
+        cout << j.first << "," << j.second << endl;
+    }
+
 
 }
 // ----------------------------------------------------------------------------

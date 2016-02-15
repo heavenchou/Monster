@@ -157,93 +157,90 @@ void CInt2List::OrIt(CInt2List * ilTarget)
 	Int2s = pairTmp;
 }
 
-/*
 //---------------------------------------------------------------------------
 // 若二者靠近至某一個程度, 則變成一個範圍
 void CInt2List::NearIt(CInt2List * ilTarget)
 {
-	NearNum = fmOption->Setting->NearNum;			// Near 運算的範圍     ???? 要用使用者輸入
+
+	NearNum = 30; //fmOption->Setting->NearNum;			// Near 運算的範圍     ???? 要用使用者輸入
     string sSearchString = "(" + SearchString + "+" + ilTarget->SearchString + ")";     // 變成 "(word1+word2)"
 
+
 	// 沒資料就結束
-	if(Int2s->Count ==0 || ilTarget->Int2s->Count == 0)
+	if(Int2s.size() ==0 || ilTarget->Int2s.size() == 0)
 	{
 		ClearAll();
         SearchString = sSearchString;
 		return;
 	}
 
-	TList * tlResult = new TList;		// 放結果用的
-	TPoint * tpPtr1, *tpPtr2;
+    vector <pair <int,int> > pairTmp;
+	pair<int, int> tpPtr1, tpPtr2;
 
-	for(int i=0; i<Int2s->Count; i++)
+	for(int i=0; i<Int2s.size(); i++)
 	{
-		for(int j=0; j<ilTarget->Int2s->Count; j++)
+		for(int j=0; j<ilTarget->Int2s.size(); j++)
 		{
-			tpPtr1 =  (TPoint *) Int2s->Items[i];
-			tpPtr2 =  (TPoint *) ilTarget->Int2s->Items[j];
+            tpPtr1 = Int2s[i];
+            tpPtr2 = ilTarget->Int2s[j];
 
 			// 找到一組
-			//if(!((tpPtr2->x - tpPtr1->y > NearRange) || (tpPtr1->x - tpPtr2->y > NearRange)))
-			if((tpPtr2->x - tpPtr1->y <= NearNum) && (tpPtr1->x - tpPtr2->y <= NearNum))
+			if((tpPtr2.first - tpPtr1.second <= NearNum) && (tpPtr1.first - tpPtr2.second <= NearNum))
 			{
-				TPoint * tpNew = new TPoint(min(tpPtr1->x, tpPtr2->x), max(tpPtr1->y, tpPtr2->y));
-				tlResult->Add(tpNew);
+				pair <int,int> tpNew = pair <int,int>(min(tpPtr1.first, tpPtr2.first), max(tpPtr1.second, tpPtr2.second));
+				pairTmp.push_back(tpNew);
 			}
 			else
-				if (tpPtr2->x - tpPtr1->y > NearNum) break;	// 找不到了, 換下一組
+				if (tpPtr2.first - tpPtr1.second > NearNum) break;	// 找不到了, 換下一組
 		}
 	}
 
-	ClearAll();
-	if(Int2s) delete Int2s;
-	Int2s = tlResult;			// 換成成果
+	Int2s = pairTmp;
     SearchString = sSearchString;
-
 }
+
 //---------------------------------------------------------------------------
 // 同 Near , 不過只能在其後面, 也就是有順序的
 void CInt2List::BeforeIt(CInt2List * ilTarget)
 {
-	BeforeNum = fmOption->Setting->BeforeNum;		// Before 運算的範圍   ???? 要用使用者輸入
+	BeforeNum = 30; //fmOption->Setting->BeforeNum;		// Before 運算的範圍   ???? 要用使用者輸入
     string sSearchString = "(" + SearchString + "*" + ilTarget->SearchString + ")";     // 變成 "(word1*word2)"
 
 	// 沒資料就結束
-	if(Int2s->Count ==0 || ilTarget->Int2s->Count == 0)
+	if(Int2s.size() ==0 || ilTarget->Int2s.size() == 0)
 	{
 		ClearAll();
         SearchString = sSearchString;
 		return;
 	}
 
-	TList * tlResult = new TList;		// 放結果用的
-	TPoint * tpPtr1, *tpPtr2;
+    vector <pair <int,int> > pairTmp;
+	pair<int, int> tpPtr1, tpPtr2;
 
-	for(int i=0; i<Int2s->Count; i++)
+	for(int i=0; i<Int2s.size(); i++)
 	{
-		for(int j=0; j<ilTarget->Int2s->Count; j++)
+		for(int j=0; j<ilTarget->Int2s.size(); j++)
 		{
-			tpPtr1 =  (TPoint *) Int2s->Items[i];
-			tpPtr2 =  (TPoint *) ilTarget->Int2s->Items[j];
+            tpPtr1 = Int2s[i];
+            tpPtr2 = ilTarget->Int2s[j];
 
 			// 找到一組
-			if((tpPtr2->x - tpPtr1->x > 0) && (tpPtr2->x - tpPtr1->y <= BeforeNum))
+			if((tpPtr2.first - tpPtr1.first > 0 ) && (tpPtr2.first - tpPtr1.second <= BeforeNum))
 			{
-				TPoint * tpNew = new TPoint(tpPtr1->x, max(tpPtr1->y, tpPtr2->y));
-				tlResult->Add(tpNew);
+				pair <int,int> tpNew = pair <int,int>(tpPtr1.first, max(tpPtr1.second, tpPtr2.second));
+				pairTmp.push_back(tpNew);
 			}
 			else
-				if (tpPtr2->x - tpPtr1->y > BeforeNum) break;	// 找不到了, 換下一組
+				if (tpPtr2.first - tpPtr1.second > BeforeNum) break;	// 找不到了, 換下一組
 		}
 	}
 
-	ClearAll();
-	if(Int2s) delete Int2s;
-	Int2s = tlResult;			// 換成成果
+	Int2s = pairTmp;
     SearchString = sSearchString;
 }
 //---------------------------------------------------------------------------
 // 排除某一個詞, 例如  舍利!舍利弗 表示只要找舍利, 但不要找到舍利弗
+/*
 void CInt2List::ExcludeIt(CInt2List * ilTarget)
 {
     // 做法 :
