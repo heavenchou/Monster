@@ -34,11 +34,7 @@ void TestUnit::Test_Int2List()
     int is = i2l2->Int2s.size();
     AreEqual(is , 0, "Int2List 新增的 size 是 0");
 
-    i2l->SearchString = "hahaha";
     i2l2->Copy(i2l);
-    //i2l2 = i2l;
-    cout << "i2l : " << i2l->SearchString << endl;
-    cout << "i2l2 : " << i2l2->SearchString << endl;
 
     AreEqual(i2l2->Int2s[0].second, 2, "Copy 後的 Int2List.first");
     AreEqual(i2l2->Int2s[1].first, 3, "Copy 後的 Int2List.second");
@@ -112,11 +108,36 @@ void TestUnit::Test_Int2List()
     AreEqual((int)i2l7->Int2s[0].first , 50, "Int2List BeforeIt 後的第一筆 .first 是 50");
     AreEqual((int)i2l7->Int2s[2].second , 213, "Int2List BeforeIt 後的第三筆 .second 是 213");
 
-    for(int i=0; i<i2l7->Int2s.size(); i++)
+    // 測試 ExcludeIt
+    //   (50,52) , (100,102)          (200,202),      (300, 303)
+    // (49, 52),   (100, 104)   (198,201) , (201,203)
+    // 結果 (200,202), (300, 303)
+
+    CInt2List * i2l9 = new CInt2List;
+    i2l9->Add(50,52);
+    i2l9->Add(100,102);
+    i2l9->Add(200,202);
+    i2l9->Add(300,303);
+
+    CInt2List * i2la = new CInt2List;
+    i2la->Add(49, 52);
+    i2la->Add(100, 104);
+    i2la->Add(198,201);
+    i2la->Add(201,203);
+
+    i2l9->ExcludeIt(i2la);
+
+    AreEqual((int)i2l9->Int2s.size() , 2, "Int2List ExcludeIt 後的 size 是 2");
+    AreEqual((int)i2l9->Int2s[0].first , 200, "Int2List ExcludeIt 後的第一筆 .first 是 200");
+    AreEqual((int)i2l9->Int2s[1].second , 303, "Int2List ExcludeIt 後的第二筆 .second 是 303");
+
+    /*
+    for(int i=0; i<i2l9->Int2s.size(); i++)
     {
-        auto j = i2l7->Int2s[i];
+        auto j = i2l9->Int2s[i];
         cout << j.first << "," << j.second << endl;
     }
+    */
 
 
 }

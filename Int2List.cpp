@@ -179,9 +179,9 @@ void CInt2List::NearIt(CInt2List * ilTarget)
 
 	for(int i=0; i<Int2s.size(); i++)
 	{
+        tpPtr1 = Int2s[i];
 		for(int j=0; j<ilTarget->Int2s.size(); j++)
 		{
-            tpPtr1 = Int2s[i];
             tpPtr2 = ilTarget->Int2s[j];
 
 			// 找到一組
@@ -219,9 +219,9 @@ void CInt2List::BeforeIt(CInt2List * ilTarget)
 
 	for(int i=0; i<Int2s.size(); i++)
 	{
+        tpPtr1 = Int2s[i];
 		for(int j=0; j<ilTarget->Int2s.size(); j++)
 		{
-            tpPtr1 = Int2s[i];
             tpPtr2 = ilTarget->Int2s[j];
 
 			// 找到一組
@@ -240,7 +240,7 @@ void CInt2List::BeforeIt(CInt2List * ilTarget)
 }
 //---------------------------------------------------------------------------
 // 排除某一個詞, 例如  舍利!舍利弗 表示只要找舍利, 但不要找到舍利弗
-/*
+
 void CInt2List::ExcludeIt(CInt2List * ilTarget)
 {
     // 做法 :
@@ -253,49 +253,59 @@ void CInt2List::ExcludeIt(CInt2List * ilTarget)
     // 可惜這一段也沒用了
     //int iExcludeNum = MyAnsiPos(SearchString , ilTarget->SearchString) - 1; // 詞距, 減一是希望由 0 算起
 
-    string sSearchString = "(" + SearchString + "-" + ilTarget->SearchString + ")";     // 變成 "(word1!word2)"
+    SearchString = "(" + SearchString + "-" + ilTarget->SearchString + ")";     // 變成 "(word1!word2)"
 
-	if(Int2s->Count == 0)	// 我自己沒有資料
+	if(Int2s.size() == 0)	// 我自己沒有資料
 	{
 		ClearAll();
-        SearchString = sSearchString;
 		return;
 	}
 
-	if(ilTarget->Int2s->Count == 0)		// 對方沒有資料, 或二個詞根本沒有相同處
+	if(ilTarget->Int2s.size() == 0)		// 對方沒有資料, 或二個詞根本沒有相同處
     {
-        SearchString = sSearchString;
 		return;
     }
 
-	TPoint * tpPtr1, *tpPtr2;
+    vector <pair <int,int> > pairTmp;
+	pair<int, int> tpPtr1, tpPtr2;
 
-	for(int i=0; i<Int2s->Count; i++)
+    // 這一段似乎可以再快一點, 不用跑二個迴圈....如果讓二段交叉前進 ???
+	for(int i=0; i<Int2s.size(); i++)
 	{
-        tpPtr1 =  (TPoint *) Int2s->Items[i];
+        tpPtr1 = Int2s[i];
 
-		for(int j=0; j<ilTarget->Int2s->Count; j++)
+        bool bPush = true;  // 預設這一組是可用的, 除非在 ilTarget 找到被排除的詞
+
+		for(int j=0; j<ilTarget->Int2s.size(); j++)
 		{
-			tpPtr2 =  (TPoint *) ilTarget->Int2s->Items[j];
+            tpPtr2 = ilTarget->Int2s[j];
 
-			// 找到重複的 , 這一組要刪除
-			// if((tpPtr1->x - tpPtr2->x == iExcludeNum)) // 這是舊的方法, 要換成 tpPtr1 與 tpPtr2 不在彼此範圍中
-            if(((tpPtr1->x >= tpPtr2->x) && (tpPtr1->y <= tpPtr2->y))||((tpPtr1->x <= tpPtr2->x) && (tpPtr1->y >= tpPtr2->y)))
+            if(tpPtr1.first > tpPtr2.second) // 第二組還太遠, 先跳過
 			{
-                Delete(i);
-                i--;
-                //ilTarget->Delete(j);
+                continue;
+            }
+			// 找到重複的 , 這一組要刪除
+            if(((tpPtr1.first >= tpPtr2.first) && (tpPtr1.second <= tpPtr2.second))||((tpPtr1.first <= tpPtr2.first) && (tpPtr1.second >= tpPtr2.second)))
+			{
+                bPush = false;
                 break;
             }
-            if(tpPtr2->x > tpPtr1->y) // 不用再找了, 找不到的.
+            if(tpPtr2.first > tpPtr1.second) // 不用再找了, 找不到的.
 			{
                 break;
             }
 		}
+
+		if(bPush)
+        {
+            pairTmp.push_back(tpPtr1);
+        }
+
 	}
 
-    SearchString = sSearchString;
+	Int2s = pairTmp;
 }
+/*
 //---------------------------------------------------------------------------
 // 找出第二個字串在第一個字串的距離, 但這是以中文來算的
 // 例如 阿難,佛告阿難 , 則傳回 3 , 因為 "阿" 在 "佛告阿難" 第三個字
