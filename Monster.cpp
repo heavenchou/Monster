@@ -17,7 +17,7 @@ CMonster::CMonster(string sFileListFileName,
 	MainIndexFileName = sMainIndexFileName;
 
 	///SearchWordList = new TStringList;	// 存放每一個檢索的詞, 日後塗色會用到
-	MaxSearchWordNum = 20;				// 檢索詞中最多可出現的字串數,   "佛陀 & 阿羅漢" 就算 2 個
+	MaxSearchWordNum = 20;	// 檢索詞中最多可出現的字串數, "佛陀 & 阿羅漢" 就算 2 個 , 末來可以考慮用 vector 不限數量 ???
 	///swWord = new TmySearchWord*[MaxSearchWordNum];
 
 	for(int i=0; i<MaxSearchWordNum; i++)
@@ -30,8 +30,8 @@ CMonster::CMonster(string sFileListFileName,
 	OpenWordIndex();
 	OpenMainIndex();
 
-	///PostfixStack = new TmyPostfixStack;
-	///FileFound = new TmyIntList(BuildFileList->FileCount);	// 存放每一檔找到的結果
+	PostfixStack = new CPostfixStack;
+	FileFound = new CIntList(BuildFileList->FileCount);	// 存放每一檔找到的結果
 }
 //---------------------------------------------------------------------------
 // 解構函式

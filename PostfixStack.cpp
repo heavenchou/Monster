@@ -1,6 +1,3 @@
-//---------------------------------------------------------------------------
-//#include <vcl\vcl.h>
-#pragma hdrstop
 
 #include "PostfixStack.h"
 //---------------------------------------------------------------------------
@@ -111,7 +108,6 @@ void CPostfixStack::Run(void)
 			QueryStackPoint--;
 			QueryStack[QueryStackPoint-1]->OrIt(QueryStack[QueryStackPoint]);
 			break;
-			/**
 		case '+':
 			QueryStackPoint--;
 			QueryStack[QueryStackPoint-1]->NearIt(QueryStack[QueryStackPoint]);
@@ -124,7 +120,6 @@ void CPostfixStack::Run(void)
 			QueryStackPoint--;
 			QueryStack[QueryStackPoint-1]->ExcludeIt(QueryStack[QueryStackPoint]);
 			break;
-			*/
 	}
 }
 //---------------------------------------------------------------------------

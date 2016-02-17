@@ -41,7 +41,7 @@ private:	// User declarations
 
 public:		// User declarations
 
-	CInt2List * QueryStack[100];				// ???? 超過 100 個怎麼辦?
+	CInt2List * QueryStack[100];				// ???? 超過 100 個怎麼辦? 可考慮用 vector 動態成長 ???
 	void PushOp(string sOp);		// 傳入一詞的查詢結果
 	void PushQuery(CInt2List * FileFoundCount, string sSearchString);		// 傳入一詞的查詢結果
     int GetResult(void);     // 傳回資料的筆數, 不是傳回結果, 若失敗傳回 -1
