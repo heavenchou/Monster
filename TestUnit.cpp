@@ -11,7 +11,12 @@ TestUnit::~TestUnit()
 void TestUnit::RunAllTest()
 {
     // 測試 Int2List
+    cout << "測試 Int2List ..." << endl;
     Test_Int2List();
+
+    // 測試 Monster
+    cout << "測試 Monster ..." << endl;
+    Test_Monster();
 
     // 呈現結果
     ShowTestResult();
@@ -20,8 +25,6 @@ void TestUnit::RunAllTest()
 // ----------------------------------------------------------------------------
 void TestUnit::Test_Int2List()
 {
-    cout << "測試 Int2List ..." << endl;
-
     CInt2List * i2l = new CInt2List;
     i2l->Add(1,2);
     pair<int, int> *a = new pair<int, int>(3,4);
@@ -191,4 +194,34 @@ void TestUnit::ShowTestResult()
     }
     cout << "======================================" << endl;
     cout << "全部共有 " << iCount << " 項測試錯誤!" << endl;
+}
+// ----------------------------------------------------------------------------
+void TestUnit::Test_Monster()
+{
+    /*
+    // 要先宣才能測, 比較麻煩, 所以先別測
+
+    string sSentence = "( 佛陀 * ( 持[金*本] ) + ( 佛 , 世尊 ) )";
+    string sPatten;
+
+    string sSentence = "佛陀 * ( 持[金*本] ) + ( 佛 , 世尊 ) & 目標";
+    string sPatten;
+
+    while (sSentence.length())
+	{
+		sPatten = SearchEngine->CutPatten(sSentence);
+		cout << "\"" << sPatten << "\" : ";
+		cout << "\"" << sSentence << "\"" << endl;
+	}
+
+    sSentence = "佛陀 * ( 持[金*本] ) + ( 佛 , 世尊 ) & 目標";
+    sPatten;
+
+    while (sSentence.length())
+	{
+		sPatten = SearchEngine->CutPatten(sSentence);
+		cout << "\"" << sPatten << "\" : ";
+		cout << "\"" << sSentence << "\"" << endl;
+	}
+	*/
 }

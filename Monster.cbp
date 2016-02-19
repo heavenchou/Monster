@@ -36,6 +36,7 @@
 		<Unit filename="FileList.h" />
 		<Unit filename="Int2List.cpp" />
 		<Unit filename="Int2List.h" />
+		<Unit filename="IntList.cpp" />
 		<Unit filename="IntList.h" />
 		<Unit filename="MainIndex.cpp" />
 		<Unit filename="MainIndex.h" />

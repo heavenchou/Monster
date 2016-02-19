@@ -5,6 +5,7 @@
 #include <vector>
 //---------------------
 #include "Int2List.h"
+#include "Monster.h"
 //---------------------
 using namespace std;
 
@@ -14,6 +15,7 @@ class TestUnit
         void RunAllTest();
 
         void Test_Int2List();
+        void Test_Monster();
 
         TestUnit();
         ~TestUnit();

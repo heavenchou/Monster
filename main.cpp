@@ -34,11 +34,14 @@ void RunFullTextSearch()
     string sMainIndex = "D:\\Data\\c\\_CodeBlocks\\Monster\\bin\\Debug\\main.ndx";
 
     CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// 宣告全文檢索
+
+    SearchEngine->SearchWordList.clear();                              // Search Engine 一起更新
     /*
-    SearchEngine->SearchWordList->Clear();                              // Search Engine 一起更新
     bool bFindOK = SearchEngine->Find(SearchSentence,bHasRange);        // 開始搜尋
     int iFoundCount = SearchEngine->FileFound->Total;
     */
+
+
 }
 
 
