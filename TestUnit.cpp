@@ -223,5 +223,14 @@ void TestUnit::Test_Monster()
 		cout << "\"" << sPatten << "\" : ";
 		cout << "\"" << sSentence << "\"" << endl;
 	}
+
+	sSentence = "( 佛陀 * ( 持[金*本] ) + ( 佛 , 世尊 ) & 目標 )";
+    SearchEngine->AnalysisSentence(sSentence);
+    cout << "OKSentence : " << SearchEngine->OKSentence << endl;
+    for(int i=0; i<SearchEngine->SearchWordList.size(); i++)
+    {
+        cout << i << " : " << SearchEngine->SearchWordList[i] << endl;
+    }
+
 	*/
 }

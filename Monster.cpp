@@ -109,7 +109,7 @@ bool CMonster::Find(string sSentence, bool bHasSearchRange)
 	}
     return bResult;
 }
-
+*/
 //---------------------------------------------------------------------------
 // 先分析一下要搜尋的字串
 //
@@ -124,12 +124,13 @@ void CMonster::AnalysisSentence(string sSentence)
 	// 目前第幾個字串? 例如 (S&S)|S  (佛陀&阿難)|布施  佛陀是第 0 個
 	int iPattenNum = 0;
 
-	while (sSentence.Length())
+	while (sSentence.length())
 	{
 		sPatten = CutPatten(sSentence);
-        sSentence = sSentence.TrimLeft();
+        // 刪除左邊的空格
+        if(sSentence[0] == ' ') sSentence = sSentence.substr(sSentence.find_first_not_of(' '));
 
-		if((sPatten.IsDelimiter(OpPatten, 1)) && (sPatten.Length()==1))		// 如果是運算符號的話
+		if((sPatten.find_first_of(OpPatten) == 0) && (sPatten.length()==1))		// 如果是運算符號的話
 		{
 			//PostfixStack->PushOp(sPatten);
 			OKSentence += sPatten;
@@ -138,14 +139,14 @@ void CMonster::AnalysisSentence(string sSentence)
 		{
 			// 處理一個字
 
-			SearchWordList->Add(sPatten);	// 先記錄起來
-			swWord[iPattenNum] = new CSearchWord(sPatten);	// 將此字準備好
+			SearchWordList.push_back(sPatten);	// 先記錄起來
+			/// swWord[iPattenNum] = new CSearchWord(sPatten);	// 將此字準備好
 			OKSentence += "S";
 			iPattenNum++;
 		}
 	}
 }
-*/
+
 //---------------------------------------------------------------------------
 string CMonster::CutPatten(string & sString)
 {
