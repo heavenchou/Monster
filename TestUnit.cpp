@@ -18,6 +18,10 @@ void TestUnit::RunAllTest()
     cout << "測試 Monster ..." << endl;
     Test_Monster();
 
+    // 測試 SearchWord
+    cout << "測試 SearchWord ..." << endl;
+    Test_SearchWord();
+
     // 呈現結果
     ShowTestResult();
 
@@ -233,4 +237,13 @@ void TestUnit::Test_Monster()
     }
 
 	*/
+}
+// ----------------------------------------------------------------------------
+void TestUnit::Test_SearchWord()
+{
+    CSearchWord * Word = new CSearchWord("佛陀持[金*本]及&CB01234;");
+
+    AreEqual((int)Word->Tokens.size() , 6, "SearchWord Tokens 的 size 是 6");
+    AreEqual((string)Word->Tokens[3] , (string)"[金*本]", "SearchWord Tokens[3] 是 [金*本]");
+    AreEqual((string)Word->Tokens[5] , (string)"&CB01234;", "SearchWord Tokens[5] 是 &CB01234;");
 }

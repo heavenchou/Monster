@@ -70,14 +70,13 @@ void CMonster::OpenMainIndex(void)
 {
 	MainIndex = new CMainIndex(MainIndexFileName);	// ???? error check
 }
-/*
 //---------------------------------------------------------------------------
 // 尋找一個字串, 應該要傳回一個檔案串, 表示哪些檔案有
 bool CMonster::Find(string sSentence, bool bHasSearchRange)
 {
     bool bResult = true;
 	FileFound->ClearAll();		// 每一檔找到的數量歸 0
-	SearchWordList->Clear();
+	SearchWordList.clear();
 	OKSentence = "";			// 全部歸 0
 
 	AnalysisSentence(sSentence);		// 分析, 並產生 OKSentence
@@ -109,7 +108,7 @@ bool CMonster::Find(string sSentence, bool bHasSearchRange)
 	}
     return bResult;
 }
-*/
+
 //---------------------------------------------------------------------------
 // 先分析一下要搜尋的字串
 //
@@ -189,4 +188,58 @@ string CMonster::CutPatten(string & sString)
 		sTmp = sTmp.substr(0,sTmp.find_last_not_of(' ')+1);
 		return (sTmp);
 	}
+}
+
+//---------------------------------------------------------------------------
+// 尋找一個字串, 應該要傳回一個檔案串, 表示哪些檔案有
+int CMonster::FindOneFile(int iFileNum)
+{
+	/*
+	###################################
+	# 練習計算機運算
+	#
+	# 原則
+	#  如果是數字, 如果有運算符號, 且層數都一樣, 就運算, 結果推入 query stack
+	#  如果是數字, 如果有運算符號, 如果層數不一樣, 推入 query stack
+	#  如果是數字, 沒有運算符號, 推入 query stack
+	#
+	#  如果是運算符號, 推入 op stack , 且記錄目前層數
+	#
+	#  如果是左括號, 目前層數 + 1
+	#  如果是右括號, 層數 - 1 , 並且運算
+	###################################
+	*/
+
+	PostfixStack->Initial();
+	string sPatten;
+	string sOKSentence = OKSentence;	// 暫存的字串
+
+	// 目前第幾個字串? 例如 (S&S)|S  (佛陀&阿難)|布施  佛陀是第 0 個
+	int iPattenNum = 0;
+
+	//while (sOKSentence.Length())
+	for(int i=0; i<OKSentence.length(); i++)
+	{
+		sPatten = sOKSentence.substr(i,1);		// 取出 patten
+
+		if(sPatten.find_first_of(OpPatten) == 0)		// 如果是運算符號的話
+		{
+			PostfixStack->PushOp(sPatten);
+		}
+		else
+		{
+			// ???? 加速的方法, 如果是 and 就只算前一個有結果的, 如果是 or 就只查前一個是沒找到的
+			// ???? 加速的方法, 如果不統計次數, 有找到就算數, 那麼速度會更快
+
+			// 處理一個字
+
+			sPatten =  SearchWordList[iPattenNum];	// 取出某一筆字串
+			swWord[iPattenNum]->Search(iFileNum);			// 只在某個檔搜尋
+			PostfixStack->PushQuery(swWord[iPattenNum]->FoundPos, sPatten);
+			iPattenNum++;
+		}
+	}
+	// ???? 這是組數, 不是筆數, 例如 佛陀 near 阿難 可能算是 1 組
+	// return (PostfixStack->QueryStack[0]->Int2s->Count);
+    return (PostfixStack->GetResult());
 }

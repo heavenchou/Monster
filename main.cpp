@@ -36,13 +36,13 @@ void RunFullTextSearch()
     CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// 宣告全文檢索
 
     SearchEngine->SearchWordList.clear();                              // Search Engine 一起更新
-    /*
+
+    string SearchSentence = "如來";   // 要檢索的句子
+    bool bHasRange = false;         // 全部檢索
+
     bool bFindOK = SearchEngine->Find(SearchSentence,bHasRange);        // 開始搜尋
     int iFoundCount = SearchEngine->FileFound->Total;
-    */
-
-
-
+    cout << "find : " << iFoundCount << endl;
 }
 
 

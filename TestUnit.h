@@ -6,6 +6,7 @@
 //---------------------
 #include "Int2List.h"
 #include "Monster.h"
+#include "SearchWord.h"
 //---------------------
 using namespace std;
 
@@ -16,6 +17,7 @@ class TestUnit
 
         void Test_Int2List();
         void Test_Monster();
+        void Test_SearchWord();
 
         TestUnit();
         ~TestUnit();

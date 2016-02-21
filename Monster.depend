@@ -1,14 +1,15 @@
 # depslib dependency file v1.0
-1455895904 source:d:\data\c\_codeblocks\monster\testunit.cpp
+1455981738 source:d:\data\c\_codeblocks\monster\testunit.cpp
 	"TestUnit.h"
 
-1455875927 d:\data\c\_codeblocks\monster\testunit.h
+1455978732 d:\data\c\_codeblocks\monster\testunit.h
 	<iostream>
 	<vector>
 	"Int2List.h"
 	"Monster.h"
+	"SearchWord.h"
 
-1455895904 source:d:\data\c\_codeblocks\monster\main.cpp
+1455953892 source:d:\data\c\_codeblocks\monster\main.cpp
 	"main.h"
 
 1453135441 d:\data\c\_codeblocks\monster\main.h
@@ -16,10 +17,10 @@
 	"TestUnit.h"
 	"Monster.h"
 
-1455953008 source:d:\data\c\_codeblocks\monster\monster.cpp
+1456067073 source:d:\data\c\_codeblocks\monster\monster.cpp
 	"Monster.h"
 
-1455728941 d:\data\c\_codeblocks\monster\monster.h
+1456066658 d:\data\c\_codeblocks\monster\monster.h
 	<iostream>
 	"FileList.h"
 	"WordIndex.h"
@@ -28,18 +29,17 @@
 	"PostfixStack.h"
 	"SearchWord.h"
 
-1065950034 d:\data\c\_codeblocks\monster\searchword.h
-	<vcl\vcl.h>
+1456065986 d:\data\c\_codeblocks\monster\searchword.h
 	"WordData.h"
 	"WordIndex.h"
 	"MainIndex.h"
 	"FileList.h"
 	"Int2List.h"
 
-1075925770 d:\data\c\_codeblocks\monster\worddata.h
+1456045710 d:\data\c\_codeblocks\monster\worddata.h
 	"BitList.h"
 
-1036406636 d:\data\c\_codeblocks\monster\bitlist.h
+1456047368 d:\data\c\_codeblocks\monster\bitlist.h
 
 1453402116 d:\data\c\_codeblocks\monster\wordindex.h
 	<iostream>
@@ -83,4 +83,15 @@
 
 1455724685 source:d:\data\c\_codeblocks\monster\intlist.cpp
 	"IntList.h"
+
+1456066155 source:d:\data\c\_codeblocks\monster\searchword.cpp
+	"SearchWord.h"
+
+1456047526 source:d:\data\c\_codeblocks\monster\bitlist.cpp
+	"BitList.h"
+
+1456065715 source:d:\data\c\_codeblocks\monster\worddata.cpp
+	"WordData.h"
+	"FileList.h"
+	"MainIndex.h"
 
