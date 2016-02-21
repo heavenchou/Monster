@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="BitList.cpp" />
+		<Unit filename="BitList.h" />
 		<Unit filename="FileList.cpp" />
 		<Unit filename="FileList.h" />
 		<Unit filename="Int2List.cpp" />
@@ -48,6 +50,8 @@
 		<Unit filename="SearchWord.h" />
 		<Unit filename="TestUnit.cpp" />
 		<Unit filename="TestUnit.h" />
+		<Unit filename="WordData.cpp" />
+		<Unit filename="WordData.h" />
 		<Unit filename="WordIndex.cpp" />
 		<Unit filename="WordIndex.h" />
 		<Unit filename="main.cpp" />

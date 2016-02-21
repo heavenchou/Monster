@@ -5,18 +5,18 @@
 CSearchWord::CSearchWord(string sWord)
 {
 	Word = sWord;
-	///WordData = 0;		// 初值宣告為 0
+	WordData = 0;		// 初值宣告為 0
 	FoundPos = 0;		// 各檔找到的數量
 	FoundPos = new CInt2List();
 
 	ParseToken();	  	// 先將要搜尋的字串拆成一個一個的 token
-	//CreatTokenSpace();	// 配置每一個 token 的空間
+	CreatTokenSpace();	// 配置每一個 token 的空間
 }
 //---------------------------------------------------------------------------
 // 解構函式
 CSearchWord::~CSearchWord(void)
 {
-	///if(WordData) delete[] WordData;
+	if(WordData) delete[] WordData;
 	if(FoundPos) delete FoundPos;
 }
 //---------------------------------------------------------------------------

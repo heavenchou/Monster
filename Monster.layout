@@ -6,39 +6,34 @@
 			<Cursor1 position="175" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="SearchWord.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="WordData.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1487" topLine="1" />
+			<Cursor1 position="1670" topLine="32" />
 		</Cursor>
 	</File>
-	<File name="TestUnit.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="WordData.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7843" topLine="224" />
+			<Cursor1 position="2977" topLine="92" />
 		</Cursor>
 	</File>
-	<File name="SearchWord.h" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="FileList.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="629" topLine="6" />
+			<Cursor1 position="1122" topLine="17" />
 		</Cursor>
 	</File>
-	<File name="PostfixStack.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="FileList.cpp" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1461" topLine="17" />
+			<Cursor1 position="509" topLine="130" />
 		</Cursor>
 	</File>
-	<File name="Int2List.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="BitList.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="647" topLine="10" />
+			<Cursor1 position="286" topLine="5" />
 		</Cursor>
 	</File>
-	<File name="WordIndex.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="BitList.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1493" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="IntList.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="598" topLine="1" />
+			<Cursor1 position="547" topLine="33" />
 		</Cursor>
 	</File>
 	<File name="Int2List.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -46,14 +41,19 @@
 			<Cursor1 position="4085" topLine="122" />
 		</Cursor>
 	</File>
-	<File name="Monster.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Int2List.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1011" topLine="23" />
+			<Cursor1 position="647" topLine="10" />
 		</Cursor>
 	</File>
-	<File name="PostfixStack.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="IntList.cpp" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="122" />
+			<Cursor1 position="527" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="IntList.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="897" topLine="3" />
 		</Cursor>
 	</File>
 	<File name="MainIndex.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -66,39 +66,59 @@
 			<Cursor1 position="592" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Monster.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Monster.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3727" topLine="123" />
+			<Cursor1 position="2731" topLine="219" />
 		</Cursor>
 	</File>
-	<File name="WordIndex.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Monster.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="277" topLine="3" />
+			<Cursor1 position="1440" topLine="29" />
 		</Cursor>
 	</File>
-	<File name="TestUnit.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="PostfixStack.cpp" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="PostfixStack.h" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="977" topLine="31" />
+		</Cursor>
+	</File>
+	<File name="SearchWord.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="369" topLine="59" />
+		</Cursor>
+	</File>
+	<File name="SearchWord.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="843" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="TestUnit.cpp" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7843" topLine="224" />
+		</Cursor>
+	</File>
+	<File name="TestUnit.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="175" topLine="7" />
 		</Cursor>
 	</File>
-	<File name="IntList.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="WordIndex.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="897" topLine="3" />
+			<Cursor1 position="1493" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="FileList.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="WordIndex.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2400" topLine="79" />
-		</Cursor>
-	</File>
-	<File name="FileList.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1122" topLine="17" />
+			<Cursor1 position="277" topLine="3" />
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1164" topLine="23" />
+			<Cursor1 position="1028" topLine="24" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

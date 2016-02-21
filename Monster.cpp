@@ -16,13 +16,12 @@ CMonster::CMonster(string sFileListFileName,
 	WordIndexFileName = sWordIndexFileName;
 	MainIndexFileName = sMainIndexFileName;
 
-	///SearchWordList = new TStringList;	// 存放每一個檢索的詞, 日後塗色會用到
 	MaxSearchWordNum = 20;	// 檢索詞中最多可出現的字串數, "佛陀 & 阿羅漢" 就算 2 個 , 末來可以考慮用 vector 不限數量 ???
-	///swWord = new TmySearchWord*[MaxSearchWordNum];
+	swWord = new CSearchWord*[MaxSearchWordNum];
 
 	for(int i=0; i<MaxSearchWordNum; i++)
 	{
-	///	swWord[i] = 0;		// 設定初值, 指標歸 0
+		swWord[i] = 0;		// 設定初值, 指標歸 0
 	}
 
 	// 先處理 build file list
@@ -139,7 +138,7 @@ void CMonster::AnalysisSentence(string sSentence)
 			// 處理一個字
 
 			SearchWordList.push_back(sPatten);	// 先記錄起來
-			/// swWord[iPattenNum] = new CSearchWord(sPatten);	// 將此字準備好
+			swWord[iPattenNum] = new CSearchWord(sPatten);	// 將此字準備好
 			OKSentence += "S";
 			iPattenNum++;
 		}

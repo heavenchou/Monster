@@ -37,7 +37,8 @@ void RunFullTextSearch()
 
     SearchEngine->SearchWordList.clear();                              // Search Engine 一起更新
 
-    string SearchSentence = "如來";   // 要檢索的句子
+    string SearchSentence = "湖南 , 民前";   // 要檢索的句子
+
     bool bHasRange = false;         // 全部檢索
 
     bool bFindOK = SearchEngine->Find(SearchSentence,bHasRange);        // 開始搜尋
