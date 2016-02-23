@@ -12,6 +12,7 @@ using namespace std;
 #include "IntList.h"
 #include "PostfixStack.h"
 #include "SearchWord.h"
+#include "mydebug.h"
 
 //---------------------------------------------------------------------------
 class CMonster

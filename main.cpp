@@ -7,6 +7,11 @@ using namespace std;
 
 int main()
 {
+
+#ifdef DEBUG
+    cout << "DEBUGing... DEBUGing... DEBUGing..." << endl;
+#endif // DEBUG
+
     char cInput;
 
     cout << "1.執行程式測試 2.執行全文檢索 : ";

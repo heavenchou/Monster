@@ -154,7 +154,8 @@ void CSearchWord::Search(int iFileNum)
 						//lastK2[j] = k;			// 先暫存至 lastK2;
 						break;
 				}
-				//--------  第二種方法, 較嚴格的 ---------- */
+				*/
+				//--------  第二種方法, 較嚴格的 ----------
 			}
 			if (iFound <= 0)   	// 沒找到或提前出局
 			{

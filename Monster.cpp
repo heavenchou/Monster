@@ -220,7 +220,6 @@ int CMonster::FindOneFile(int iFileNum)
 	for(int i=0; i<OKSentence.length(); i++)
 	{
 		sPatten = sOKSentence.substr(i,1);		// 取出 patten
-
 		if(sPatten.find_first_of(OpPatten) == 0)		// 如果是運算符號的話
 		{
 			PostfixStack->PushOp(sPatten);
@@ -232,7 +231,7 @@ int CMonster::FindOneFile(int iFileNum)
 
 			// 處理一個字
 
-			sPatten =  SearchWordList[iPattenNum];	// 取出某一筆字串
+			sPatten = SearchWordList[iPattenNum];	// 取出某一筆字串
 			swWord[iPattenNum]->Search(iFileNum);			// 只在某個檔搜尋
 			PostfixStack->PushQuery(swWord[iPattenNum]->FoundPos, sPatten);
 			iPattenNum++;

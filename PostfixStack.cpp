@@ -81,7 +81,7 @@ inline void CPostfixStack::PushRightBracket(void)
 inline void CPostfixStack::PushOpStack(string sOp)
 {
 	// 如果是運算符號, 推入 op stack , 且記錄目前層數
-	OpStack[OpStackPoint] = sOp[1];
+	OpStack[OpStackPoint] = sOp[0];
 	LevelStack[OpStackPoint] = Level;
 	OpStackPoint++;
 }
