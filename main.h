@@ -10,6 +10,8 @@
 #include "mydebug.h"
 //---------------------------------------------------------------------------
 
-void RunFullTextSearch();   // °õ¦æ¥þ¤åÀË¯Á
+void RunFullTextSearch();
+void ShowTestResult(CMonster * SearchEngine, string sSearchStr, int iResult);
+
 
 #endif

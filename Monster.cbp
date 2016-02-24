@@ -56,6 +56,7 @@
 		<Unit filename="WordIndex.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
+		<Unit filename="mydebug.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

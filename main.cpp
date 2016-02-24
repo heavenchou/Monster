@@ -41,14 +41,25 @@ void RunFullTextSearch()
     CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// 宣告全文檢索
 
     SearchEngine->SearchWordList.clear();                              // Search Engine 一起更新
+    ShowTestResult(SearchEngine, "世尊", 3645);
+    ShowTestResult(SearchEngine, "菩薩 + 羅漢", 374);
+    ShowTestResult(SearchEngine, "如來 & 世尊", 10850);
+    ShowTestResult(SearchEngine, "如來 * 世尊", 488);
+    ShowTestResult(SearchEngine, "舍利弗 , 阿難", 3998);
+    ShowTestResult(SearchEngine, "周海文", 0);
+    ShowTestResult(SearchEngine, "或稱大藏經 & 宗派之繁分", 2);
 
-    string SearchSentence = "湖南 , 民前";   // 要檢索的句子
-
-    bool bHasRange = false;         // 全部檢索
-
-    bool bFindOK = SearchEngine->Find(SearchSentence,bHasRange);        // 開始搜尋
-    int iFoundCount = SearchEngine->FileFound->Total;
-    cout << "find : " << iFoundCount << endl;
 }
 
+// 測試結果
+void ShowTestResult(CMonster * SearchEngine, string sSearchStr, int iResult)
+{
+    bool bHasRange = false;         // 全部檢索
+    bool bFindOK = SearchEngine->Find(sSearchStr,bHasRange);        // 開始搜尋
+    cout << "find " << sSearchStr << " : " << SearchEngine->FileFound->Total;
+    if(SearchEngine->FileFound->Total == iResult)
+        cout << " (OK)" << endl;
+    else
+        cout << " (XXXXXXXXXXXX)" << endl;
+}
 

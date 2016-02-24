@@ -78,7 +78,7 @@ void CInt2List::AndIt(CInt2List * ilTarget)
 	}
 	else	//接下來就要將二人合併了
 	{
-		//OrIt(ilTarget);
+		OrIt(ilTarget);
     }
 }
 //---------------------------------------------------------------------------
