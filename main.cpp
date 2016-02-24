@@ -47,7 +47,9 @@ void RunFullTextSearch()
     ShowTestResult(SearchEngine, "如來 * 世尊", 488);
     ShowTestResult(SearchEngine, "舍利弗 , 阿難", 3998);
     ShowTestResult(SearchEngine, "周海文", 0);
-    ShowTestResult(SearchEngine, "或稱大藏經 & 宗派之繁分", 2);
+    ShowTestResult(SearchEngine, "覺?法師", 123);
+    ShowTestResult(SearchEngine, "覺?法師 - 覺光法師", 4);
+    ShowTestResult(SearchEngine, "( 舍利弗 & 阿難 ) + 菩薩", 459);
 
 }
 
