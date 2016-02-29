@@ -100,3 +100,104 @@
 
 1456220034 d:\data\c\_codeblocks\monster\mydebug.h
 
+1456047526 source:d:\data\c\_codeblocks\monster\src\bitlist.cpp
+	"BitList.h"
+
+1456047368 d:\data\c\_codeblocks\monster\src\bitlist.h
+
+1453366556 source:d:\data\c\_codeblocks\monster\src\filelist.cpp
+	"FileList.h"
+
+1453366504 d:\data\c\_codeblocks\monster\src\filelist.h
+	<iostream>
+	<fstream>
+	<stdlib.h>
+
+1456307045 source:d:\data\c\_codeblocks\monster\src\int2list.cpp
+	"Int2List.h"
+
+1453538099 d:\data\c\_codeblocks\monster\src\int2list.h
+	<iostream>
+	<vector>
+
+1455724685 source:d:\data\c\_codeblocks\monster\src\intlist.cpp
+	"IntList.h"
+
+1455724685 d:\data\c\_codeblocks\monster\src\intlist.h
+
+1456327424 source:d:\data\c\_codeblocks\monster\src\main.cpp
+	"main.h"
+
+1456301308 d:\data\c\_codeblocks\monster\src\main.h
+	<iostream>
+	"TestUnit.h"
+	"Monster.h"
+	<assert.h>
+	"mydebug.h"
+
+1455978732 d:\data\c\_codeblocks\monster\src\testunit.h
+	<iostream>
+	<vector>
+	"Int2List.h"
+	"Monster.h"
+	"SearchWord.h"
+
+1456219985 d:\data\c\_codeblocks\monster\src\monster.h
+	<iostream>
+	"FileList.h"
+	"WordIndex.h"
+	"MainIndex.h"
+	"IntList.h"
+	"PostfixStack.h"
+	"SearchWord.h"
+	"mydebug.h"
+
+1453402116 d:\data\c\_codeblocks\monster\src\wordindex.h
+	<iostream>
+	<fstream>
+	<stdlib.h>
+	<vector>
+
+1453450637 d:\data\c\_codeblocks\monster\src\mainindex.h
+	<fstream>
+	<iostream>
+
+1455646746 d:\data\c\_codeblocks\monster\src\postfixstack.h
+	"Int2List.h"
+	"FileList.h"
+
+1456065986 d:\data\c\_codeblocks\monster\src\searchword.h
+	"WordData.h"
+	"WordIndex.h"
+	"MainIndex.h"
+	"FileList.h"
+	"Int2List.h"
+
+1456045710 d:\data\c\_codeblocks\monster\src\worddata.h
+	"BitList.h"
+
+1456220034 d:\data\c\_codeblocks\monster\src\mydebug.h
+
+1453452299 source:d:\data\c\_codeblocks\monster\src\mainindex.cpp
+	"MainIndex.h"
+
+1456221980 source:d:\data\c\_codeblocks\monster\src\monster.cpp
+	"Monster.h"
+
+1456221370 source:d:\data\c\_codeblocks\monster\src\postfixstack.cpp
+	"PostfixStack.h"
+
+1456219058 source:d:\data\c\_codeblocks\monster\src\searchword.cpp
+	"SearchWord.h"
+
+1456217233 source:d:\data\c\_codeblocks\monster\src\testunit.cpp
+	"TestUnit.h"
+
+1456065715 source:d:\data\c\_codeblocks\monster\src\worddata.cpp
+	"WordData.h"
+	"FileList.h"
+	"MainIndex.h"
+
+1453402551 source:d:\data\c\_codeblocks\monster\src\wordindex.cpp
+	"WordIndex.h"
+
