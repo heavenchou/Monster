@@ -50,7 +50,6 @@ void RunFullTextSearch()
     ShowTestResult(SearchEngine, "覺?法師", 123);
     ShowTestResult(SearchEngine, "覺?法師 - 覺光法師", 4);
     ShowTestResult(SearchEngine, "( 舍利弗 & 阿難 ) + 菩薩", 459);
-
 }
 
 // 測試結果
