@@ -2,18 +2,18 @@
 #include "FileList.h"
 CFileList * BuildFileList;
 //---------------------------------------------------------------------------
-CFileList::CFileList(string sFileName)		// «Øºc¨ç¦¡
+CFileList::CFileList(string sFileName)		// å»ºæ§‹å‡½å¼
 {
 	FileName = sFileName;
-	Strings = 0;		// ªì­È«Å§i¬° NULL
-	Book = 0;           // ªì­È«Å§i¬° NULL
-	VolNum = 0;			// ªì­È«Å§i¬° NULL
-	SutraNum = 0;		// ªì­È«Å§i¬° NULL
-	JuanNum = 0;		// ªì­È«Å§i¬° NULL
-	SearchMe = 0;		// ªì­È«Å§i¬° NULL
+	Strings = 0;		// åˆå€¼å®£å‘Šç‚º NULL
+	Book = 0;           // åˆå€¼å®£å‘Šç‚º NULL
+	VolNum = 0;			// åˆå€¼å®£å‘Šç‚º NULL
+	SutraNum = 0;		// åˆå€¼å®£å‘Šç‚º NULL
+	JuanNum = 0;		// åˆå€¼å®£å‘Šç‚º NULL
+	SearchMe = 0;		// åˆå€¼å®£å‘Šç‚º NULL
 }
 //---------------------------------------------------------------------------
-CFileList::~CFileList(void)	// ¸Ñºc¨ç¦¡
+CFileList::~CFileList(void)	// è§£æ§‹å‡½å¼
 {
 	if(Strings) delete[] Strings;
 	if(Book   ) delete[] Book;
@@ -23,7 +23,7 @@ CFileList::~CFileList(void)	// ¸Ñºc¨ç¦¡
 	if(SearchMe) delete[] SearchMe;
 }
 //---------------------------------------------------------------------------
-bool CFileList::Initial(void)	// ªì­È¤Æ
+bool CFileList::Initial(void)	// åˆå€¼åŒ–
 {
 	ifstream fsIn;
 	char buff[1024];
@@ -32,7 +32,7 @@ bool CFileList::Initial(void)	// ªì­È¤Æ
 	fsIn.open(FileName.c_str());
 	if(!fsIn) return false;
 
-	// ²Ä¤@¦æ, Åª¤J buffer ¼Æ¶q
+	// ç¬¬ä¸€è¡Œ, è®€å…¥ buffer æ•¸é‡
 
 	fsIn.getline(buff,sizeof(buff));
 	sLine = buff;
@@ -41,7 +41,7 @@ bool CFileList::Initial(void)	// ªì­È¤Æ
 	FileCountBit = FileCount / 32;
 	if(FileCount % 32) FileCountBit++;
 
-	// ¶}±Ò¤@­ÓªÅ¶¡
+	// é–‹å•Ÿä¸€å€‹ç©ºé–“
 
 	Strings = new string[FileCount];
 	Book = new string[FileCount];
@@ -50,43 +50,43 @@ bool CFileList::Initial(void)	// ªì­È¤Æ
 	JuanNum = new int[FileCount];
 	SearchMe = new bool[FileCount];
 
-	// ³v¤@Åª¤J
+	// é€ä¸€è®€å…¥
 
 	for(int i=0; i<FileCount; i++)   	// ???? error check
 	{
 		fsIn.getline(buff,sizeof(buff));
 		Strings[i] = buff;
 
-        // ¦]¬° Book ¥i¯à¦³¤G¦ì¼Æ (¦è½¬ SL), ©Ò¥H¦¹¬qµ{¦¡¨ú®ø, ©³¤Uªº¥¿³W¦¡³B²z
+        // å› ç‚º Book å¯èƒ½æœ‰äºŒä½æ•¸ (è¥¿è“® SL), æ‰€ä»¥æ­¤æ®µç¨‹å¼å–æ¶ˆ, åº•ä¸‹çš„æ­£è¦å¼è™•ç†
 
 		// C:\cbeta\Normal\T01\T0001_001.txt
-        // C:\cbeta\Normal\C001\C0001_001.txt  // ¥U¼Æ¦³¤T½Xªº
-        // C:\cbeta\Normal\DA01\DA0001_001.txt  // ®Ñ¦W¦³¤G½Xªº
+        // C:\cbeta\Normal\C001\C0001_001.txt  // å†Šæ•¸æœ‰ä¸‰ç¢¼çš„
+        // C:\cbeta\Normal\DA01\DA0001_001.txt  // æ›¸åæœ‰äºŒç¢¼çš„
 
 		size_t iPos =  Strings[i].rfind("\\");
-        string sFileName = Strings[i].substr(iPos+1);   // ¨ú±oÀÉ¦W T0001_001.txt
+        string sFileName = Strings[i].substr(iPos+1);   // å–å¾—æª”å T0001_001.txt
 
-		string sDirName = Strings[i].substr(0,iPos);      // ³Ñ¤U¥Ø¿ı¦W C:\cbeta\Normal\T01
+		string sDirName = Strings[i].substr(0,iPos);      // å‰©ä¸‹ç›®éŒ„å C:\cbeta\Normal\T01
 
 		size_t iPos2 =  sDirName.rfind("\\");
-		string sVol = sDirName.substr(iPos2+1);    // sVol = T01 , C001, DA01 ... (¥U¼Æ¸ê®Æ)
+		string sVol = sDirName.substr(iPos2+1);    // sVol = T01 , C001, DA01 ... (å†Šæ•¸è³‡æ–™)
 
-        Book[i] = GetAlphaFromHead(sVol);                       // ¨ú±o T
-        string sVolNum = sVol.substr(Book[i].length());         // ¨ú±o "01"
-        VolNum[i] = atoi(sVolNum.c_str());                      // ¨ú±o 1
+        Book[i] = GetAlphaFromHead(sVol);                       // å–å¾— T
+        string sVolNum = sVol.substr(Book[i].length());         // å–å¾— "01"
+        VolNum[i] = atoi(sVolNum.c_str());                      // å–å¾— 1
 
 		SutraNum[i] = sFileName.substr(Book[i].length(),5);
 		JuanNum[i] = atoi(sFileName.substr(Book[i].length()+5,3).c_str());
 
 /*
-        // ³o¤@¬q¬O¥Î Delphi ªº TRegExpr ª«¥ó¼gªº, ¥u¯à¥Î¦b BCB
+        // é€™ä¸€æ®µæ˜¯ç”¨ Delphi çš„ TRegExpr ç‰©ä»¶å¯«çš„, åªèƒ½ç”¨åœ¨ BCB
 
     	TRegExpr * regex = new TRegExpr;
         regex->InputString = Strings[i];
 
-        // ÀÉ¦W¬O C:\cbeta\Normal\T01\T0001_001.txt
-        // ÀÉ¦W¬O C:\cbeta\Normal\C001\C0001_001.txt
-        // ÀÉ¦W¬O C:\cbeta\Normal\SL01\SL0001_001.txt
+        // æª”åæ˜¯ C:\cbeta\Normal\T01\T0001_001.txt
+        // æª”åæ˜¯ C:\cbeta\Normal\C001\C0001_001.txt
+        // æª”åæ˜¯ C:\cbeta\Normal\SL01\SL0001_001.txt
 	    regex->Expression = "[\\/\\\\]([a-zA-Z]+)(\\d+)[\\/\\\\]\\D+(.{5})(\\d{3})\\.";
     	if(regex->Exec())
     	{
@@ -99,7 +99,7 @@ bool CFileList::Initial(void)	// ªì­È¤Æ
 
 		if(SutraNum[i][4] == '_')
 		{
-			SutraNum[i] = SutraNum[i].substr(0,4);		// ¨S¦³§O¥»
+			SutraNum[i] = SutraNum[i].substr(0,4);		// æ²’æœ‰åˆ¥æœ¬
 		}
 	}
 
@@ -107,7 +107,7 @@ bool CFileList::Initial(void)	// ªì­È¤Æ
 	return true;
 }
 //---------------------------------------------------------------------------
-void CFileList::NoneSearch(void)	// ªì­È¤Æ
+void CFileList::NoneSearch(void)	// åˆå€¼åŒ–
 {
 	for(int i=0; i<FileCount; i++)
 	{
@@ -115,7 +115,7 @@ void CFileList::NoneSearch(void)	// ªì­È¤Æ
 	}
 }
 //---------------------------------------------------------------------------
-// ÀË¯Á³o¤@¸gªº³o¤@¨Ç¨÷
+// æª¢ç´¢é€™ä¸€ç¶“çš„é€™ä¸€äº›å·
 void CFileList::SearchThisSutra(string sBook, string sSutraNum, int iStartJuan, int iEndJuan)
 {
 	if(iEndJuan == 0)	iEndJuan = iStartJuan;
@@ -130,7 +130,7 @@ void CFileList::SearchThisSutra(string sBook, string sSutraNum, int iStartJuan, 
 	}
 }
 //---------------------------------------------------------------------------
-// ÀË¯Á³o¤@¥Uªº³o¤@¨Ç¸g
+// æª¢ç´¢é€™ä¸€å†Šçš„é€™ä¸€äº›ç¶“
 void CFileList::SearchThisVol(string sBook, int iVolNum, int iStartSutra, int iEndSutra)
 {
 	if(iEndSutra == 0)	iEndSutra = iStartSutra;
@@ -138,10 +138,10 @@ void CFileList::SearchThisVol(string sBook, int iVolNum, int iStartSutra, int iE
 
 	for(int i=0; i<FileCount; i++)
 	{
-		int iSutraTmp;					// ¨ú¥X¸g¸¹
+		int iSutraTmp;					// å–å‡ºç¶“è™Ÿ
         string sSutraTmp = SutraNum[i];
 
-        if(sSutraTmp[1] == 'A' || sSutraTmp[1] == 'B') sSutraTmp[0] = '0';	// ¼È®É¬°¹Å¿³ÂÃ¸Ñ®M, Åı¥¦¯à³QÀË¯Á ????
+        if(sSutraTmp[1] == 'A' || sSutraTmp[1] == 'B') sSutraTmp[0] = '0';	// æš«æ™‚ç‚ºå˜‰èˆˆè—è§£å¥—, è®“å®ƒèƒ½è¢«æª¢ç´¢ ????
 
 		if(sSutraTmp.length() == 5)
 			iSutraTmp = atoi(sSutraTmp.substr(0,4).c_str());

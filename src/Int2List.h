@@ -9,41 +9,41 @@ using namespace std;
 class CInt2List
 {
 
-    // ³o­Óª«¥ó¬O¤G²Õ Int ªº¦Cªí©Ò²Õ¦X¥X¨Óªº, ¨C¤@²Õªí¥Ü¬Y¤@¦rªº½d³ò
+    // é€™å€‹ç‰©ä»¶æ˜¯äºŒçµ„ Int çš„åˆ—è¡¨æ‰€çµ„åˆå‡ºä¾†çš„, æ¯ä¸€çµ„è¡¨ç¤ºæŸä¸€å­—çš„ç¯„åœ
 
     private:	// User declarations
     public:		// User declarations
 
-        //int FileCount;					// ÀÉ®×¼Æ¥Ø
-        //int * Ints;						// ¶}ÀYªº«ü¼Ğ
+        //int FileCount;					// æª”æ¡ˆæ•¸ç›®
+        //int * Ints;						// é–‹é ­çš„æŒ‡æ¨™
         //TList * Int2s;
-        vector <pair <int,int> > Int2s;     // ¸Ì­±©ñ pair ª«¥ó, ¨C¤@­Ó pari ªí¥Ü¬Y¤@µüªº½d³ò
+        vector <pair <int,int> > Int2s;     // è£¡é¢æ”¾ pair ç‰©ä»¶, æ¯ä¸€å€‹ pari è¡¨ç¤ºæŸä¸€è©çš„ç¯„åœ
         //int Total;
-        int NearNum;				// Near ¹Bºâªº½d³ò
-        int BeforeNum;				// Before ¹Bºâªº½d³ò
-        string SearchString;        // ·j´Mªº¦r¦ê, ¤@¶}©l¥i¯à¬O "¦òªû" ³oºØµü, ¦b¹Bºâ«á¥i¯àÅÜ¦¨ "(¦òªû+Ã¹º~)" ³oºØ¹Bºâµ²ªG. ³o¨ä¹ê¬O¬° ! ¹Bºâ³]­pªº
+        int NearNum;				// Near é‹ç®—çš„ç¯„åœ
+        int BeforeNum;				// Before é‹ç®—çš„ç¯„åœ
+        string SearchString;        // æœå°‹çš„å­—ä¸², ä¸€é–‹å§‹å¯èƒ½æ˜¯ "ä½›é™€" é€™ç¨®è©, åœ¨é‹ç®—å¾Œå¯èƒ½è®Šæˆ "(ä½›é™€+ç¾…æ¼¢)" é€™ç¨®é‹ç®—çµæœ. é€™å…¶å¯¦æ˜¯ç‚º ! é‹ç®—è¨­è¨ˆçš„
 
 
-        void ClearAll(void);			// ¥ş³¡²M±¼
-        void operator=(CInt2List * ilTarget);		// ¹Bºâ¤l¦h¸ü
-        void operator&=(CInt2List * ilTarget);		// ¹Bºâ¤l¦h¸ü
-        void operator|=(CInt2List * ilTarget);		// ¹Bºâ¤l¦h¸ü
-        void Copy(CInt2List * ilTarget);		// ±N¸ê®Æ copy ¹L¨Ó
-        void AndIt(CInt2List * ilTarget);		// ­Y¤GªÌ³£¦³¸ê®Æ, ´N¤GªÌ¦X¨Ö
-        void OrIt(CInt2List * ilTarget);		// ¤GªÌ¦X¨Ö
-        void NearIt(CInt2List * ilTarget);		// ­Y¤GªÌ¾aªñ¦Ü¬Y¤@­Óµ{«×, «hÅÜ¦¨¤@­Ó½d³ò
-        void BeforeIt(CInt2List * ilTarget);		// ¦P Near , ¤£¹L¥u¯à¦b¨ä«á­±, ¤]´N¬O¦³¶¶§Çªº
+        void ClearAll(void);			// å…¨éƒ¨æ¸…æ‰
+        void operator=(CInt2List * ilTarget);		// é‹ç®—å­å¤šè¼‰
+        void operator&=(CInt2List * ilTarget);		// é‹ç®—å­å¤šè¼‰
+        void operator|=(CInt2List * ilTarget);		// é‹ç®—å­å¤šè¼‰
+        void Copy(CInt2List * ilTarget);		// å°‡è³‡æ–™ copy éä¾†
+        void AndIt(CInt2List * ilTarget);		// è‹¥äºŒè€…éƒ½æœ‰è³‡æ–™, å°±äºŒè€…åˆä½µ
+        void OrIt(CInt2List * ilTarget);		// äºŒè€…åˆä½µ
+        void NearIt(CInt2List * ilTarget);		// è‹¥äºŒè€…é è¿‘è‡³æŸä¸€å€‹ç¨‹åº¦, å‰‡è®Šæˆä¸€å€‹ç¯„åœ
+        void BeforeIt(CInt2List * ilTarget);		// åŒ Near , ä¸éåªèƒ½åœ¨å…¶å¾Œé¢, ä¹Ÿå°±æ˜¯æœ‰é †åºçš„
 
-        void ExcludeIt(CInt2List * ilTarget);		// ±Æ°£¬Y¤@­Óµü, ¨Ò¦p  ªÙ§Q!ªÙ§Q¥± ªí¥Ü¥u­n§äªÙ§Q, ¦ı¤£­n§ä¨ìªÙ§Q¥±
+        void ExcludeIt(CInt2List * ilTarget);		// æ’é™¤æŸä¸€å€‹è©, ä¾‹å¦‚  èˆåˆ©!èˆåˆ©å¼— è¡¨ç¤ºåªè¦æ‰¾èˆåˆ©, ä½†ä¸è¦æ‰¾åˆ°èˆåˆ©å¼—
 
-        void Add(pair <int, int> p);	// ¥[¤J¤@µ§¸ê®Æ
-        void Add(int x, int y);		// ¥[¤J¤@µ§¸ê®Æ
-        void Delete(int iNum);		// §R°£¬Y¤@µ§¸ê®Æ
+        void Add(pair <int, int> p);	// åŠ å…¥ä¸€ç­†è³‡æ–™
+        void Add(int x, int y);		// åŠ å…¥ä¸€ç­†è³‡æ–™
+        void Delete(int iNum);		// åˆªé™¤æŸä¸€ç­†è³‡æ–™
 
         int MyAnsiPos(string sStr1, string sStr2);
 
-        CInt2List();					// «Øºc¨ç¦¡
-        ~CInt2List();					// ¸Ñºc¨ç¦¡
+        CInt2List();					// å»ºæ§‹å‡½å¼
+        ~CInt2List();					// è§£æ§‹å‡½å¼
 };
 //---------------------------------------------------------------------------
 //extern CInt2List *Int2List;

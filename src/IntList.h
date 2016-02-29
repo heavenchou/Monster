@@ -9,20 +9,20 @@ class CIntList
 private:	// User declarations
 public:		// User declarations
 
-	int FileCount;					// ÀÉ®×¼Æ¥Ø
-	int * Ints;						// ¶}ÀYªº«ü¼Ğ
+	int FileCount;					// æª”æ¡ˆæ•¸ç›®
+	int * Ints;						// é–‹é ­çš„æŒ‡æ¨™
 	int Total;
 
-	void ClearAll(void);			// ¥ş³¡²M±¼
+	void ClearAll(void);			// å…¨éƒ¨æ¸…æ‰
 
-	void operator=(CIntList * ilTarget);		// ¹Bºâ¤l¦h¸ü
-	void operator&=(CIntList * ilTarget);		// ¹Bºâ¤l¦h¸ü
-	void operator|=(CIntList * ilTarget);		// ¹Bºâ¤l¦h¸ü
-	void Copy(CIntList * ilTarget);		// ¹Bºâ¤l¦h¸ü
-	void AndIt(CIntList * ilTarget);		// ¹Bºâ¤l¦h¸ü
-	void OrIt(CIntList * ilTarget);		// ¹Bºâ¤l¦h¸ü
-    CIntList(int iFileCount);		// «Øºc¨ç¦¡
-	~CIntList();					// ¸Ñºc¨ç¦¡
+	void operator=(CIntList * ilTarget);		// é‹ç®—å­å¤šè¼‰
+	void operator&=(CIntList * ilTarget);		// é‹ç®—å­å¤šè¼‰
+	void operator|=(CIntList * ilTarget);		// é‹ç®—å­å¤šè¼‰
+	void Copy(CIntList * ilTarget);		// é‹ç®—å­å¤šè¼‰
+	void AndIt(CIntList * ilTarget);		// é‹ç®—å­å¤šè¼‰
+	void OrIt(CIntList * ilTarget);		// é‹ç®—å­å¤šè¼‰
+    CIntList(int iFileCount);		// å»ºæ§‹å‡½å¼
+	~CIntList();					// è§£æ§‹å‡½å¼
 };
 //---------------------------------------------------------------------------
 //extern TmyIntList *IntList;

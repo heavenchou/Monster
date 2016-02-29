@@ -14,16 +14,16 @@ class CWordIndex
     private:	// User declarations
     public:		// User declarations
 
-        string FileName;				// ÀÉ¦W
-        int WordCount;						// ÀÉ®×¼Æ¥Ø
-        vector <string> StringList;     // ÀÉ¦W°}¦Cªº«ü¼Ğ   //TStringList * StringList;
-        int * WordOffset;					// ¨C¤@­Ó¦rªº¦ì²¾¸ê®Æ
+        string FileName;				// æª”å
+        int WordCount;						// æª”æ¡ˆæ•¸ç›®
+        vector <string> StringList;     // æª”åé™£åˆ—çš„æŒ‡æ¨™   //TStringList * StringList;
+        int * WordOffset;					// æ¯ä¸€å€‹å­—çš„ä½ç§»è³‡æ–™
 
-        int GetOffset(string sToken);	// ¶Ç¤J¤@­Ó token , ¶Ç¦^¨ä¦b last index ªº offset
-        bool Initial(void);		// Åª¤J¸ê®Æ
+        int GetOffset(string sToken);	// å‚³å…¥ä¸€å€‹ token , å‚³å›å…¶åœ¨ last index çš„ offset
+        bool Initial(void);		// è®€å…¥è³‡æ–™
 
-        CWordIndex(string sFileName);		// «Øºc¨ç¦¡
-        ~CWordIndex();							// ¸Ñºc¨ç¦¡
+        CWordIndex(string sFileName);		// å»ºæ§‹å‡½å¼
+        ~CWordIndex();							// è§£æ§‹å‡½å¼
 };
 //---------------------------------------------------------------------------
 extern CWordIndex * WordIndex;

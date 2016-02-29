@@ -2,7 +2,7 @@
 #include "FileList.h"
 #include "MainIndex.h"
 //---------------------------------------------------------------------------
-CWordData::CWordData(void)	// «Øºc¨ç¦¡
+CWordData::CWordData(void)	// å»ºæ§‹å‡½å¼
 {
 	FileCount = BuildFileList->FileCount;
 	FileListBit = new CBitList;
@@ -12,7 +12,7 @@ CWordData::CWordData(void)	// «Øºc¨ç¦¡
 	Buffer1 = 0;
 }
 //---------------------------------------------------------------------------
-CWordData::~CWordData(void)	// ¸Ñºc¨ç¦¡
+CWordData::~CWordData(void)	// è§£æ§‹å‡½å¼
 {
 	if(WordCount) delete[] WordCount;
 	if(FileListBit) delete FileListBit;
@@ -21,47 +21,47 @@ CWordData::~CWordData(void)	// ¸Ñºc¨ç¦¡
 	//if(Buffer1) delete[] Buffer1;
 }
 //---------------------------------------------------------------------------
-// ªì­È¤Æ
+// åˆå€¼åŒ–
 void CWordData::Initial(int iOffset, int iBufferSize)
 {
-	int iTotalDataCount = 0;			// ¦¹ÀÉ¦³´X­Ó³o­Ó¦r
+	int iTotalDataCount = 0;			// æ­¤æª”æœ‰å¹¾å€‹é€™å€‹å­—
 
-	WordCount = new int [FileCount];	// Àx¦s¨C¤@­ÓÀÉ®×©Ò¥]§t¦¹¦rªº¼Æ¶q
-	WordPos = new int* [FileCount]; 	// ¹ê»Ú¸ê®Æªº°}¦C
+	WordCount = new int [FileCount];	// å„²å­˜æ¯ä¸€å€‹æª”æ¡ˆæ‰€åŒ…å«æ­¤å­—çš„æ•¸é‡
+	WordPos = new int* [FileCount]; 	// å¯¦éš›è³‡æ–™çš„é™£åˆ—
 
-    //©³¤U·|¦³¿ù (¦b BCB ¥i¥H)
+    //åº•ä¸‹æœƒæœ‰éŒ¯ (åœ¨ BCB å¯ä»¥)
 	// (char *) Buffer = new char[iBufferSize];
-	// ©Ò¥H§ï¦¨¦p¤U:
+	// æ‰€ä»¥æ”¹æˆå¦‚ä¸‹:
 	char * cBuffer = new char[iBufferSize];
 	Buffer = (int *)cBuffer;
-	// ³o¼Ë¦n¹³¤]¥i¥H
+	// é€™æ¨£å¥½åƒä¹Ÿå¯ä»¥
 	// Buffer =  (int *) new char[iBufferSize];
 
 	MainIndex->FileStream.seekg(iOffset);
 	MainIndex->FileStream.read((char *)Buffer, iBufferSize);
 
 /*
-¨C¤@­Ó¦r¦b taisho.ndx ¤¤ªº¸ê®Æµ²ºc
+æ¯ä¸€å€‹å­—åœ¨ taisho.ndx ä¸­çš„è³‡æ–™çµæ§‹
 
-°²³]¡u¤¤¡v³o­Ó¦r¦b¤­­ÓÀÉ®×¤¤, ¥u¦³125ÀÉ¥X²{.
+å‡è¨­ã€Œä¸­ã€é€™å€‹å­—åœ¨äº”å€‹æª”æ¡ˆä¸­, åªæœ‰125æª”å‡ºç¾.
 
-FileCount = 5; (¤­­ÓÀÉ®×)
-Word = ¤¤ (¬Y¤@­Ó¦r)
+FileCount = 5; (äº”å€‹æª”æ¡ˆ)
+Word = ä¸­ (æŸä¸€å€‹å­—)
 
-3,3,0,0,5 (9300) (³o­Ó¤èªk¤Ó¦ûªÅ¶¡¤F, 10000 ­Ó¦r, 10000 ­ÓÀÉ, ¤j·§¦û 200 M)
+3,3,0,0,5 (9300) (é€™å€‹æ–¹æ³•å¤ªä½”ç©ºé–“äº†, 10000 å€‹å­—, 10000 å€‹æª”, å¤§æ¦‚ä½” 200 M)
 or
-1,1,0,0,1 (1162) (¨C¤@­Ó bit ¥Nªí¤@­ÓÀÉ®×, 0 ªí¥Ü¦¹ÀÉ®×¨S¦³³o­Ó¦r, 1 ªí¥Ü³o­ÓÀÉ®×¦³¦¹¦r)
+1,1,0,0,1 (1162) (æ¯ä¸€å€‹ bit ä»£è¡¨ä¸€å€‹æª”æ¡ˆ, 0 è¡¨ç¤ºæ­¤æª”æ¡ˆæ²’æœ‰é€™å€‹å­—, 1 è¡¨ç¤ºé€™å€‹æª”æ¡ˆæœ‰æ­¤å­—)
 3,3,5
 
-WordCount[0] = 3     ³o¬OÃB¥~²£¥ÍªºªÅ¶¡
+WordCount[0] = 3     é€™æ˜¯é¡å¤–ç”¢ç”Ÿçš„ç©ºé–“
 WordCount[1] = 3
 WordCount[2] = 0
 WordCount[3] = 0
 WordCount[4] = 5
 
-10,20,30             (²Ä¤@­ÓÀÉ¥X²{ 3 ¦¸)
-100,200,300          (²Ä¤G­ÓÀÉ¥X²{ 3 ¦¸)
-111,222,333,444,555  (²Ä¤­­ÓÀÉ¥X²{ 5 ¦¸)
+10,20,30             (ç¬¬ä¸€å€‹æª”å‡ºç¾ 3 æ¬¡)
+100,200,300          (ç¬¬äºŒå€‹æª”å‡ºç¾ 3 æ¬¡)
+111,222,333,444,555  (ç¬¬äº”å€‹æª”å‡ºç¾ 5 æ¬¡)
 
 iTotalDataCount = 5+3+3 = 11
 
@@ -80,8 +80,8 @@ WordPos[4][0],WordPos[4][1],WordPos[4][2],WordPos[4][3],WordPos[4][4]......
 	{
 		if(FileListBit->GetBit(i))
 		{
-			WordCount[i] = *ipTmp;				// ¸ÓÀÉ¦³¦¹¦r, «hÅª¨ú¸ê®Æ
-			iTotalDataCount += WordCount[i];    // ¦¹ÀÉ¦³´X­Ó³o­Ó¦r
+			WordCount[i] = *ipTmp;				// è©²æª”æœ‰æ­¤å­—, å‰‡è®€å–è³‡æ–™
+			iTotalDataCount += WordCount[i];    // æ­¤æª”æœ‰å¹¾å€‹é€™å€‹å­—
 			ipTmp++;
 		}
 		else
@@ -90,34 +90,34 @@ WordPos[4][0],WordPos[4][1],WordPos[4][2],WordPos[4][3],WordPos[4][4]......
 		}
 	}
 
-	/* --------------- ÂÂª©¶}©l ---------------
+	/* --------------- èˆŠç‰ˆé–‹å§‹ ---------------
 
 	WordPos[0] = ipTmp;
 
 	for(int i=1; i<FileCount; i++)
 		WordPos[i] = WordPos[i-1] + WordCount[i-1];
 
-	//--------------- ÂÂª©µ²§ô --------------- */
+	//--------------- èˆŠç‰ˆçµæŸ --------------- */
 
-	///* ----------- ·sª© ----------------
+	///* ----------- æ–°ç‰ˆ ----------------
 
 	Buffer1 = new int[iTotalDataCount];
-	unsigned char * cpNewTmp = (unsigned char *) Buffer1;	// Åı³o­Ó«ü¼Ğµ¥©ó·sªºªÅ¶¡ªº¶}ÀY
-	unsigned char * cpOldTmp = (unsigned char *) ipTmp;		// Åı³o­Ó«ü¼Ğµ¥©óÂÂªºªÅ¶¡ªº¶}ÀY
+	unsigned char * cpNewTmp = (unsigned char *) Buffer1;	// è®“é€™å€‹æŒ‡æ¨™ç­‰æ–¼æ–°çš„ç©ºé–“çš„é–‹é ­
+	unsigned char * cpOldTmp = (unsigned char *) ipTmp;		// è®“é€™å€‹æŒ‡æ¨™ç­‰æ–¼èˆŠçš„ç©ºé–“çš„é–‹é ­
 
 	unsigned char ucTmp1, ucTmp2, ucTmp3, ucTmp4;
 
 	WordPos[0] = Buffer1;
 
-	for(int i=0; i<FileCount; i++)		// ÀÉ®×¼Æ¥Ø
+	for(int i=0; i<FileCount; i++)		// æª”æ¡ˆæ•¸ç›®
 	{
-		if(i>0)	WordPos[i] = WordPos[i-1] + WordCount[i-1];		// ³]©w WordPos ªº¦ì¸m
+		if(i>0)	WordPos[i] = WordPos[i-1] + WordCount[i-1];		// è¨­å®š WordPos çš„ä½ç½®
 
-		for(int j=0; j<WordCount[i]; j++)			// ·Ç³Æ¸ÑÀ£ÁY¨C¤@­ÓÀÉ¦¹¦rªº¦Cªí
+		for(int j=0; j<WordCount[i]; j++)			// æº–å‚™è§£å£“ç¸®æ¯ä¸€å€‹æª”æ­¤å­—çš„åˆ—è¡¨
 		{
-			ucTmp1 = *cpOldTmp;		// ¨ú¥X¤@­Ó byte
+			ucTmp1 = *cpOldTmp;		// å–å‡ºä¸€å€‹ byte
 
-			if(ucTmp1 == 0)			// ³o¬O¥|¦ì¼Æ, ¦]¬°²Ä¤@­Ó byte ¬O 0
+			if(ucTmp1 == 0)			// é€™æ˜¯å››ä½æ•¸, å› ç‚ºç¬¬ä¸€å€‹ byte æ˜¯ 0
 			{
 				ucTmp1 = cpOldTmp[1];
 				ucTmp2 = cpOldTmp[2];
@@ -129,11 +129,11 @@ WordPos[4][0],WordPos[4][1],WordPos[4][2],WordPos[4][3],WordPos[4][4]......
 				WordPos[i][j] = WordPos[i][j] + (unsigned int) ucTmp3 * 256; 		// 0x 01 00
 				WordPos[i][j] = WordPos[i][j] + (unsigned int) ucTmp4; 				// 0x 01
 
-				if(j!=0) WordPos[i][j] += WordPos[i][j-1];			// ¦]¬°À£ÁYªº¸ê®Æ¬O¨C¤@­Ó¸ê®Æªº®t¼Æ.
+				if(j!=0) WordPos[i][j] += WordPos[i][j-1];			// å› ç‚ºå£“ç¸®çš„è³‡æ–™æ˜¯æ¯ä¸€å€‹è³‡æ–™çš„å·®æ•¸.
 
-				cpOldTmp += 5;		// ²¾¨ì¤U¤@­Ó
+				cpOldTmp += 5;		// ç§»åˆ°ä¸‹ä¸€å€‹
 			}
-			else if(ucTmp1 >= 192)		// ¤T¦ì¼Æ 0x 11000000
+			else if(ucTmp1 >= 192)		// ä¸‰ä½æ•¸ 0x 11000000
 			{
 				ucTmp1 -= 192;
 				ucTmp2 = cpOldTmp[1];
@@ -142,78 +142,78 @@ WordPos[4][0],WordPos[4][1],WordPos[4][2],WordPos[4][3],WordPos[4][4]......
 				WordPos[i][j] = (unsigned int) ucTmp1 * 65536;						// 0x 01 00 00
 				WordPos[i][j] = WordPos[i][j] + (unsigned int) ucTmp2 * 256; 		// 0x 01 00
 				WordPos[i][j] = WordPos[i][j] + (unsigned int) ucTmp3; 				// 0x 01
-				if(j!=0) WordPos[i][j] += WordPos[i][j-1];			// ¦]¬°À£ÁYªº¸ê®Æ¬O¨C¤@­Ó¸ê®Æªº®t¼Æ.
+				if(j!=0) WordPos[i][j] += WordPos[i][j-1];			// å› ç‚ºå£“ç¸®çš„è³‡æ–™æ˜¯æ¯ä¸€å€‹è³‡æ–™çš„å·®æ•¸.
 
-				cpOldTmp += 3;		// ²¾¨ì¤U¤@­Ó
+				cpOldTmp += 3;		// ç§»åˆ°ä¸‹ä¸€å€‹
 			}
-			else if(ucTmp1 >= 128)		// ¤G¦ì¼Æ 0x 10000000
+			else if(ucTmp1 >= 128)		// äºŒä½æ•¸ 0x 10000000
 			{
 				ucTmp1 -= 128;
 				ucTmp2 = cpOldTmp[1];
 
 				WordPos[i][j] = (unsigned int) ucTmp1 * 256;				// 0x 01 00
 				WordPos[i][j] = WordPos[i][j] + (unsigned int) ucTmp2;		// 0x 01
-				if(j!=0) WordPos[i][j] += WordPos[i][j-1];			// ¦]¬°À£ÁYªº¸ê®Æ¬O¨C¤@­Ó¸ê®Æªº®t¼Æ.
+				if(j!=0) WordPos[i][j] += WordPos[i][j-1];			// å› ç‚ºå£“ç¸®çš„è³‡æ–™æ˜¯æ¯ä¸€å€‹è³‡æ–™çš„å·®æ•¸.
 
-				cpOldTmp += 2;		// ²¾¨ì¤U¤@­Ó
+				cpOldTmp += 2;		// ç§»åˆ°ä¸‹ä¸€å€‹
 			}
-			else 					// ¤@¦ì¼Æ \x 01000000
+			else 					// ä¸€ä½æ•¸ \x 01000000
 			{
 				ucTmp1 -= 64;
 				WordPos[i][j] = (unsigned int) ucTmp1;	   // 0x 01
-				if(j!=0) WordPos[i][j] += WordPos[i][j-1];			// ¦]¬°À£ÁYªº¸ê®Æ¬O¨C¤@­Ó¸ê®Æªº®t¼Æ.
-				cpOldTmp += 1;		// ²¾¨ì¤U¤@­Ó
+				if(j!=0) WordPos[i][j] += WordPos[i][j-1];			// å› ç‚ºå£“ç¸®çš„è³‡æ–™æ˜¯æ¯ä¸€å€‹è³‡æ–™çš„å·®æ•¸.
+				cpOldTmp += 1;		// ç§»åˆ°ä¸‹ä¸€å€‹
 			}
 		}
 	}
 
 	if(Buffer) delete[] Buffer;
-	Buffer = Buffer1;		// ¦]¬°³Ì«á­n delete ªº¬O Buffer
+	Buffer = Buffer1;		// å› ç‚ºæœ€å¾Œè¦ delete çš„æ˜¯ Buffer
 
-	//------------- ·sª©µ²§ô --------------- */
+	//------------- æ–°ç‰ˆçµæŸ --------------- */
 }
 //---------------------------------------------------------------------------
-// ªì­È¤Æ, ¥ş³¡¶ñ 0
+// åˆå€¼åŒ–, å…¨éƒ¨å¡« 0
 void CWordData::ZeroIt(void)
 {
-	WordCount = new int [FileCount];	// Àx¦s¨C¤@­ÓÀÉ®×©Ò¥]§t¦¹¦rªº¼Æ¶q
-	WordPos = new int* [FileCount]; 	// ¹ê»Ú¸ê®Æªº°}¦C
+	WordCount = new int [FileCount];	// å„²å­˜æ¯ä¸€å€‹æª”æ¡ˆæ‰€åŒ…å«æ­¤å­—çš„æ•¸é‡
+	WordPos = new int* [FileCount]; 	// å¯¦éš›è³‡æ–™çš„é™£åˆ—
 
-	int iSize = BuildFileList->FileCountBit + 5;	// ¦h 5 ­Ó, °÷¤F§a!
+	int iSize = BuildFileList->FileCountBit + 5;	// å¤š 5 å€‹, å¤ äº†å§!
 
-	//©³¤U·|¦³¿ù (¦b BCB ¥i¥H)
-	//(char *)Buffer = new char[iSize*4];		// ¤@­Ó int ªºªÅ¶¡ 4 byte
-	// ©Ò¥H§ï¦¨¦p¤U:
-	char * cBuffer = new char[iSize*4];		// ¤@­Ó int ªºªÅ¶¡ 4 byte
+	//åº•ä¸‹æœƒæœ‰éŒ¯ (åœ¨ BCB å¯ä»¥)
+	//(char *)Buffer = new char[iSize*4];		// ä¸€å€‹ int çš„ç©ºé–“ 4 byte
+	// æ‰€ä»¥æ”¹æˆå¦‚ä¸‹:
+	char * cBuffer = new char[iSize*4];		// ä¸€å€‹ int çš„ç©ºé–“ 4 byte
 	Buffer = (int *)cBuffer;
 
 	for(int i=0; i<iSize; i++)
 	{
-		Buffer[i] = 0;              		// buffer ¥ş²M¬° 0
+		Buffer[i] = 0;              		// buffer å…¨æ¸…ç‚º 0
 	}
 
 /*
-¨C¤@­Ó¦r¦b taisho.ndx ¤¤ªº¸ê®Æµ²ºc
+æ¯ä¸€å€‹å­—åœ¨ taisho.ndx ä¸­çš„è³‡æ–™çµæ§‹
 
-°²³]¡u¤¤¡v³o­Ó¦r¦b¤­­ÓÀÉ®×¤¤, ¥u¦³125ÀÉ¥X²{.
+å‡è¨­ã€Œä¸­ã€é€™å€‹å­—åœ¨äº”å€‹æª”æ¡ˆä¸­, åªæœ‰125æª”å‡ºç¾.
 
-FileCount = 5; (¤­­ÓÀÉ®×)
-Word = ¤¤ (¬Y¤@­Ó¦r)
+FileCount = 5; (äº”å€‹æª”æ¡ˆ)
+Word = ä¸­ (æŸä¸€å€‹å­—)
 
-3,3,0,0,5 (9300) (³o­Ó¤èªk¤Ó¦ûªÅ¶¡¤F, 10000 ­Ó¦r, 10000 ­ÓÀÉ, ¤j·§¦û 200 M)
+3,3,0,0,5 (9300) (é€™å€‹æ–¹æ³•å¤ªä½”ç©ºé–“äº†, 10000 å€‹å­—, 10000 å€‹æª”, å¤§æ¦‚ä½” 200 M)
 or
-1,1,0,0,1 (1162) (¨C¤@­Ó bit ¥Nªí¤@­ÓÀÉ®×, 0 ªí¥Ü¦¹ÀÉ®×¨S¦³³o­Ó¦r, 1 ªí¥Ü³o­ÓÀÉ®×¦³¦¹¦r)
+1,1,0,0,1 (1162) (æ¯ä¸€å€‹ bit ä»£è¡¨ä¸€å€‹æª”æ¡ˆ, 0 è¡¨ç¤ºæ­¤æª”æ¡ˆæ²’æœ‰é€™å€‹å­—, 1 è¡¨ç¤ºé€™å€‹æª”æ¡ˆæœ‰æ­¤å­—)
 3,3,5
 
-WordCount[0] = 3     ³o¬OÃB¥~²£¥ÍªºªÅ¶¡
+WordCount[0] = 3     é€™æ˜¯é¡å¤–ç”¢ç”Ÿçš„ç©ºé–“
 WordCount[1] = 3
 WordCount[2] = 0
 WordCount[3] = 0
 WordCount[4] = 5
 
-10,20,30             (²Ä¤@­ÓÀÉ¥X²{ 3 ¦¸)
-100,200,300          (²Ä¤G­ÓÀÉ¥X²{ 3 ¦¸)
-111,222,333,444,555  (²Ä¤­­ÓÀÉ¥X²{ 5 ¦¸)
+10,20,30             (ç¬¬ä¸€å€‹æª”å‡ºç¾ 3 æ¬¡)
+100,200,300          (ç¬¬äºŒå€‹æª”å‡ºç¾ 3 æ¬¡)
+111,222,333,444,555  (ç¬¬äº”å€‹æª”å‡ºç¾ 5 æ¬¡)
 
 WordPos[0][0],WordPos[0][1],WordPos[0][2]......
 WordPos[1][0],WordPos[1][1],WordPos[1][2]......
@@ -229,8 +229,8 @@ WordPos[4][0],WordPos[4][1],WordPos[4][2],WordPos[4][3],WordPos[4][4]......
 	ipTmp++;
 	for(int i=0; i<FileCount; i++)
 	{
-		WordCount[i] = 0;           // ¨C¤@ÀÉ¥X²{¦r¼Æ, ²M¬° 0
-		WordPos[i] = ipTmp;			// ©Ò¥H¨C¤@¦rªº¦ì¸m¤]¬O 0
+		WordCount[i] = 0;           // æ¯ä¸€æª”å‡ºç¾å­—æ•¸, æ¸…ç‚º 0
+		WordPos[i] = ipTmp;			// æ‰€ä»¥æ¯ä¸€å­—çš„ä½ç½®ä¹Ÿæ˜¯ 0
 	}
 }
 //---------------------------------------------------------------------------

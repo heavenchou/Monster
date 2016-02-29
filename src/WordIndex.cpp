@@ -3,18 +3,18 @@
 
 CWordIndex * WordIndex;
 //---------------------------------------------------------------------------
-CWordIndex::CWordIndex(string sFileName)		// «Øºc¨ç¦¡
+CWordIndex::CWordIndex(string sFileName)		// å»ºæ§‹å‡½å¼
 {
 	FileName = sFileName;
     WordOffset = 0;
 }
 //---------------------------------------------------------------------------
-CWordIndex::~CWordIndex(void)	// ¸Ñºc¨ç¦¡
+CWordIndex::~CWordIndex(void)	// è§£æ§‹å‡½å¼
 {
 	if(WordOffset) delete[] WordOffset;
 }
 //---------------------------------------------------------------------------
-bool CWordIndex::Initial(void)	// ªì­È¤Æ
+bool CWordIndex::Initial(void)	// åˆå€¼åŒ–
 {
 	ifstream fsIn;
 	char buff[1024];
@@ -22,18 +22,18 @@ bool CWordIndex::Initial(void)	// ªì­È¤Æ
 	fsIn.open(FileName.c_str());
 	if(!fsIn) return false;
 
-	// ²Ä¤@¦æ, Åª¤J buffer ¼Æ¶q
+	// ç¬¬ä¸€è¡Œ, è®€å…¥ buffer æ•¸é‡
 
 	fsIn.getline(buff,sizeof(buff));
 	sLine = buff;
 	WordCount = atoi(sLine.c_str());		// ???? error check
 
-	// ¶}±Ò¤@­ÓªÅ¶¡
+	// é–‹å•Ÿä¸€å€‹ç©ºé–“
 
 	//StringList = new TStringList();
 	WordOffset = new int[WordCount];
 
-	// ³v¤@Åª¤J
+	// é€ä¸€è®€å…¥
 
 	for(int i=0; i<WordCount; i++)   	// ???? error check
 	{
@@ -47,9 +47,9 @@ bool CWordIndex::Initial(void)	// ªì­È¤Æ
 	{
 		sLine = StringList[i];
 		int iPos = sLine.find("=");
-        if(iPos == 0) iPos = 3;         // ¦b¤é¤åª©·|§ä¤£¨ì = ²Å¸¹.
-		StringList[i] = sLine.substr(0,iPos);			// ¨ú«e­±ªº¦r
-		WordOffset[i] = atoi(sLine.substr(iPos+1).c_str());	// ¨ú«á­±ªº Offset
+        if(iPos == 0) iPos = 3;         // åœ¨æ—¥æ–‡ç‰ˆæœƒæ‰¾ä¸åˆ° = ç¬¦è™Ÿ.
+		StringList[i] = sLine.substr(0,iPos);			// å–å‰é¢çš„å­—
+		WordOffset[i] = atoi(sLine.substr(iPos+1).c_str());	// å–å¾Œé¢çš„ Offset
 	}
 	fsIn.close();
 	return true;
@@ -68,7 +68,7 @@ int CWordIndex::GetOffset(string sToken)
 
 
     // return StringList->IndexOf(sToken);
-	// ???? ³o¸Ì¦³¥[³tªºªÅ¶¡
+	// ???? é€™è£¡æœ‰åŠ é€Ÿçš„ç©ºé–“
 	/*
 	int iIndex;
 	if (StringList->Find(sToken, iIndex))

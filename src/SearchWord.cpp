@@ -1,45 +1,47 @@
 
 #include "SearchWord.h"
 //---------------------------------------------------------------------------
-// «Øºc¨ç¦¡
+// å»ºæ§‹å‡½å¼
 CSearchWord::CSearchWord(string sWord)
 {
 	Word = sWord;
-	WordData = 0;		// ªì­È«Å§i¬° 0
-	FoundPos = 0;		// ¦UÀÉ§ä¨ìªº¼Æ¶q
+	WordData = 0;		// åˆå€¼å®£å‘Šç‚º 0
+	FoundPos = 0;		// å„æª”æ‰¾åˆ°çš„æ•¸é‡
 	FoundPos = new CInt2List();
 
-	ParseToken();	  	// ¥ı±N­n·j´Mªº¦r¦ê©î¦¨¤@­Ó¤@­Óªº token
-	CreatTokenSpace();	// °t¸m¨C¤@­Ó token ªºªÅ¶¡
+	ParseToken();	  	// å…ˆå°‡è¦æœå°‹çš„å­—ä¸²æ‹†æˆä¸€å€‹ä¸€å€‹çš„ token
+	CreatTokenSpace();	// é…ç½®æ¯ä¸€å€‹ token çš„ç©ºé–“
 }
 //---------------------------------------------------------------------------
-// ¸Ñºc¨ç¦¡
+// è§£æ§‹å‡½å¼
 CSearchWord::~CSearchWord(void)
 {
 	if(WordData) delete[] WordData;
 	if(FoundPos) delete FoundPos;
 }
 //---------------------------------------------------------------------------
-// ¤ÀªRµ{¦¡
+// åˆ†æç¨‹å¼
 void CSearchWord::ParseToken(void)
 {
-	// ¥ı©î¸Ñ¥X Token
+	// å…ˆæ‹†è§£å‡º Token
 	string sTmp = Word;
 	while(sTmp.length()>0)
 	{
-		if((sTmp[0] == '&') && (sTmp.find(';')))			// ???? ¼È®É·í¦¨²Õ¦r¦¡
+		if((sTmp[0] == '&') && (sTmp.find(';')))			// ???? æš«æ™‚ç•¶æˆçµ„å­—å¼
 		{
 			size_t iPos = sTmp.find(';');
 			Tokens.push_back(sTmp.substr(0,iPos+1));
 			sTmp = sTmp.substr(iPos+1);
 		}
-		else if(sTmp[0] == '[')			// ???? ¼È®É·í¦¨²Õ¦r¦¡
+		else if(sTmp[0] == '[')			// ???? æš«æ™‚ç•¶æˆçµ„å­—å¼
 		{
 			size_t iPos = sTmp.find("]");
 			Tokens.push_back(sTmp.substr(0,iPos+1));
 			sTmp = sTmp.substr(iPos+1);
 		}
-		else if((unsigned char)sTmp[0] >= 128)		// ¤¤¤å¦r, ¤£¯à¥Î IsLeadByte(1) , ¦b­^¤åª©·|¥¢®Ä
+		/* é€™æ˜¯åœ¨ big5 ç”¨çš„, åœ¨ utf8 æœƒå¤±æ•ˆ
+
+		else if((unsigned char)sTmp[0] >= 128)		// ä¸­æ–‡å­—, ä¸èƒ½ç”¨ IsLeadByte(1) , åœ¨è‹±æ–‡ç‰ˆæœƒå¤±æ•ˆ
 		{
 			Tokens.push_back(sTmp.substr(0,2));
 			sTmp = sTmp.substr(2);
@@ -49,73 +51,108 @@ void CSearchWord::ParseToken(void)
 			Tokens.push_back(sTmp.substr(0,1));
 			sTmp = sTmp.substr(1);
 		}
+		*/
+
+		// utf8 ç‰ˆ, è‹¥æŸå­—å‰ 5 å€‹ bit æ˜¯ 11110 è¡¨ç¤ºæ­¤å­—æœ‰ 4 å€‹å­—, è‹¥å‰ 4 å€‹ bit æ˜¯ 1110 , è¡¨ç¤ºæ­¤å­—æœ‰ 3 å€‹å­—...
+
+		else if(((unsigned char)sTmp[0] & 0xFE) == 0xFC) // 0xFE = 1111 1110
+		{
+		    Tokens.push_back(sTmp.substr(0,6));
+		    sTmp = sTmp.substr(6);
+		}
+		else if(((unsigned char)sTmp[0] & 0xFC) == 0xF8) // 0xFC = 1111 1100
+		{
+		    Tokens.push_back(sTmp.substr(0,5));
+		    sTmp = sTmp.substr(5);
+		}
+		else if(((unsigned char)sTmp[0] & 0xF8) == 0xF0) // 0xF8 = 1111 1000
+		{
+		    Tokens.push_back(sTmp.substr(0,4));
+		    sTmp = sTmp.substr(4);
+		}
+		else if(((unsigned char)sTmp[0] & 0xF0) == 0xE0) // 0xE0 = 1111 0000
+		{
+		    Tokens.push_back(sTmp.substr(0,3));
+		    sTmp = sTmp.substr(3);
+		}
+		else if(((unsigned char)sTmp[0] & 0xE0) == 0xC0) // 0xE0 = 1110 0000
+		{
+		    Tokens.push_back(sTmp.substr(0,2));
+		    sTmp = sTmp.substr(2);
+		}
+		else
+		{
+		    Tokens.push_back(sTmp.substr(0,1));
+		    sTmp = sTmp.substr(1);
+		}
+
 	}
 }
 
 //---------------------------------------------------------------------------
-// °t¸m¨C¤@­Ó token ªºªÅ¶¡
+// é…ç½®æ¯ä¸€å€‹ token çš„ç©ºé–“
 void CSearchWord::CreatTokenSpace(void)
 {
 	int iCount = Tokens.size();
 	int iBufferSize;
 
 	if(WordData) delete[] WordData;
-	WordData = new CWordData[iCount];   // ¨C¤@­Ó¦r³£¶}¥XªÅ¶¡¨Ó
+	WordData = new CWordData[iCount];   // æ¯ä¸€å€‹å­—éƒ½é–‹å‡ºç©ºé–“ä¾†
 
 	for (int i=0; i<iCount; i++)
 	{
 		int iIndex = WordIndex->GetOffset(Tokens[i]);
 
-		if(iIndex >= 0)		// ¦¹¦r¦³¦b¯Á¤ŞÀÉ¤¤
+		if(iIndex >= 0)		// æ­¤å­—æœ‰åœ¨ç´¢å¼•æª”ä¸­
 		{
 			int iOffset = WordIndex->WordOffset[iIndex];
-			if(iIndex == WordIndex->WordCount - 1)					// ³Ì«á¤@µ§
+			if(iIndex == WordIndex->WordCount - 1)					// æœ€å¾Œä¸€ç­†
 				iBufferSize = MainIndex->Size - iOffset;
 			else
-				iBufferSize = WordIndex->WordOffset[iIndex+1]-iOffset;	// ???? ¦³«İÀË¬d³Ì«á¤@µ§
+				iBufferSize = WordIndex->WordOffset[iIndex+1]-iOffset;	// ???? æœ‰å¾…æª¢æŸ¥æœ€å¾Œä¸€ç­†
 			(WordData+i)->Initial(iOffset, iBufferSize);
 		}
-		else 			// ¦¹¦r¤£¦b¯Á¤ŞÀÉ¤¤
+		else 			// æ­¤å­—ä¸åœ¨ç´¢å¼•æª”ä¸­
 		{
-			(WordData+i)->ZeroIt();		// «Ø¤@­Ó¥ş³¡³£¬O 0 ªº worddata
+			(WordData+i)->ZeroIt();		// å»ºä¸€å€‹å…¨éƒ¨éƒ½æ˜¯ 0 çš„ worddata
 		}
 	}
 }
 //---------------------------------------------------------------------------
-// ·j´M¬Y­ÓÀÉ®×ÀÉ®×
+// æœå°‹æŸå€‹æª”æ¡ˆæª”æ¡ˆ
 void CSearchWord::Search(int iFileNum)
 {
-	int iFound = 0;						// §PÂ_¦³¨S¦³§ä¨ì¸ê®Æ
+	int iFound = 0;						// åˆ¤æ–·æœ‰æ²’æœ‰æ‰¾åˆ°è³‡æ–™
 	FoundPos->ClearAll();
 	lastK1 = new int[Tokens.size()];
-	int iHead;	// ²Ä¤@­Óªº¦ì¸m
+	int iHead;	// ç¬¬ä¸€å€‹çš„ä½ç½®
 	int iLastHead;
 
 	/*
-	# ¥Ñ¥D¯Á¤ŞÀÉÅª¤J¸ê®Æ
-	# §ä²Ä¤@­Ó¦r
-	# §ä²Ä¤G­Ó¦r
-	# ...¥ş§ä¨ì¤F
-	# ÀË¬d¦X¤£¦X®æ?
-	# Ä~Äò.....
+	# ç”±ä¸»ç´¢å¼•æª”è®€å…¥è³‡æ–™
+	# æ‰¾ç¬¬ä¸€å€‹å­—
+	# æ‰¾ç¬¬äºŒå€‹å­—
+	# ...å…¨æ‰¾åˆ°äº†
+	# æª¢æŸ¥åˆä¸åˆæ ¼?
+	# ç¹¼çºŒ.....
 	*/
 
-	// ???? ¦pªG²Ä¤@­Ó¦r´N¨S¦³, ¦p¦óªí¥Ü?
-	for(int i=0; i<WordData[0].WordCount[iFileNum]; i++)	// ¥ı¥Î³Ì²Âªº¤èªk, ¥Ñ²Ä¤@­Ó token ªº¦ê¦C, ¨C¤@­Ó³£¥h¸Õ
+	// ???? å¦‚æœç¬¬ä¸€å€‹å­—å°±æ²’æœ‰, å¦‚ä½•è¡¨ç¤º?
+	for(int i=0; i<WordData[0].WordCount[iFileNum]; i++)	// å…ˆç”¨æœ€ç¬¨çš„æ–¹æ³•, ç”±ç¬¬ä¸€å€‹ token çš„ä¸²åˆ—, æ¯ä¸€å€‹éƒ½å»è©¦
 	{
-		iHead =  WordData->WordPos[iFileNum][i];	// ²Ä¤@­Óªº¦ì¸m
+		iHead =  WordData->WordPos[iFileNum][i];	// ç¬¬ä¸€å€‹çš„ä½ç½®
 		iLastHead = iHead;
 
 		for(int i=0; i<Tokens.size(); i++)
 		{
-			lastK1[i] = 0;	// ªì­È¤Æ
-	   //		lastK2[i] = 0;	// ªì­È¤Æ
+			lastK1[i] = 0;	// åˆå€¼åŒ–
+	   //		lastK2[i] = 0;	// åˆå€¼åŒ–
 		}
 
-		int iFound = 1; 		// ¦pªG¥u§ä¤@­Ó¦r, ´N¬O§ä¨ì¤F.
+		int iFound = 1; 		// å¦‚æœåªæ‰¾ä¸€å€‹å­—, å°±æ˜¯æ‰¾åˆ°äº†.
 		for(int j=1; j<Tokens.size(); j++)
 		{
-			if(Tokens[j] == "?")	// ¸U¥Î¦r¤¸
+			if(Tokens[j] == "?")	// è¬ç”¨å­—å…ƒ
 			{
 				iLastHead++;
 				continue;
@@ -124,12 +161,12 @@ void CSearchWord::Search(int iFileNum)
 			iFound = 0;
 			for(int k=lastK1[j]; k<WordData[j].WordCount[iFileNum]; k++)
 			{
-				// /* ²Ä¤@ºØ¤èªk, ¼u©Ê¸û¤jªº
+				// /* ç¬¬ä¸€ç¨®æ–¹æ³•, å½ˆæ€§è¼ƒå¤§çš„
 				if(WordData[j].WordPos[iFileNum][k]>iLastHead)
 				{
 					iLastHead = WordData[j].WordPos[iFileNum][k];
-					lastK1[j] = k;			// ¥ı¼È¦s¦Ü lastK2;
-					if(iLastHead - iHead + 1 > Tokens.size())		// ´£«e¥X§½
+					lastK1[j] = k;			// å…ˆæš«å­˜è‡³ lastK2;
+					if(iLastHead - iHead + 1 > Tokens.size())		// æå‰å‡ºå±€
                     {
 						iFound = -1;
                     }
@@ -139,43 +176,43 @@ void CSearchWord::Search(int iFileNum)
 					}
 					break;
 				}
-				//--------  ²Ä¤@ºØ¤èªk, ¼u©Ê¸û¤jªº ---------- */
+				//--------  ç¬¬ä¸€ç¨®æ–¹æ³•, å½ˆæ€§è¼ƒå¤§çš„ ---------- */
 
-				/* ²Ä¤GºØ¤èªk, ¸ûÄY®æªº
-				if(WordData[j].WordPos[iFileNum][k]>iLastHead+1)		// ¶W¹L¤F
+				/* ç¬¬äºŒç¨®æ–¹æ³•, è¼ƒåš´æ ¼çš„
+				if(WordData[j].WordPos[iFileNum][k]>iLastHead+1)		// è¶…éäº†
 				{
-					iFound = -1;		// ´£«e¥X§½
+					iFound = -1;		// æå‰å‡ºå±€
 					break;
 				}
 				else if(WordData[j].WordPos[iFileNum][k] == iLastHead+1)
 				{
 						iLastHead++;
  						iFound = 1;
-						//lastK2[j] = k;			// ¥ı¼È¦s¦Ü lastK2;
+						//lastK2[j] = k;			// å…ˆæš«å­˜è‡³ lastK2;
 						break;
 				}
 				*/
-				//--------  ²Ä¤GºØ¤èªk, ¸ûÄY®æªº ----------
+				//--------  ç¬¬äºŒç¨®æ–¹æ³•, è¼ƒåš´æ ¼çš„ ----------
 			}
-			if (iFound <= 0)   	// ¨S§ä¨ì©Î´£«e¥X§½
+			if (iFound <= 0)   	// æ²’æ‰¾åˆ°æˆ–æå‰å‡ºå±€
 			{
 				break;
 			}
 		}
 
-		if (iFound == 0)   	// ¨S§ä¨ì
+		if (iFound == 0)   	// æ²’æ‰¾åˆ°
 		{
 			break;
 		}
 
-		if(iLastHead - iHead + 1 == Tokens.size())	// §ä¨ì¤@²Õ¤F	???? ³o­Óªø«×¥H«á­Y¦³¥Î¨ì¸U¥Î¦r¤¸, ¥i¯à·|ÅÜ
+		if(iLastHead - iHead + 1 == Tokens.size())	// æ‰¾åˆ°ä¸€çµ„äº†	???? é€™å€‹é•·åº¦ä»¥å¾Œè‹¥æœ‰ç”¨åˆ°è¬ç”¨å­—å…ƒ, å¯èƒ½æœƒè®Š
 		{
-			//FoundPos->Ints[iFileNum]++;		// ¦UÀÉ®×§ä¨ì¥Ø¼Ğªºµ§¼Æ
-			//FoundPos->Total++;				// ¥ş³¡§ä¨ìªº¦r¼Æ
-			FoundPos->Add(iHead,iLastHead);		// §ä¨ì¤@²Õ
+			//FoundPos->Ints[iFileNum]++;		// å„æª”æ¡ˆæ‰¾åˆ°ç›®æ¨™çš„ç­†æ•¸
+			//FoundPos->Total++;				// å…¨éƒ¨æ‰¾åˆ°çš„å­—æ•¸
+			FoundPos->Add(iHead,iLastHead);		// æ‰¾åˆ°ä¸€çµ„
 			//for(int i=0; i<Tokens->Count; i++)
 			//	{
-			//		lastK1[i] = lastK2[i];	// ¥[³t¤U¦¸§äªº³t«×
+			//		lastK1[i] = lastK2[i];	// åŠ é€Ÿä¸‹æ¬¡æ‰¾çš„é€Ÿåº¦
 			//	}
 		}
 	}

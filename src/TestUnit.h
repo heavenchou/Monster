@@ -22,14 +22,14 @@ class TestUnit
         TestUnit();
         ~TestUnit();
 
-        // ¶Ç¤J´ú¸Õ¤Î¹w´úµ²ªG, ¥Î¨Ó§PÂ_¬O§_¦¨¥\, sTestName ¬O´ú¸Õ¦WºÙ
+        // å‚³å…¥æ¸¬è©¦åŠé æ¸¬çµæœ, ç”¨ä¾†åˆ¤æ–·æ˜¯å¦æˆåŠŸ, sTestName æ˜¯æ¸¬è©¦åç¨±
         template <class T>
         void AreEqual(T x, T y, string sTestName);
-        void ShowTestResult();      // §e²{´ú¸Õµ²ªG
+        void ShowTestResult();      // å‘ˆç¾æ¸¬è©¦çµæœ
 
     protected:
     private:
-        vector <pair <string, bool>> Result;    // Àx¦s¨C¤@­Ó´ú¸Õªºµ²ªG
+        vector <pair <string, bool>> Result;    // å„²å­˜æ¯ä¸€å€‹æ¸¬è©¦çš„çµæœ
 
 };
 

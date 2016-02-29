@@ -1,7 +1,7 @@
 
 #include "PostfixStack.h"
 //---------------------------------------------------------------------------
-// ´ÿ∫c®Á¶°
+// Âª∫ÊßãÂáΩÂºè
 CPostfixStack::CPostfixStack()
 {
 	Initial();
@@ -10,7 +10,7 @@ CPostfixStack::CPostfixStack()
 		QueryStack[i] = 0;
 }
 //---------------------------------------------------------------------------
-CPostfixStack::~CPostfixStack(void)	// ∏—∫c®Á¶°
+CPostfixStack::~CPostfixStack(void)	// Ëß£ÊßãÂáΩÂºè
 {
 	for(int i=0; i<QueryStackSize; i++)
 		if(QueryStack[i]) delete QueryStack[i];
@@ -24,7 +24,7 @@ void CPostfixStack::Initial()
 	QueryStackPoint = 0;
 }
 //---------------------------------------------------------------------------
-// ∂«§J§@≠”πB∫‚≤≈∏π
+// ÂÇ≥ÂÖ•‰∏ÄÂÄãÈÅãÁÆóÁ¨¶Ëôü
 void CPostfixStack::PushOp(string sOp)
 {
 	if(sOp == "(")
@@ -41,16 +41,16 @@ void CPostfixStack::PushOp(string sOp)
 	}
 }
 //---------------------------------------------------------------------------
-// ∂«§J§@≠”§¿™R¶n™∫
+// ÂÇ≥ÂÖ•‰∏ÄÂÄãÂàÜÊûêÂ•ΩÁöÑ
 void CPostfixStack::PushQuery(CInt2List * FoundPos, string sSearchString)
 {
-	//  ¶p™G¨Oº∆¶r, ¶p™G¶≥πB∫‚≤≈∏π, •Bºhº∆≥£§@ºÀ, ¥NπB∫‚, µ≤™G±¿§J query stack
-	//  ¶p™G¨Oº∆¶r, ¶p™G¶≥πB∫‚≤≈∏π, ¶p™Gºhº∆§£§@ºÀ, ±¿§J query stack
-	//  ¶p™G¨Oº∆¶r, ®S¶≥πB∫‚≤≈∏π, ±¿§J query stack
+	//  Â¶ÇÊûúÊòØÊï∏Â≠ó, Â¶ÇÊûúÊúâÈÅãÁÆóÁ¨¶Ëôü, ‰∏îÂ±§Êï∏ÈÉΩ‰∏ÄÊ®£, Â∞±ÈÅãÁÆó, ÁµêÊûúÊé®ÂÖ• query stack
+	//  Â¶ÇÊûúÊòØÊï∏Â≠ó, Â¶ÇÊûúÊúâÈÅãÁÆóÁ¨¶Ëôü, Â¶ÇÊûúÂ±§Êï∏‰∏ç‰∏ÄÊ®£, Êé®ÂÖ• query stack
+	//  Â¶ÇÊûúÊòØÊï∏Â≠ó, Ê≤íÊúâÈÅãÁÆóÁ¨¶Ëôü, Êé®ÂÖ• query stack
 
-	// •˝¿À¨d¶≥®S¶≥™≈∂°•i•H•Œ
+	// ÂÖàÊ™¢Êü•ÊúâÊ≤íÊúâÁ©∫ÈñìÂèØ‰ª•Áî®
 
-	if(QueryStackSize == QueryStackPoint)	// ™≈∂°§£∞˜, ≠n creat §@≠”∑s™∫
+	if(QueryStackSize == QueryStackPoint)	// Á©∫Èñì‰∏çÂ§†, Ë¶Å creat ‰∏ÄÂÄãÊñ∞ÁöÑ
 	{
 		QueryStack[QueryStackPoint] = new CInt2List();
 		QueryStackSize++;
@@ -62,38 +62,38 @@ void CPostfixStack::PushQuery(CInt2List * FoundPos, string sSearchString)
 	Run();
 }
 //---------------------------------------------------------------------------
-// ≥B≤z•™¨A∏π
+// ËôïÁêÜÂ∑¶Êã¨Ëôü
 inline void CPostfixStack::PushLeftBracket(void)
 {
-	// ¶p™G¨O•™¨A∏π, •ÿ´eºhº∆ + 1
+	// Â¶ÇÊûúÊòØÂ∑¶Êã¨Ëôü, ÁõÆÂâçÂ±§Êï∏ + 1
 	Level++;
 }
 //---------------------------------------------------------------------------
-// ≥B≤z•k¨A∏π
+// ËôïÁêÜÂè≥Êã¨Ëôü
 inline void CPostfixStack::PushRightBracket(void)
 {
-	// ¶p™G¨O•k¨A∏π, ºhº∆ - 1 , ®√•BπB∫‚
+	// Â¶ÇÊûúÊòØÂè≥Êã¨Ëôü, Â±§Êï∏ - 1 , ‰∏¶‰∏îÈÅãÁÆó
 	Level--;
 	Run();
 }
 //---------------------------------------------------------------------------
-// ±¿§JπB∫‚≤≈∏π
+// Êé®ÂÖ•ÈÅãÁÆóÁ¨¶Ëôü
 inline void CPostfixStack::PushOpStack(string sOp)
 {
-	// ¶p™G¨OπB∫‚≤≈∏π, ±¿§J op stack , •B∞Oø˝•ÿ´eºhº∆
+	// Â¶ÇÊûúÊòØÈÅãÁÆóÁ¨¶Ëôü, Êé®ÂÖ• op stack , ‰∏îË®òÈåÑÁõÆÂâçÂ±§Êï∏
 	OpStack[OpStackPoint] = sOp[0];
 	LevelStack[OpStackPoint] = Level;
 	OpStackPoint++;
 }
 //---------------------------------------------------------------------------
-// ∞ı¶ÊπB∫‚
+// Âü∑Ë°åÈÅãÁÆó
 void CPostfixStack::Run(void)
 {
-	if(OpStackPoint <= 0) return;						// ®S¶≥•Ù¶ÛπB∫‚≤≈∏π, ©“•H¬˜∂}
-	if(QueryStackPoint < 2) return;						// ¶≥∞›√D, §£•iØ‡§p©Û2
-	if(Level != LevelStack[OpStackPoint-1]) return;		// ºhØ≈§£πÔ, §£Ø‡πB∫‚
+	if(OpStackPoint <= 0) return;						// Ê≤íÊúâ‰ªª‰ΩïÈÅãÁÆóÁ¨¶Ëôü, ÊâÄ‰ª•Èõ¢Èñã
+	if(QueryStackPoint < 2) return;						// ÊúâÂïèÈ°å, ‰∏çÂèØËÉΩÂ∞èÊñº2
+	if(Level != LevelStack[OpStackPoint-1]) return;		// Â±§Á¥ö‰∏çÂ∞ç, ‰∏çËÉΩÈÅãÁÆó
 
-	// ®˙•XπB∫‚≤≈∏π
+	// ÂèñÂá∫ÈÅãÁÆóÁ¨¶Ëôü
 
 	OpStackPoint--;
 	char cNowOp = OpStack[OpStackPoint];
@@ -123,16 +123,16 @@ void CPostfixStack::Run(void)
 	}
 }
 //---------------------------------------------------------------------------
-// ∂«¶^∏ÍÆ∆™∫µßº∆, §£¨O∂«¶^µ≤™G, ≠Y•¢±—∂«¶^ -1
-// ¶]¨∞µ{¶°≠n∂«¶^µßº∆, ¶˝¶≥Æ…≠p∫‚∑|•¢±—, ¶]¨∞®œ•Œ™Ã•Œ§F§£æA∑Ì™∫πB∫‚¶r¶Í,
-// ©“•H¶b¿À¨d´·≠Y§£¶XÆÊ, ¥N∂«¶^ -1
+// ÂÇ≥ÂõûË≥áÊñôÁöÑÁ≠ÜÊï∏, ‰∏çÊòØÂÇ≥ÂõûÁµêÊûú, Ëã•Â§±ÊïóÂÇ≥Âõû -1
+// Âõ†ÁÇ∫Á®ãÂºèË¶ÅÂÇ≥ÂõûÁ≠ÜÊï∏, ‰ΩÜÊúâÊôÇË®àÁÆóÊúÉÂ§±Êïó, Âõ†ÁÇ∫‰ΩøÁî®ËÄÖÁî®‰∫Ü‰∏çÈÅ©Áï∂ÁöÑÈÅãÁÆóÂ≠ó‰∏≤,
+// ÊâÄ‰ª•Âú®Ê™¢Êü•ÂæåËã•‰∏çÂêàÊ†º, Â∞±ÂÇ≥Âõû -1
 int CPostfixStack::GetResult(void)
 {
-    // ¿À¨d™∫º–∑«¶p§U:
+    // Ê™¢Êü•ÁöÑÊ®ôÊ∫ñÂ¶Ç‰∏ã:
     //
-    // 1.πB∫‚≤≈∏π∞Ô≈| op stack •≤∂∑¨∞ 0
-    // 2.πB∫‚∞Ô≈| query stack •u¶≥§@≤’
-    // 3.ºhº∆•≤∂∑¨∞ 0
+    // 1.ÈÅãÁÆóÁ¨¶ËôüÂ†ÜÁñä op stack ÂøÖÈ†àÁÇ∫ 0
+    // 2.ÈÅãÁÆóÂ†ÜÁñä query stack Âè™Êúâ‰∏ÄÁµÑ
+    // 3.Â±§Êï∏ÂøÖÈ†àÁÇ∫ 0
 
     // 1.
     if(OpStackPoint !=0) return -1;
@@ -141,7 +141,7 @@ int CPostfixStack::GetResult(void)
     // 3.
     if(Level !=0) return -1;
 
-    // ∂«¶^º–∑«™∫µ≤™G
+    // ÂÇ≥ÂõûÊ®ôÊ∫ñÁöÑÁµêÊûú
     return (QueryStack[0]->Int2s.size());
 }
 //---------------------------------------------------------------------------

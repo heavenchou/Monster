@@ -10,20 +10,20 @@ TestUnit::~TestUnit()
 
 void TestUnit::RunAllTest()
 {
-    // ´ú¸Õ Int2List
-    cout << "´ú¸Õ Int2List ..." << endl;
+    // æ¸¬è©¦ Int2List
+    cout << "æ¸¬è©¦ Int2List ..." << endl;
     Test_Int2List();
 
-    // ´ú¸Õ Monster
-    cout << "´ú¸Õ Monster ..." << endl;
+    // æ¸¬è©¦ Monster
+    cout << "æ¸¬è©¦ Monster ..." << endl;
     Test_Monster();
 
-    // ´ú¸Õ SearchWord
-    cout << "´ú¸Õ SearchWord ..." << endl;
-    // µLªk´ú, ¦]¬°¥Î¨ì worddata, ¥¦¥Î¨ì buildfilelist, ¦³«İ§ï¶i ???
+    // æ¸¬è©¦ SearchWord
+    cout << "æ¸¬è©¦ SearchWord ..." << endl;
+    // ç„¡æ³•æ¸¬, å› ç‚ºç”¨åˆ° worddata, å®ƒç”¨åˆ° buildfilelist, æœ‰å¾…æ”¹é€² ???
     //Test_SearchWord();
 
-    // §e²{µ²ªG
+    // å‘ˆç¾çµæœ
     ShowTestResult();
 
 }
@@ -40,22 +40,22 @@ void TestUnit::Test_Int2List()
 
     CInt2List * i2l2 = new CInt2List;
     int is = i2l2->Int2s.size();
-    AreEqual(is , 0, "Int2List ·s¼Wªº size ¬O 0");
+    AreEqual(is , 0, "Int2List æ–°å¢çš„ size æ˜¯ 0");
 
     i2l2->Copy(i2l);
 
-    AreEqual(i2l2->Int2s[0].second, 2, "Copy «áªº Int2List.first");
-    AreEqual(i2l2->Int2s[1].first, 3, "Copy «áªº Int2List.second");
-    AreEqual((int)i2l2->Int2s.size(), 2, "Copy «áªº Int2List size");
+    AreEqual(i2l2->Int2s[0].second, 2, "Copy å¾Œçš„ Int2List.first");
+    AreEqual(i2l2->Int2s[1].first, 3, "Copy å¾Œçš„ Int2List.second");
+    AreEqual((int)i2l2->Int2s.size(), 2, "Copy å¾Œçš„ Int2List size");
 
     i2l->Delete(0);
-    AreEqual((int)i2l->Int2s.size(), 1, "Int2List §R±¼¤@µ§«áªº size");
-    AreEqual(i2l->Int2s[0].first, 3, "§R±¼¤@µ§«áªº Int2List.first");
+    AreEqual((int)i2l->Int2s.size(), 1, "Int2List åˆªæ‰ä¸€ç­†å¾Œçš„ size");
+    AreEqual(i2l->Int2s[0].first, 3, "åˆªæ‰ä¸€ç­†å¾Œçš„ Int2List.first");
     i2l->Delete(1);
-    AreEqual((int)i2l->Int2s.size(), 0, "Int2List §R±¼¤Gµ§«áªº size");
-    AreEqual((int)i2l->Int2s.size() , 0, "Int2List Delete «áªº size ¬O 0");
+    AreEqual((int)i2l->Int2s.size(), 0, "Int2List åˆªæ‰äºŒç­†å¾Œçš„ size");
+    AreEqual((int)i2l->Int2s.size() , 0, "Int2List Delete å¾Œçš„ size æ˜¯ 0");
 
-    // ´ú¸Õ OrIt
+    // æ¸¬è©¦ OrIt
     CInt2List * i2l3 = new CInt2List;
     i2l3->Add(1,2);
     i2l3->Add(15,16);
@@ -67,14 +67,14 @@ void TestUnit::Test_Int2List()
 
     i2l3->OrIt(i2l4);
 
-    AreEqual((int)i2l3->Int2s.size() , 5, "Int2List OrIt «áªº size ¬O 5");
-    AreEqual((int)i2l3->Int2s[1].first , 5, "Int2List OrIt «áªº²Ä¤Gµ§ .first ¬O 5");
-    AreEqual((int)i2l3->Int2s[4].second , 36, "Int2List OrIt «áªº²Ä¤­µ§ .second ¬O 36");
+    AreEqual((int)i2l3->Int2s.size() , 5, "Int2List OrIt å¾Œçš„ size æ˜¯ 5");
+    AreEqual((int)i2l3->Int2s[1].first , 5, "Int2List OrIt å¾Œçš„ç¬¬äºŒç­† .first æ˜¯ 5");
+    AreEqual((int)i2l3->Int2s[4].second , 36, "Int2List OrIt å¾Œçš„ç¬¬äº”ç­† .second æ˜¯ 36");
 
-    // ´ú¸Õ NearIT
+    // æ¸¬è©¦ NearIT
     //             (50,52) , (100,102) ,                     (200,202)
     // (1,3)(45, 48),                  (110,113) , (140, 143)
-    // µ²ªG (45, 52)         (100,113)
+    // çµæœ (45, 52)         (100,113)
 
     CInt2List * i2l5 = new CInt2List;
     i2l5->Add(50,52);
@@ -89,15 +89,15 @@ void TestUnit::Test_Int2List()
 
     i2l5->NearIt(i2l6);
 
-    AreEqual((int)i2l5->Int2s.size() , 2, "Int2List NearIT «áªº size ¬O 2");
-    AreEqual((int)i2l5->Int2s[0].first , 45, "Int2List NearIT «áªº²Ä¤@µ§ .first ¬O 45");
-    AreEqual((int)i2l5->Int2s[1].second , 113, "Int2List NearIT «áªº²Ä¤Gµ§ .second ¬O 113");
+    AreEqual((int)i2l5->Int2s.size() , 2, "Int2List NearIT å¾Œçš„ size æ˜¯ 2");
+    AreEqual((int)i2l5->Int2s[0].first , 45, "Int2List NearIT å¾Œçš„ç¬¬ä¸€ç­† .first æ˜¯ 45");
+    AreEqual((int)i2l5->Int2s[1].second , 113, "Int2List NearIT å¾Œçš„ç¬¬äºŒç­† .second æ˜¯ 113");
 
 
-    // ´ú¸Õ BeforeIt
+    // æ¸¬è©¦ BeforeIt
     //         (50,52) ,       (100,102)             (200,202)
     // (45, 48),      (60, 63)        (110,113) ,            (210, 213)
-    // µ²ªG (50, 63)           (100,113) ,           (200, 213)
+    // çµæœ (50, 63)           (100,113) ,           (200, 213)
 
     CInt2List * i2l7 = new CInt2List;
     i2l7->Add(50,52);
@@ -112,14 +112,14 @@ void TestUnit::Test_Int2List()
 
     i2l7->BeforeIt(i2l8);
 
-    AreEqual((int)i2l7->Int2s.size() , 3, "Int2List BeforeIt «áªº size ¬O 3");
-    AreEqual((int)i2l7->Int2s[0].first , 50, "Int2List BeforeIt «áªº²Ä¤@µ§ .first ¬O 50");
-    AreEqual((int)i2l7->Int2s[2].second , 213, "Int2List BeforeIt «áªº²Ä¤Tµ§ .second ¬O 213");
+    AreEqual((int)i2l7->Int2s.size() , 3, "Int2List BeforeIt å¾Œçš„ size æ˜¯ 3");
+    AreEqual((int)i2l7->Int2s[0].first , 50, "Int2List BeforeIt å¾Œçš„ç¬¬ä¸€ç­† .first æ˜¯ 50");
+    AreEqual((int)i2l7->Int2s[2].second , 213, "Int2List BeforeIt å¾Œçš„ç¬¬ä¸‰ç­† .second æ˜¯ 213");
 
-    // ´ú¸Õ ExcludeIt
+    // æ¸¬è©¦ ExcludeIt
     //   (50,52) , (100,102)          (200,202),      (300, 303)
     // (49, 52),   (100, 104)   (198,201) , (201,203)
-    // µ²ªG (200,202), (300, 303)
+    // çµæœ (200,202), (300, 303)
 
     CInt2List * i2l9 = new CInt2List;
     i2l9->Add(50,52);
@@ -135,9 +135,9 @@ void TestUnit::Test_Int2List()
 
     i2l9->ExcludeIt(i2la);
 
-    AreEqual((int)i2l9->Int2s.size() , 2, "Int2List ExcludeIt «áªº size ¬O 2");
-    AreEqual((int)i2l9->Int2s[0].first , 200, "Int2List ExcludeIt «áªº²Ä¤@µ§ .first ¬O 200");
-    AreEqual((int)i2l9->Int2s[1].second , 303, "Int2List ExcludeIt «áªº²Ä¤Gµ§ .second ¬O 303");
+    AreEqual((int)i2l9->Int2s.size() , 2, "Int2List ExcludeIt å¾Œçš„ size æ˜¯ 2");
+    AreEqual((int)i2l9->Int2s[0].first , 200, "Int2List ExcludeIt å¾Œçš„ç¬¬ä¸€ç­† .first æ˜¯ 200");
+    AreEqual((int)i2l9->Int2s[1].second , 303, "Int2List ExcludeIt å¾Œçš„ç¬¬äºŒç­† .second æ˜¯ 303");
 
     /*
     for(int i=0; i<i2l9->Int2s.size(); i++)
@@ -165,11 +165,11 @@ void TestUnit::AreEqual(T x, T y, string sTestName)
     }
 }
 // ----------------------------------------------------------------------------
-// §e²{©Ò¦³¿ù»~ªº´ú¸Õ
+// å‘ˆç¾æ‰€æœ‰éŒ¯èª¤çš„æ¸¬è©¦
 void TestUnit::ShowTestResult()
 {
     cout << "======================================" << endl;
-    cout << "= ¦¨¥\\ªº´ú¸Õ                         =" << endl;
+    cout << "= æˆåŠŸ\çš„æ¸¬è©¦                         =" << endl;
     cout << "======================================" << endl;
 
     int iCount = 0;
@@ -182,10 +182,10 @@ void TestUnit::ShowTestResult()
         }
     }
     cout << "======================================" << endl;
-    cout << "¥ş³¡¦@¦³ " << iCount << " ¶µ´ú¸Õ¦¨¥\\!" << endl << endl;
+    cout << "å…¨éƒ¨å…±æœ‰ " << iCount << " é …æ¸¬è©¦æˆåŠŸ\!" << endl << endl;
 
     cout << "======================================" << endl;
-    cout << "= ¥¢±Ñªº´ú¸Õ                         =" << endl;
+    cout << "= å¤±æ•—çš„æ¸¬è©¦                         =" << endl;
     cout << "======================================" << endl;
 
     iCount = 0;
@@ -198,18 +198,18 @@ void TestUnit::ShowTestResult()
         }
     }
     cout << "======================================" << endl;
-    cout << "¥ş³¡¦@¦³ " << iCount << " ¶µ´ú¸Õ¿ù»~!" << endl;
+    cout << "å…¨éƒ¨å…±æœ‰ " << iCount << " é …æ¸¬è©¦éŒ¯èª¤!" << endl;
 }
 // ----------------------------------------------------------------------------
 void TestUnit::Test_Monster()
 {
     /*
-    // ­n¥ı«Å¤~¯à´ú, ¤ñ¸û³Â·Ğ, ©Ò¥H¥ı§O´ú
+    // è¦å…ˆå®£æ‰èƒ½æ¸¬, æ¯”è¼ƒéº»ç…©, æ‰€ä»¥å…ˆåˆ¥æ¸¬
 
-    string sSentence = "( ¦òªû * ( «ù[ª÷*¥»] ) + ( ¦ò , ¥@´L ) )";
+    string sSentence = "( ä½›é™€ * ( æŒ[é‡‘*æœ¬] ) + ( ä½› , ä¸–å°Š ) )";
     string sPatten;
 
-    string sSentence = "¦òªû * ( «ù[ª÷*¥»] ) + ( ¦ò , ¥@´L ) & ¥Ø¼Ğ";
+    string sSentence = "ä½›é™€ * ( æŒ[é‡‘*æœ¬] ) + ( ä½› , ä¸–å°Š ) & ç›®æ¨™";
     string sPatten;
 
     while (sSentence.length())
@@ -219,7 +219,7 @@ void TestUnit::Test_Monster()
 		cout << "\"" << sSentence << "\"" << endl;
 	}
 
-    sSentence = "¦òªû * ( «ù[ª÷*¥»] ) + ( ¦ò , ¥@´L ) & ¥Ø¼Ğ";
+    sSentence = "ä½›é™€ * ( æŒ[é‡‘*æœ¬] ) + ( ä½› , ä¸–å°Š ) & ç›®æ¨™";
     sPatten;
 
     while (sSentence.length())
@@ -229,7 +229,7 @@ void TestUnit::Test_Monster()
 		cout << "\"" << sSentence << "\"" << endl;
 	}
 
-	sSentence = "( ¦òªû * ( «ù[ª÷*¥»] ) + ( ¦ò , ¥@´L ) & ¥Ø¼Ğ )";
+	sSentence = "( ä½›é™€ * ( æŒ[é‡‘*æœ¬] ) + ( ä½› , ä¸–å°Š ) & ç›®æ¨™ )";
     SearchEngine->AnalysisSentence(sSentence);
     cout << "OKSentence : " << SearchEngine->OKSentence << endl;
     for(int i=0; i<SearchEngine->SearchWordList.size(); i++)
@@ -242,9 +242,9 @@ void TestUnit::Test_Monster()
 // ----------------------------------------------------------------------------
 void TestUnit::Test_SearchWord()
 {
-    CSearchWord * Word = new CSearchWord("¦òªû«ù[ª÷*¥»]¤Î&CB01234;");
+    CSearchWord * Word = new CSearchWord("ä½›é™€æŒ[é‡‘*æœ¬]åŠ&CB01234;");
 
-    AreEqual((int)Word->Tokens.size() , 6, "SearchWord Tokens ªº size ¬O 6");
-    AreEqual((string)Word->Tokens[3] , (string)"[ª÷*¥»]", "SearchWord Tokens[3] ¬O [ª÷*¥»]");
-    AreEqual((string)Word->Tokens[5] , (string)"&CB01234;", "SearchWord Tokens[5] ¬O &CB01234;");
+    AreEqual((int)Word->Tokens.size() , 6, "SearchWord Tokens çš„ size æ˜¯ 6");
+    AreEqual((string)Word->Tokens[3] , (string)"[é‡‘*æœ¬]", "SearchWord Tokens[3] æ˜¯ [é‡‘*æœ¬]");
+    AreEqual((string)Word->Tokens[5] , (string)"&CB01234;", "SearchWord Tokens[5] æ˜¯ &CB01234;");
 }

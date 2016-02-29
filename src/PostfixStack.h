@@ -7,18 +7,18 @@
 //---------------------------------------------------------------------------
 /*
 	###################################
-	# ½m²ß­pºâ¾÷¹Bºâ
+	# ç·´ç¿’è¨ˆç®—æ©Ÿé‹ç®—
 	#
-	# ­ì«h
+	# åŸå‰‡
 	#
-	#  ¦pªG¬O¼Æ¦r, ¦pªG¦³¹Bºâ²Å¸¹, ¥B¼h¼Æ³£¤@¼Ë, ´N¹Bºâ, µ²ªG±À¤J query stack
-	#  ¦pªG¬O¼Æ¦r, ¦pªG¦³¹Bºâ²Å¸¹, ¦pªG¼h¼Æ¤£¤@¼Ë, ±À¤J query stack
-	#  ¦pªG¬O¼Æ¦r, ¨S¦³¹Bºâ²Å¸¹, ±À¤J query stack
+	#  å¦‚æœæ˜¯æ•¸å­—, å¦‚æœæœ‰é‹ç®—ç¬¦è™Ÿ, ä¸”å±¤æ•¸éƒ½ä¸€æ¨£, å°±é‹ç®—, çµæœæ¨å…¥ query stack
+	#  å¦‚æœæ˜¯æ•¸å­—, å¦‚æœæœ‰é‹ç®—ç¬¦è™Ÿ, å¦‚æœå±¤æ•¸ä¸ä¸€æ¨£, æ¨å…¥ query stack
+	#  å¦‚æœæ˜¯æ•¸å­—, æ²’æœ‰é‹ç®—ç¬¦è™Ÿ, æ¨å…¥ query stack
 	#
-	#  ¦pªG¬O¹Bºâ²Å¸¹, ±À¤J op stack , ¥B°O¿ı¥Ø«e¼h¼Æ
+	#  å¦‚æœæ˜¯é‹ç®—ç¬¦è™Ÿ, æ¨å…¥ op stack , ä¸”è¨˜éŒ„ç›®å‰å±¤æ•¸
 	#
-	#  ¦pªG¬O¥ª¬A¸¹, ¥Ø«e¼h¼Æ + 1
-	#  ¦pªG¬O¥k¬A¸¹, ¼h¼Æ - 1 , ¨Ã¥B¹Bºâ
+	#  å¦‚æœæ˜¯å·¦æ‹¬è™Ÿ, ç›®å‰å±¤æ•¸ + 1
+	#  å¦‚æœæ˜¯å³æ‹¬è™Ÿ, å±¤æ•¸ - 1 , ä¸¦ä¸”é‹ç®—
 	###################################
 */
 
@@ -31,24 +31,24 @@ private:	// User declarations
 	int Level;
 	int OpStackPoint;
 
-	int QueryStackSize;		// query stack ªº¤j¤p, ¤]´N¬O¦³´X­Ó, ¦]¬°­Y pop ¥X¨Ó, ¼È®É¤£·|¥h delete ¥¦.
-	int QueryStackPoint;	// ¥Ø«e¥i¥H¨Ï¥Î¨ìªº«ü¼Ğ
+	int QueryStackSize;		// query stack çš„å¤§å°, ä¹Ÿå°±æ˜¯æœ‰å¹¾å€‹, å› ç‚ºè‹¥ pop å‡ºä¾†, æš«æ™‚ä¸æœƒå» delete å®ƒ.
+	int QueryStackPoint;	// ç›®å‰å¯ä»¥ä½¿ç”¨åˆ°çš„æŒ‡æ¨™
 
 	void PushLeftBracket(void);
 	void PushRightBracket(void);
 	void PushOpStack(string sOp);
-	void Run(void);						// ¶i¦æ¤ÀªR
+	void Run(void);						// é€²è¡Œåˆ†æ
 
 public:		// User declarations
 
-	CInt2List * QueryStack[100];				// ???? ¶W¹L 100 ­Ó«ç»ò¿ì? ¥i¦Ò¼{¥Î vector °ÊºA¦¨ªø ???
-	void PushOp(string sOp);		// ¶Ç¤J¤@µüªº¬d¸ßµ²ªG
-	void PushQuery(CInt2List * FileFoundCount, string sSearchString);		// ¶Ç¤J¤@µüªº¬d¸ßµ²ªG
-    int GetResult(void);     // ¶Ç¦^¸ê®Æªºµ§¼Æ, ¤£¬O¶Ç¦^µ²ªG, ­Y¥¢±Ñ¶Ç¦^ -1
+	CInt2List * QueryStack[100];				// ???? è¶…é 100 å€‹æ€éº¼è¾¦? å¯è€ƒæ…®ç”¨ vector å‹•æ…‹æˆé•· ???
+	void PushOp(string sOp);		// å‚³å…¥ä¸€è©çš„æŸ¥è©¢çµæœ
+	void PushQuery(CInt2List * FileFoundCount, string sSearchString);		// å‚³å…¥ä¸€è©çš„æŸ¥è©¢çµæœ
+    int GetResult(void);     // å‚³å›è³‡æ–™çš„ç­†æ•¸, ä¸æ˜¯å‚³å›çµæœ, è‹¥å¤±æ•—å‚³å› -1
 
-	void Initial(void);		// ªì­È¤Æ
-    CPostfixStack();		// «Øºc¨ç¦¡
-    ~CPostfixStack();		// ¸Ñºc¨ç¦¡
+	void Initial(void);		// åˆå€¼åŒ–
+    CPostfixStack();		// å»ºæ§‹å‡½å¼
+    ~CPostfixStack();		// è§£æ§‹å‡½å¼
 };
 //---------------------------------------------------------------------------
 //extern TmyPostfixStack *PostfixStack;

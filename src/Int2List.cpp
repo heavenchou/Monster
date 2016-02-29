@@ -2,7 +2,7 @@
 #include "Int2List.h"
 //#include "Option.h"
 //---------------------------------------------------------------------------
-// «Øºc¨ç¦¡
+// å»ºæ§‹å‡½å¼
 CInt2List::CInt2List()
 {
 	//FileCount = iFileCount;
@@ -10,12 +10,12 @@ CInt2List::CInt2List()
 	//Ints = 0;
 	//Ints = new int[FileCount];
 
-    SearchString = "";        // ·j´Mªº¦r¦ê, ¤@¶}©l¥i¯à¬O "¦òªû" ³oºØµü, ¦b¹Bºâ«á¥i¯àÅÜ¦¨ "(¦òªû+Ã¹º~)" ³oºØ¹Bºâµ²ªG. ³o¨ä¹ê¬O¬° ! ¹Bºâ³]­pªº
+    SearchString = "";        // æœå°‹çš„å­—ä¸², ä¸€é–‹å§‹å¯èƒ½æ˜¯ "ä½›é™€" é€™ç¨®è©, åœ¨é‹ç®—å¾Œå¯èƒ½è®Šæˆ "(ä½›é™€+ç¾…æ¼¢)" é€™ç¨®é‹ç®—çµæœ. é€™å…¶å¯¦æ˜¯ç‚º ! é‹ç®—è¨­è¨ˆçš„
 
 	///Int2s = new TList;
 }
 //---------------------------------------------------------------------------
-// ¸Ñºc¨ç¦¡
+// è§£æ§‹å‡½å¼
 CInt2List::~CInt2List(void)
 {
 	ClearAll();
@@ -23,92 +23,92 @@ CInt2List::~CInt2List(void)
 	///if(Int2s) delete Int2s;
 }
 //---------------------------------------------------------------------------
-// ¥ş³¡²M±¼
+// å…¨éƒ¨æ¸…æ‰
 inline void CInt2List::ClearAll(void)
 {
 	Int2s.clear();
 }
 //---------------------------------------------------------------------------
-// ¥[¤J¬Y¤@µ§
+// åŠ å…¥æŸä¸€ç­†
 void CInt2List::Add(pair <int, int> p)
 {
 	//TPoint * tpNew = new TPoint(tpPtr->x, tpPtr->y);
 	Int2s.push_back(p);
 }
 //---------------------------------------------------------------------------
-// ¥[¤J¬Y¤@µ§
+// åŠ å…¥æŸä¸€ç­†
 void CInt2List::Add(int x, int y)
 {
 	Int2s.push_back(pair<int,int>(x,y));
 }
 //---------------------------------------------------------------------------
-// §R°£¬Y¤@µ§
+// åˆªé™¤æŸä¸€ç­†
 void CInt2List::Delete(int iNum)
 {
 	Int2s.erase(Int2s.begin()+iNum-1);
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü =
+// é‹ç®—å­å¤šè¼‰ =
 void CInt2List::operator=(CInt2List * ilTarget)
 {
     Copy(ilTarget);
 }
 //---------------------------------------------------------------------------
-// ±N¸ê®Æ copy ¹L¨Ó
+// å°‡è³‡æ–™ copy éä¾†
 void CInt2List::Copy(CInt2List * ilTarget)
 {
     Int2s = ilTarget->Int2s;
-    // SearchString = ilTarget->SearchString;  copy ÁÙ¬O¤£­n¥h§ï·j´M¦r¦ê¤ñ¸û¦n
+    // SearchString = ilTarget->SearchString;  copy é‚„æ˜¯ä¸è¦å»æ”¹æœå°‹å­—ä¸²æ¯”è¼ƒå¥½
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü
+// é‹ç®—å­å¤šè¼‰
 void CInt2List::operator&=(CInt2List * ilTarget)
 {
 }
 //---------------------------------------------------------------------------
-// ­Y¤GªÌ³£¦³¸ê®Æ, ´N¤GªÌ¦X¨Ö
+// è‹¥äºŒè€…éƒ½æœ‰è³‡æ–™, å°±äºŒè€…åˆä½µ
 void CInt2List::AndIt(CInt2List * ilTarget)
 {
-	// ¥u­n¦³¤@­Ó¤H¬O 0 , ´Nª±¤£¤U¥h¤F
+	// åªè¦æœ‰ä¸€å€‹äººæ˜¯ 0 , å°±ç©ä¸ä¸‹å»äº†
 
-    SearchString = "(" + SearchString + "&" + ilTarget->SearchString + ")";     // ÅÜ¦¨ "(word1&word2)"
+    SearchString = "(" + SearchString + "&" + ilTarget->SearchString + ")";     // è®Šæˆ "(word1&word2)"
 	if(Int2s.size() ==0 || ilTarget->Int2s.size() == 0)
 	{
 		ClearAll();
 	}
-	else	//±µ¤U¨Ó´N­n±N¤G¤H¦X¨Ö¤F
+	else	//æ¥ä¸‹ä¾†å°±è¦å°‡äºŒäººåˆä½µäº†
 	{
 		OrIt(ilTarget);
     }
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü
+// é‹ç®—å­å¤šè¼‰
 void CInt2List::operator|=(CInt2List * ilTarget)
 {
 }
 //---------------------------------------------------------------------------
-// ¤GªÌ¦X¨Ö
+// äºŒè€…åˆä½µ
 void CInt2List::OrIt(CInt2List * ilTarget)
 {
-	int iIndex = 0;		// ²¾°Ê¤¤ªº«ü¼Ğ
+	int iIndex = 0;		// ç§»å‹•ä¸­çš„æŒ‡æ¨™
 	//TPoint * tpPtr1, *tpPtr2;
 	pair<int, int> tpPtr1, tpPtr2;
 
-    SearchString = "(" + SearchString + "," + ilTarget->SearchString + ")";     // ÅÜ¦¨ "(word1,word2)"
+    SearchString = "(" + SearchString + "," + ilTarget->SearchString + ")";     // è®Šæˆ "(word1,word2)"
 
-	if(Int2s.size() == 0)	// §Ú¦Û¤v¨S¦³¸ê®Æ
+	if(Int2s.size() == 0)	// æˆ‘è‡ªå·±æ²’æœ‰è³‡æ–™
 	{
 		Copy(ilTarget);
 		return;
 	}
 
-	if(ilTarget->Int2s.size() == 0)		// ¹ï¤è¨S¦³¸ê®Æ
+	if(ilTarget->Int2s.size() == 0)		// å°æ–¹æ²’æœ‰è³‡æ–™
     {
 		return;
     }
 
     /*
-    // ³o¤@¬q¦³ÂI©_©Ç, ¬°¤°»ò¤£¯à§ï¦¨©³¤U¨º¼Ë?... ­ì¨Ó¨S¿ù¤F, ¦]¬°³Ì«á¬O¥Î Insert, ¤£¬O´¡¤J¦b³Ì«á
+    // é€™ä¸€æ®µæœ‰é»å¥‡æ€ª, ç‚ºä»€éº¼ä¸èƒ½æ”¹æˆåº•ä¸‹é‚£æ¨£?... åŸä¾†æ²’éŒ¯äº†, å› ç‚ºæœ€å¾Œæ˜¯ç”¨ Insert, ä¸æ˜¯æ’å…¥åœ¨æœ€å¾Œ
 	for(int i=0; i<ilTarget.Int2s.size; i++)
 	{
 		tpPtr1 =  (TPoint *) Int2s->Items[iIndex];
@@ -119,12 +119,12 @@ void CInt2List::OrIt(CInt2List * ilTarget)
 			if(iIndex == Int2s.size) break;
 			tpPtr1 =  (TPoint *) Int2s->Items[iIndex];
 		}
-		TPoint * tpNew = new TPoint(tpPtr2->x, tpPtr2->y);	// ³o¸Ìªá¤F¤@¤Ñ¥b¥h®» bug 10/19 '03
+		TPoint * tpNew = new TPoint(tpPtr2->x, tpPtr2->y);	// é€™è£¡èŠ±äº†ä¸€å¤©åŠå»æ‰ bug 10/19 '03
 		Int2s->Insert(iIndex,tpNew);
 	}
 	*/
 
-    // ÁöµM vector ¤]¥i¥H´¡¤J, ¦ı®Ä²v¤£¦n, ©Ò¥H§ï¥Î¨ä¥L¤èªk, ¤â°Ê±N¤G­Ó vector ¦X¨Ö¦¨¤@­Ó
+    // é›–ç„¶ vector ä¹Ÿå¯ä»¥æ’å…¥, ä½†æ•ˆç‡ä¸å¥½, æ‰€ä»¥æ”¹ç”¨å…¶ä»–æ–¹æ³•, æ‰‹å‹•å°‡äºŒå€‹ vector åˆä½µæˆä¸€å€‹
 
     vector <pair <int,int> > pairTmp;
 
@@ -146,7 +146,7 @@ void CInt2List::OrIt(CInt2List * ilTarget)
         pairTmp.push_back(tpPtr2);
 	}
 
-    // ¥i¯àÁÙ¦³ÁÙ¨S³B²z§¹ªº, ­nÄ~Äò³B²z
+    // å¯èƒ½é‚„æœ‰é‚„æ²’è™•ç†å®Œçš„, è¦ç¹¼çºŒè™•ç†
     while(iIndex < Int2s.size())
     {
         pairTmp.push_back(tpPtr1);
@@ -158,15 +158,15 @@ void CInt2List::OrIt(CInt2List * ilTarget)
 }
 
 //---------------------------------------------------------------------------
-// ­Y¤GªÌ¾aªñ¦Ü¬Y¤@­Óµ{«×, «hÅÜ¦¨¤@­Ó½d³ò
+// è‹¥äºŒè€…é è¿‘è‡³æŸä¸€å€‹ç¨‹åº¦, å‰‡è®Šæˆä¸€å€‹ç¯„åœ
 void CInt2List::NearIt(CInt2List * ilTarget)
 {
 
-	NearNum = 30; //fmOption->Setting->NearNum;			// Near ¹Bºâªº½d³ò     ???? ­n¥Î¨Ï¥ÎªÌ¿é¤J
-    string sSearchString = "(" + SearchString + "+" + ilTarget->SearchString + ")";     // ÅÜ¦¨ "(word1+word2)"
+	NearNum = 30; //fmOption->Setting->NearNum;			// Near é‹ç®—çš„ç¯„åœ     ???? è¦ç”¨ä½¿ç”¨è€…è¼¸å…¥
+    string sSearchString = "(" + SearchString + "+" + ilTarget->SearchString + ")";     // è®Šæˆ "(word1+word2)"
 
 
-	// ¨S¸ê®Æ´Nµ²§ô
+	// æ²’è³‡æ–™å°±çµæŸ
 	if(Int2s.size() ==0 || ilTarget->Int2s.size() == 0)
 	{
 		ClearAll();
@@ -184,14 +184,14 @@ void CInt2List::NearIt(CInt2List * ilTarget)
 		{
             tpPtr2 = ilTarget->Int2s[j];
 
-			// §ä¨ì¤@²Õ
+			// æ‰¾åˆ°ä¸€çµ„
 			if((tpPtr2.first - tpPtr1.second <= NearNum) && (tpPtr1.first - tpPtr2.second <= NearNum))
 			{
 				pair <int,int> tpNew = pair <int,int>(min(tpPtr1.first, tpPtr2.first), max(tpPtr1.second, tpPtr2.second));
 				pairTmp.push_back(tpNew);
 			}
 			else
-				if (tpPtr2.first - tpPtr1.second > NearNum) break;	// §ä¤£¨ì¤F, ´«¤U¤@²Õ
+				if (tpPtr2.first - tpPtr1.second > NearNum) break;	// æ‰¾ä¸åˆ°äº†, æ›ä¸‹ä¸€çµ„
 		}
 	}
 
@@ -200,13 +200,13 @@ void CInt2List::NearIt(CInt2List * ilTarget)
 }
 
 //---------------------------------------------------------------------------
-// ¦P Near , ¤£¹L¥u¯à¦b¨ä«á­±, ¤]´N¬O¦³¶¶§Çªº
+// åŒ Near , ä¸éåªèƒ½åœ¨å…¶å¾Œé¢, ä¹Ÿå°±æ˜¯æœ‰é †åºçš„
 void CInt2List::BeforeIt(CInt2List * ilTarget)
 {
-	BeforeNum = 30; //fmOption->Setting->BeforeNum;		// Before ¹Bºâªº½d³ò   ???? ­n¥Î¨Ï¥ÎªÌ¿é¤J
-    string sSearchString = "(" + SearchString + "*" + ilTarget->SearchString + ")";     // ÅÜ¦¨ "(word1*word2)"
+	BeforeNum = 30; //fmOption->Setting->BeforeNum;		// Before é‹ç®—çš„ç¯„åœ   ???? è¦ç”¨ä½¿ç”¨è€…è¼¸å…¥
+    string sSearchString = "(" + SearchString + "*" + ilTarget->SearchString + ")";     // è®Šæˆ "(word1*word2)"
 
-	// ¨S¸ê®Æ´Nµ²§ô
+	// æ²’è³‡æ–™å°±çµæŸ
 	if(Int2s.size() ==0 || ilTarget->Int2s.size() == 0)
 	{
 		ClearAll();
@@ -224,14 +224,14 @@ void CInt2List::BeforeIt(CInt2List * ilTarget)
 		{
             tpPtr2 = ilTarget->Int2s[j];
 
-			// §ä¨ì¤@²Õ
+			// æ‰¾åˆ°ä¸€çµ„
 			if((tpPtr2.first - tpPtr1.first > 0 ) && (tpPtr2.first - tpPtr1.second <= BeforeNum))
 			{
 				pair <int,int> tpNew = pair <int,int>(tpPtr1.first, max(tpPtr1.second, tpPtr2.second));
 				pairTmp.push_back(tpNew);
 			}
 			else
-				if (tpPtr2.first - tpPtr1.second > BeforeNum) break;	// §ä¤£¨ì¤F, ´«¤U¤@²Õ
+				if (tpPtr2.first - tpPtr1.second > BeforeNum) break;	// æ‰¾ä¸åˆ°äº†, æ›ä¸‹ä¸€çµ„
 		}
 	}
 
@@ -239,29 +239,29 @@ void CInt2List::BeforeIt(CInt2List * ilTarget)
     SearchString = sSearchString;
 }
 //---------------------------------------------------------------------------
-// ±Æ°£¬Y¤@­Óµü, ¨Ò¦p  ªÙ§Q!ªÙ§Q¥± ªí¥Ü¥u­n§äªÙ§Q, ¦ı¤£­n§ä¨ìªÙ§Q¥±
+// æ’é™¤æŸä¸€å€‹è©, ä¾‹å¦‚  èˆåˆ©!èˆåˆ©å¼— è¡¨ç¤ºåªè¦æ‰¾èˆåˆ©, ä½†ä¸è¦æ‰¾åˆ°èˆåˆ©å¼—
 
 void CInt2List::ExcludeIt(CInt2List * ilTarget)
 {
-    // °µªk :
-    // ¥ı§ä³o­Óµüªºµü¶Z , ¨Ò¦p ªÙ§Q!ªÙ§Q¥± µü¶Z¬° 0 , ¦Ó Ã¹º~!ªüÃ¹º~ «hµü¶Z¬° 1 (²Ä¤@­Óµü¦b²Ä¤G­Óµüªº¦ì¸m)
-    // ¦A¤À§O·j´M³o¤G­Óµü , ·j´M«á¦A³B²z,
-    // ¨Ò¦pªÙ§Q §ä¨ì  1, 10, 20, 30 , ¦ÓªÙ§Q¥±§ä¨ì 1, 20 , ªí¥Ü³o¤G²Õ­n²¾°£
+    // åšæ³• :
+    // å…ˆæ‰¾é€™å€‹è©çš„è©è· , ä¾‹å¦‚ èˆåˆ©!èˆåˆ©å¼— è©è·ç‚º 0 , è€Œ ç¾…æ¼¢!é˜¿ç¾…æ¼¢ å‰‡è©è·ç‚º 1 (ç¬¬ä¸€å€‹è©åœ¨ç¬¬äºŒå€‹è©çš„ä½ç½®)
+    // å†åˆ†åˆ¥æœå°‹é€™äºŒå€‹è© , æœå°‹å¾Œå†è™•ç†,
+    // ä¾‹å¦‚èˆåˆ© æ‰¾åˆ°  1, 10, 20, 30 , è€Œèˆåˆ©å¼—æ‰¾åˆ° 1, 20 , è¡¨ç¤ºé€™äºŒçµ„è¦ç§»é™¤
 
-    //int iExcludeNum = (ilTarget->SearchString.AnsiPos(SearchString) - 1)/2; // µü¶Z
+    //int iExcludeNum = (ilTarget->SearchString.AnsiPos(SearchString) - 1)/2; // è©è·
 
-    // ¥i±¤³o¤@¬q¤]¨S¥Î¤F
-    //int iExcludeNum = MyAnsiPos(SearchString , ilTarget->SearchString) - 1; // µü¶Z, ´î¤@¬O§Æ±æ¥Ñ 0 ºâ°_
+    // å¯æƒœé€™ä¸€æ®µä¹Ÿæ²’ç”¨äº†
+    //int iExcludeNum = MyAnsiPos(SearchString , ilTarget->SearchString) - 1; // è©è·, æ¸›ä¸€æ˜¯å¸Œæœ›ç”± 0 ç®—èµ·
 
-    SearchString = "(" + SearchString + "-" + ilTarget->SearchString + ")";     // ÅÜ¦¨ "(word1!word2)"
+    SearchString = "(" + SearchString + "-" + ilTarget->SearchString + ")";     // è®Šæˆ "(word1!word2)"
 
-	if(Int2s.size() == 0)	// §Ú¦Û¤v¨S¦³¸ê®Æ
+	if(Int2s.size() == 0)	// æˆ‘è‡ªå·±æ²’æœ‰è³‡æ–™
 	{
 		ClearAll();
 		return;
 	}
 
-	if(ilTarget->Int2s.size() == 0)		// ¹ï¤è¨S¦³¸ê®Æ, ©Î¤G­Óµü®Ú¥»¨S¦³¬Û¦P³B
+	if(ilTarget->Int2s.size() == 0)		// å°æ–¹æ²’æœ‰è³‡æ–™, æˆ–äºŒå€‹è©æ ¹æœ¬æ²’æœ‰ç›¸åŒè™•
     {
 		return;
     }
@@ -269,28 +269,28 @@ void CInt2List::ExcludeIt(CInt2List * ilTarget)
     vector <pair <int,int> > pairTmp;
 	pair<int, int> tpPtr1, tpPtr2;
 
-    // ³o¤@¬q¦ü¥G¥i¥H¦A§Ö¤@ÂI, ¤£¥Î¶]¤G­Ó°j°é....¦pªGÅı¤G¬q¥æ¤e«e¶i ???
+    // é€™ä¸€æ®µä¼¼ä¹å¯ä»¥å†å¿«ä¸€é», ä¸ç”¨è·‘äºŒå€‹è¿´åœˆ....å¦‚æœè®“äºŒæ®µäº¤å‰å‰é€² ???
 	for(int i=0; i<Int2s.size(); i++)
 	{
         tpPtr1 = Int2s[i];
 
-        bool bPush = true;  // ¹w³]³o¤@²Õ¬O¥i¥Îªº, °£«D¦b ilTarget §ä¨ì³Q±Æ°£ªºµü
+        bool bPush = true;  // é è¨­é€™ä¸€çµ„æ˜¯å¯ç”¨çš„, é™¤éåœ¨ ilTarget æ‰¾åˆ°è¢«æ’é™¤çš„è©
 
 		for(int j=0; j<ilTarget->Int2s.size(); j++)
 		{
             tpPtr2 = ilTarget->Int2s[j];
 
-            if(tpPtr1.first > tpPtr2.second) // ²Ä¤G²ÕÁÙ¤Ó»·, ¥ı¸õ¹L
+            if(tpPtr1.first > tpPtr2.second) // ç¬¬äºŒçµ„é‚„å¤ªé , å…ˆè·³é
 			{
                 continue;
             }
-			// §ä¨ì­«½Æªº , ³o¤@²Õ­n§R°£
+			// æ‰¾åˆ°é‡è¤‡çš„ , é€™ä¸€çµ„è¦åˆªé™¤
             if(((tpPtr1.first >= tpPtr2.first) && (tpPtr1.second <= tpPtr2.second))||((tpPtr1.first <= tpPtr2.first) && (tpPtr1.second >= tpPtr2.second)))
 			{
                 bPush = false;
                 break;
             }
-            if(tpPtr2.first > tpPtr1.second) // ¤£¥Î¦A§ä¤F, §ä¤£¨ìªº.
+            if(tpPtr2.first > tpPtr1.second) // ä¸ç”¨å†æ‰¾äº†, æ‰¾ä¸åˆ°çš„.
 			{
                 break;
             }
@@ -307,9 +307,9 @@ void CInt2List::ExcludeIt(CInt2List * ilTarget)
 }
 /*
 //---------------------------------------------------------------------------
-// §ä¥X²Ä¤G­Ó¦r¦ê¦b²Ä¤@­Ó¦r¦êªº¶ZÂ÷, ¦ı³o¬O¥H¤¤¤å¨Óºâªº
-// ¨Ò¦p ªüÃø,¦ò§iªüÃø , «h¶Ç¦^ 3 , ¦]¬° "ªü" ¦b "¦ò§iªüÃø" ²Ä¤T­Ó¦r
-// ¤S¦p ªüÃø, &#X1234;[ª÷*¥»]ªüÃø, ¤]¶Ç¦^ 3 , ¦]¬° "&#X1234;[ª÷*¥»]" ¥u¬O¤G­Ó¦r
+// æ‰¾å‡ºç¬¬äºŒå€‹å­—ä¸²åœ¨ç¬¬ä¸€å€‹å­—ä¸²çš„è·é›¢, ä½†é€™æ˜¯ä»¥ä¸­æ–‡ä¾†ç®—çš„
+// ä¾‹å¦‚ é˜¿é›£,ä½›å‘Šé˜¿é›£ , å‰‡å‚³å› 3 , å› ç‚º "é˜¿" åœ¨ "ä½›å‘Šé˜¿é›£" ç¬¬ä¸‰å€‹å­—
+// åˆå¦‚ é˜¿é›£, &#X1234;[é‡‘*æœ¬]é˜¿é›£, ä¹Ÿå‚³å› 3 , å› ç‚º "&#X1234;[é‡‘*æœ¬]" åªæ˜¯äºŒå€‹å­—
 int CInt2List::MyAnsiPos(string sStr1, string sStr2)
 {
     int iResult = 0;
@@ -317,23 +317,23 @@ int CInt2List::MyAnsiPos(string sStr1, string sStr2)
     {
         if(!sStr2.IsTrailByte(i))
         {
-            if(sStr2.Length()-i+1 >= sStr1.Length())    // ²Ä¤G²Õ³Ñ¤Uªºªø«×¤@©w­n¤ñ²Ä¤@²Õªø
+            if(sStr2.Length()-i+1 >= sStr1.Length())    // ç¬¬äºŒçµ„å‰©ä¸‹çš„é•·åº¦ä¸€å®šè¦æ¯”ç¬¬ä¸€çµ„é•·
             {
-                bool bFound = true;      // ¥ı°²³]§ä¨ì¤F
+                bool bFound = true;      // å…ˆå‡è¨­æ‰¾åˆ°äº†
                 int k = i - 1;
 
                 for(int j = 1 ; j<=sStr1.Length(); j++)
                 {
-                    if(sStr2[k+j] != sStr1[j] && sStr1[j] != '?') // °İ¸¹¥t¥~³B²z
+                    if(sStr2[k+j] != sStr1[j] && sStr1[j] != '?') // å•è™Ÿå¦å¤–è™•ç†
                     {
                         bFound = false;
                         break;
                     }
-                    if(sStr2[k+j] != sStr1[j] && sStr1[j] == '?') // ³oºØ±¡ªp  §®?µĞÂÄ!§®­µµĞÂÄ
+                    if(sStr2[k+j] != sStr1[j] && sStr1[j] == '?') // é€™ç¨®æƒ…æ³  å¦™?è©è–©!å¦™éŸ³è©è–©
                     {
                         if(sStr2.IsLeadByte(k+j) && sStr2.IsTrailByte(k+j+1))
                         {
-                            k++;    // ¤@­Ó°İ¸¹¹ï¤W¤@­Ó¤¤¤å¦r, ©Ò¥H­n¦V«á²¾¤@­Ó¦r
+                            k++;    // ä¸€å€‹å•è™Ÿå°ä¸Šä¸€å€‹ä¸­æ–‡å­—, æ‰€ä»¥è¦å‘å¾Œç§»ä¸€å€‹å­—
                             if(sStr2.Length()-k < sStr1.Length())
                             {
                                 bFound = false;
@@ -351,10 +351,10 @@ int CInt2List::MyAnsiPos(string sStr1, string sStr2)
         }
     }
     if(iResult <= 1)
-        return iResult;     // 0 ©Î 1 , ´Nª½±µ¶Ç¦^
+        return iResult;     // 0 æˆ– 1 , å°±ç›´æ¥å‚³å›
     else
     {
-        // ­Y¿é¤J¬O ªüÃø, &#X1234;[ª÷*¥»]ªüÃø , «h©³¤Uªº sStr = "&#X1234;[ª÷*¥»]" , ²{¦b«h­n§ä¦¹¦r¦êªºªø«×
+        // è‹¥è¼¸å…¥æ˜¯ é˜¿é›£, &#X1234;[é‡‘*æœ¬]é˜¿é›£ , å‰‡åº•ä¸‹çš„ sStr = "&#X1234;[é‡‘*æœ¬]" , ç¾åœ¨å‰‡è¦æ‰¾æ­¤å­—ä¸²çš„é•·åº¦
         string sStr = sStr2.SubString(1,iResult-1);
 
         int iCount = 0;
@@ -365,7 +365,7 @@ int CInt2List::MyAnsiPos(string sStr1, string sStr2)
                 int tmp = sStr.AnsiPos(";");
                 if(tmp > 0)
                 {
-                    // §ä¨ì &#....;
+                    // æ‰¾åˆ° &#....;
                     iCount++;
                     sStr = sStr.Delete(1,tmp);
                 }
@@ -380,7 +380,7 @@ int CInt2List::MyAnsiPos(string sStr1, string sStr2)
                 int tmp = sStr.AnsiPos("]");
                 if(tmp > 0)
                 {
-                    // §ä¨ì [ª÷*¥»]
+                    // æ‰¾åˆ° [é‡‘*æœ¬]
                     iCount++;
                     sStr = sStr.Delete(1,tmp);
                 }
@@ -390,12 +390,12 @@ int CInt2List::MyAnsiPos(string sStr1, string sStr2)
                     sStr = sStr.Delete(1,1);
                 }
             }
-            else if(sStr.Length() == 1) // ³Ñ¤@­Ó¦r¤¸
+            else if(sStr.Length() == 1) // å‰©ä¸€å€‹å­—å…ƒ
             {
                 iCount++;
                 sStr = sStr.Delete(1,1);
             }
-            else if(sStr.IsLeadByte(1) && sStr.IsTrailByte(2))  // ³o¬O¤¤¤å¦r
+            else if(sStr.IsLeadByte(1) && sStr.IsTrailByte(2))  // é€™æ˜¯ä¸­æ–‡å­—
             {
                 iCount++;
                 sStr = sStr.Delete(1,2);

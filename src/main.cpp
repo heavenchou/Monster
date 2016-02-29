@@ -1,5 +1,5 @@
 /*
-    ¥ş¤åÀË¯Á
+    å…¨æ–‡æª¢ç´¢
 */
 
 #include "main.h"
@@ -14,49 +14,53 @@ int main()
 
     char cInput;
 
-    cout << "1.°õ¦æµ{¦¡´ú¸Õ 2.°õ¦æ¥ş¤åÀË¯Á : ";
+    cout << "1.åŸ·è¡Œç¨‹å¼æ¸¬è©¦ 2.åŸ·è¡Œå…¨æ–‡æª¢ç´¢ : ";
     cin >> cInput;
 
     if(cInput == '1')
     {
-        cout << "°õ¦æµ{¦¡´ú¸Õ¤¤..." << endl;
+        cout << "åŸ·è¡Œç¨‹å¼æ¸¬è©¦ä¸­..." << endl;
         TestUnit myTest;
         myTest.RunAllTest();
     }
     else if(cInput =='2')
     {
-        cout << "°õ¦æ¥ş¤åÀË¯Á¤¤..." << endl;
+        cout << "åŸ·è¡Œå…¨æ–‡æª¢ç´¢ä¸­..." << endl;
         RunFullTextSearch();
     }
     return 0;
 }
 
-// °õ¦æ¥ş¤åÀË¯Á
+// åŸ·è¡Œå…¨æ–‡æª¢ç´¢
 void RunFullTextSearch()
 {
+
+    // string sBuildList = "D:\\Data\\c\\_CodeBlocks\\Monster_utf8\\src\\bin\\Debug\\buildlist.txt";
+    // string sWordIndex = "D:\\Data\\c\\_CodeBlocks\\Monster_utf8\\src\\bin\\Debug\\wordindex.ndx";
+    // string sMainIndex = "D:\\Data\\c\\_CodeBlocks\\Monster_utf8\\src\\bin\\Debug\\main.ndx";
     string sBuildList = "./buildlist.txt";
     string sWordIndex = "./wordindex.ndx";
     string sMainIndex = "./main.ndx";
 
-    CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// «Å§i¥ş¤åÀË¯Á
+    CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// å®£å‘Šå…¨æ–‡æª¢ç´¢
 
-    SearchEngine->SearchWordList.clear();                              // Search Engine ¤@°_§ó·s
-    ShowTestResult(SearchEngine, "¥@´L", 3645);
-    ShowTestResult(SearchEngine, "µĞÂÄ + Ã¹º~", 374);
-    ShowTestResult(SearchEngine, "¦p¨Ó & ¥@´L", 10850);
-    ShowTestResult(SearchEngine, "¦p¨Ó * ¥@´L", 488);
-    ShowTestResult(SearchEngine, "ªÙ§Q¥± , ªüÃø", 3998);
-    ShowTestResult(SearchEngine, "©P®ü¤å", 0);
-    ShowTestResult(SearchEngine, "Ä±?ªk®v", 123);
-    ShowTestResult(SearchEngine, "Ä±?ªk®v - Ä±¥úªk®v", 4);
-    ShowTestResult(SearchEngine, "( ªÙ§Q¥± & ªüÃø ) + µĞÂÄ", 459);
+    SearchEngine->SearchWordList.clear();                              // Search Engine ä¸€èµ·æ›´æ–°
+    ShowTestResult(SearchEngine, "ä¸–å°Š", 3645);
+    ShowTestResult(SearchEngine, "è©è–© + ç¾…æ¼¢", 374);
+    ShowTestResult(SearchEngine, "å¦‚ä¾† & ä¸–å°Š", 10850);
+    ShowTestResult(SearchEngine, "å¦‚ä¾† * ä¸–å°Š", 488);
+    ShowTestResult(SearchEngine, "èˆåˆ©å¼— , é˜¿é›£", 3998);
+    ShowTestResult(SearchEngine, "å‘¨æµ·æ–‡", 0);
+    ShowTestResult(SearchEngine, "è¦º?æ³•å¸«", 123);
+    ShowTestResult(SearchEngine, "è¦º?æ³•å¸« - è¦ºå…‰æ³•å¸«", 4);
+    ShowTestResult(SearchEngine, "( èˆåˆ©å¼— & é˜¿é›£ ) + è©è–©", 459);
 }
 
-// ´ú¸Õµ²ªG
+// æ¸¬è©¦çµæœ
 void ShowTestResult(CMonster * SearchEngine, string sSearchStr, int iResult)
 {
-    bool bHasRange = false;         // ¥ş³¡ÀË¯Á
-    bool bFindOK = SearchEngine->Find(sSearchStr,bHasRange);        // ¶}©l·j´M
+    bool bHasRange = false;         // å…¨éƒ¨æª¢ç´¢
+    bool bFindOK = SearchEngine->Find(sSearchStr,bHasRange);        // é–‹å§‹æœå°‹
     cout << "find " << sSearchStr << " : " << SearchEngine->FileFound->Total;
     if(SearchEngine->FileFound->Total == iResult)
         cout << " (OK)" << endl;

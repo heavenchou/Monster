@@ -12,21 +12,21 @@ class CSearchWord
 {
 private:	// User declarations
 
-	void ParseToken(void);	  // ¥ı±N­n·j´Mªº¦r¦ê©î¦¨¤@­Ó¤@­Óªº token
-	void CreatTokenSpace(void);	// °t¸m¨C¤@­Ó token ªºªÅ¶¡
+	void ParseToken(void);	  // å…ˆå°‡è¦æœå°‹çš„å­—ä¸²æ‹†æˆä¸€å€‹ä¸€å€‹çš„ token
+	void CreatTokenSpace(void);	// é…ç½®æ¯ä¸€å€‹ token çš„ç©ºé–“
 
 public:		// User declarations
 	int *lastK1 ;
 	//int *lastK2 ;
-	string Word;					// ­n¤ÀªRªº¦r
-	vector <string>	Tokens;				// ©î¸Ñ¶}¨Óªº token, ¨Ò¦p¶Ç¤J "¦òªû«ù[ª÷*¥»]", «h©î¦¨¥|²Õ "¦ò", "ªû", "«ù", "[ª÷*¥»]"
-	CWordData * WordData;				// ¨C¤@­Ó token ªº¸ê®Æ
-	CInt2List * FoundPos;				// Àx¦s§ä¨ìªº¦ì¸m
+	string Word;					// è¦åˆ†æçš„å­—
+	vector <string>	Tokens;				// æ‹†è§£é–‹ä¾†çš„ token, ä¾‹å¦‚å‚³å…¥ "ä½›é™€æŒ[é‡‘*æœ¬]", å‰‡æ‹†æˆå››çµ„ "ä½›", "é™€", "æŒ", "[é‡‘*æœ¬]"
+	CWordData * WordData;				// æ¯ä¸€å€‹ token çš„è³‡æ–™
+	CInt2List * FoundPos;				// å„²å­˜æ‰¾åˆ°çš„ä½ç½®
 
-	void Search(int iFileNum);		// ¶i¦æ¤ÀªR
+	void Search(int iFileNum);		// é€²è¡Œåˆ†æ
 
-	CSearchWord(string sWord);		// «Øºc¨ç¦¡
-	~CSearchWord();					// ¸Ñºc¨ç¦¡
+	CSearchWord(string sWord);		// å»ºæ§‹å‡½å¼
+	~CSearchWord();					// è§£æ§‹å‡½å¼
 };
 //---------------------------------------------------------------------------
 //extern CSearchWord *SearchWord;

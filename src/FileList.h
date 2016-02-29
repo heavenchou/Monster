@@ -17,26 +17,26 @@ class CFileList
 
     public:		// User declarations
 
-        string FileName;				// ÀÉ¦W
-        int FileCount;						// ÀÉ®×¼Æ¥Ø
-        int FileCountBit;					// ÀÉ®×¼Æ¥Ø / 32 ¤§«áªº¾ã¼Æ
+        string FileName;				// æª”å
+        int FileCount;						// æª”æ¡ˆæ•¸ç›®
+        int FileCountBit;					// æª”æ¡ˆæ•¸ç›® / 32 ä¹‹å¾Œçš„æ•´æ•¸
 
-        string * Strings;				// ÀÉ¦W°}¦Cªº«ü¼Ğ
-        string * Book;					// §ä¥XÂÃ¸g 'T'(¤j¥¿), 'X'(ÉÃÄò)
-        int * VolNum;						// ºâ¥X¥U¼Æ
-        string * SutraNum;              // ºâ¥X¸g¸¹
-        int * JuanNum;                      // ºâ¥X¨÷¸¹
-        bool * SearchMe;					// §PÂ_­n¤£­nÀË¯Á
+        string * Strings;				// æª”åé™£åˆ—çš„æŒ‡æ¨™
+        string * Book;					// æ‰¾å‡ºè—ç¶“ 'T'(å¤§æ­£), 'X'(åçºŒ)
+        int * VolNum;						// ç®—å‡ºå†Šæ•¸
+        string * SutraNum;              // ç®—å‡ºç¶“è™Ÿ
+        int * JuanNum;                      // ç®—å‡ºå·è™Ÿ
+        bool * SearchMe;					// åˆ¤æ–·è¦ä¸è¦æª¢ç´¢
 
-        bool Initial(void);		// Åª¤J¸ê®Æ
+        bool Initial(void);		// è®€å…¥è³‡æ–™
 
-        string GetAlphaFromHead(string sInput);     // ¨ú±o¦r¦ê«e­±«D¼Æ¦rªº³¡¥÷
-        void NoneSearch(void);	// ¨ú®ø¥ş³¡ªºÀË¯Á
-        void SearchThisSutra(string sBook, string sSutraNum, int iStartJuan = 0, int iEndJuan = 0);   // ÀË¯Á³o¤@¸gªº³o¨Ç¨÷
-        void SearchThisVol(string sBook, int iVolNum, int iStartSutra = 0, int iEndSutra = 0);   // ÀË¯Á³o¤@¥Uªº³o¨Ç¸g
+        string GetAlphaFromHead(string sInput);     // å–å¾—å­—ä¸²å‰é¢éæ•¸å­—çš„éƒ¨ä»½
+        void NoneSearch(void);	// å–æ¶ˆå…¨éƒ¨çš„æª¢ç´¢
+        void SearchThisSutra(string sBook, string sSutraNum, int iStartJuan = 0, int iEndJuan = 0);   // æª¢ç´¢é€™ä¸€ç¶“çš„é€™äº›å·
+        void SearchThisVol(string sBook, int iVolNum, int iStartSutra = 0, int iEndSutra = 0);   // æª¢ç´¢é€™ä¸€å†Šçš„é€™äº›ç¶“
 
-        CFileList(string sFileName);		// «Øºc¨ç¦¡
-        ~CFileList();							// ¸Ñºc¨ç¦¡
+        CFileList(string sFileName);		// å»ºæ§‹å‡½å¼
+        ~CFileList();							// è§£æ§‹å‡½å¼
 };
 //---------------------------------------------------------------------------
 extern CFileList * BuildFileList;

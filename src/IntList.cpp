@@ -1,7 +1,7 @@
 
 #include "IntList.h"
 //---------------------------------------------------------------------------
-// «Øºc¨ç¦¡
+// å»ºæ§‹å‡½å¼
 CIntList::CIntList(int iFileCount)
 {
 	FileCount = iFileCount;
@@ -10,13 +10,13 @@ CIntList::CIntList(int iFileCount)
 	Ints = new int[FileCount];
 }
 //---------------------------------------------------------------------------
-// ¸Ñºc¨ç¦¡
+// è§£æ§‹å‡½å¼
 CIntList::~CIntList(void)
 {
 	if(Ints) delete[] Ints;
 }
 //---------------------------------------------------------------------------
-// ¥ş³¡²M±¼
+// å…¨éƒ¨æ¸…æ‰
 void CIntList::ClearAll(void)
 {
 	for(int i=0; i<FileCount; i++)
@@ -26,13 +26,13 @@ void CIntList::ClearAll(void)
 	Total = 0;
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü
+// é‹ç®—å­å¤šè¼‰
 void CIntList::operator=(CIntList * ilTarget)
 {
 	Copy(ilTarget);
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü
+// é‹ç®—å­å¤šè¼‰
 void CIntList::Copy(CIntList * ilTarget)
 {
 	for (int i=0; i<FileCount; i++)
@@ -42,19 +42,19 @@ void CIntList::Copy(CIntList * ilTarget)
 	Total = ilTarget->Total;
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü
+// é‹ç®—å­å¤šè¼‰
 void CIntList::operator&=(CIntList * ilTarget)
 {
 	AndIt(ilTarget);
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü
+// é‹ç®—å­å¤šè¼‰
 void CIntList::AndIt(CIntList * ilTarget)
 {
 	Total = 0;
 	for (int i=0; i<FileCount; i++)
 	{
-		if((Ints[i] > 0) && (ilTarget->Ints[i] > 0))	// ³o¼Ë¤~¯à and ¹Bºâ
+		if((Ints[i] > 0) && (ilTarget->Ints[i] > 0))	// é€™æ¨£æ‰èƒ½ and é‹ç®—
 		{
 			Ints[i] += ilTarget->Ints[i];
 			Total += Ints[i];
@@ -66,13 +66,13 @@ void CIntList::AndIt(CIntList * ilTarget)
 	}
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü
+// é‹ç®—å­å¤šè¼‰
 void CIntList::operator|=(CIntList * ilTarget)
 {
 	OrIt(ilTarget);
 }
 //---------------------------------------------------------------------------
-// ¹Bºâ¤l¦h¸ü
+// é‹ç®—å­å¤šè¼‰
 void CIntList::OrIt(CIntList * ilTarget)
 {
 	for (int i=0; i<FileCount; i++)

@@ -11,12 +11,12 @@ class CMainIndex
     private:	// User declarations
     public:		// User declarations
 
-        ifstream FileStream;			// •DØ¡§ﬁ¿…
+        ifstream FileStream;			// ‰∏ªÁ¥¢ÂºïÊ™î
         string FileName;
         long Size;
 
-        CMainIndex(string sFileName);	// ´ÿ∫c®Á¶°
-        ~CMainIndex();						// ∏—∫c®Á¶°
+        CMainIndex(string sFileName);	// Âª∫ÊßãÂáΩÂºè
+        ~CMainIndex();						// Ëß£ÊßãÂáΩÂºè
 };
 //---------------------------------------------------------------------------
 extern CMainIndex *MainIndex;

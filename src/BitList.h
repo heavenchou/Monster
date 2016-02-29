@@ -2,33 +2,33 @@
 #ifndef BitListH
 #define BitListH
 //---------------------------------------------------------------------------
-// ??? ¥i¥H¦Ò¼{¥Î bitset ª«¥ó
+// ??? å¯ä»¥è€ƒæ…®ç”¨ bitset ç‰©ä»¶
 class CBitList
 {
     private:	// User declarations
 
-        int iByte;		// ­pºâ¥Îªº, ¬Y¤@­Ó byte
-        int iBit;		// ­pºâ¥Îªº, ¬Y¤@­Ó bit
-        unsigned int Mask;		// ¥Î¨Ó¾B¸n¬Y¤@­Ó bit ªº¤u¨ã
+        int iByte;		// è¨ˆç®—ç”¨çš„, æŸä¸€å€‹ byte
+        int iBit;		// è¨ˆç®—ç”¨çš„, æŸä¸€å€‹ bit
+        unsigned int Mask;		// ç”¨ä¾†é®ç½©æŸä¸€å€‹ bit çš„å·¥å…·
 
-        void GetByteBit(int iNum);		// ­pºâ¥X byte ¤Î bit
+        void GetByteBit(int iNum);		// è¨ˆç®—å‡º byte åŠ bit
 
     public:		// User declarations
 
-        int FileCount;					// ÀÉ®×¼Æ¥Ø
-        int FileCountBit;				// ÀÉ®×¼Æ¥Ø / 32 ¤§«áªº¾ã¼Æ
-        int * Head;						// ¶}ÀYªº«ü¼Ğ
-        bool HasMemory;					// ¬O§_¦³¦Û¤v new ¤@­ÓªÅ¶¡?
+        int FileCount;					// æª”æ¡ˆæ•¸ç›®
+        int FileCountBit;				// æª”æ¡ˆæ•¸ç›® / 32 ä¹‹å¾Œçš„æ•´æ•¸
+        int * Head;						// é–‹é ­çš„æŒ‡æ¨™
+        bool HasMemory;					// æ˜¯å¦æœ‰è‡ªå·± new ä¸€å€‹ç©ºé–“?
 
-        void Initial(int iFileCount);		// ³]©wªì­È
-        void Initial(int iFileCount, int iFileCountBit);		// ³]©wªì­È
+        void Initial(int iFileCount);		// è¨­å®šåˆå€¼
+        void Initial(int iFileCount, int iFileCountBit);		// è¨­å®šåˆå€¼
 
-        void SetBit(int iIndex);		// ±N¬Y¤@­Ó bit ³]©w¬° 1
-        void ClearBit(int iIndex);	// ±N¬Y¤@­Ó bit ³]©w¬° 0
-        int GetBit(int iIndex);		// ¨ú±o¬Y¤@­Ó bit ªº¸ê®Æ
+        void SetBit(int iIndex);		// å°‡æŸä¸€å€‹ bit è¨­å®šç‚º 1
+        void ClearBit(int iIndex);	// å°‡æŸä¸€å€‹ bit è¨­å®šç‚º 0
+        int GetBit(int iIndex);		// å–å¾—æŸä¸€å€‹ bit çš„è³‡æ–™
 
-        CBitList();		// «Øºc¨ç¦¡
-        ~CBitList();		// ¸Ñºc¨ç¦¡
+        CBitList();		// å»ºæ§‹å‡½å¼
+        ~CBitList();		// è§£æ§‹å‡½å¼
 };
 //---------------------------------------------------------------------------
 //extern TmyBitList *BitList;

@@ -1,20 +1,20 @@
 
 #include "BitList.h"
 //---------------------------------------------------------------------------
-// «Øºc¨ç¦¡
+// å»ºæ§‹å‡½å¼
 CBitList::CBitList()
 {
 	HasMemory = false;
 	Head = 0;
 }
 //---------------------------------------------------------------------------
-// ¸Ñºc¨ç¦¡
+// è§£æ§‹å‡½å¼
 CBitList::~CBitList(void)
 {
 	if(HasMemory && Head) delete[] Head;
 }
 //---------------------------------------------------------------------------
-// ³]©wªì­È
+// è¨­å®šåˆå€¼
 void CBitList::Initial(int iFileCount)
 {
 	FileCount = iFileCount;
@@ -23,14 +23,14 @@ void CBitList::Initial(int iFileCount)
 	if(FileCount % 32) FileCountBit++;
 }
 //---------------------------------------------------------------------------
-// ³]©wªì­È
+// è¨­å®šåˆå€¼
 void CBitList::Initial(int iFileCount, int iFileCountBit)
 {
 	FileCount = iFileCount;
 	FileCountBit = iFileCountBit;
 }
 //---------------------------------------------------------------------------
-// ±N¬Y¤@­Ó bit ³]©w¬° 1
+// å°‡æŸä¸€å€‹ bit è¨­å®šç‚º 1
 void CBitList::SetBit(int iIndex)
 {
 	GetByteBit(iIndex);
@@ -39,7 +39,7 @@ void CBitList::SetBit(int iIndex)
 	Head[iByte] |= (int) Mask;
 }
 //---------------------------------------------------------------------------
-// ±N¬Y¤@­Ó bit ³]©w¬° 0
+// å°‡æŸä¸€å€‹ bit è¨­å®šç‚º 0
 void CBitList::ClearBit(int iIndex)
 {
 	GetByteBit(iIndex);
@@ -49,7 +49,7 @@ void CBitList::ClearBit(int iIndex)
 	Head[iByte] &= (int) Mask;
 }
 //---------------------------------------------------------------------------
-// ¨ú±o¬Y¤@­Ó bit ªº¸ê®Æ
+// å–å¾—æŸä¸€å€‹ bit çš„è³‡æ–™
 int CBitList::GetBit(int iIndex)
 {
 	GetByteBit(iIndex);
@@ -62,7 +62,7 @@ int CBitList::GetBit(int iIndex)
 		return 0;
 }
 //---------------------------------------------------------------------------
-// ­pºâ¥X byte ¤Î bit
+// è¨ˆç®—å‡º byte åŠ bit
 void CBitList::GetByteBit(int iNum)
 {
 	iByte = iNum / 32;
