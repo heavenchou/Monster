@@ -5,7 +5,7 @@
 #include "main.h"
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
 
 #ifdef DEBUG
@@ -26,21 +26,27 @@ int main()
     else if(cInput =='2')
     {
         cout << "執行全文檢索中..." << endl;
-        RunFullTextSearch();
+        string sProgramPath = argv[0];  // 程式目錄
+        sProgramPath = sProgramPath.substr(0,sProgramPath.find_last_of("\\/")+1);
+        string sIniFile = sProgramPath + "Monster.ini";
+
+        RunFullTextSearch(sIniFile);
     }
     return 0;
 }
 
 // 執行全文檢索
-void RunFullTextSearch()
+void RunFullTextSearch(string sIniFile)
 {
-
-    // string sBuildList = "D:\\Data\\c\\_CodeBlocks\\Monster_utf8\\src\\bin\\Debug\\buildlist.txt";
-    // string sWordIndex = "D:\\Data\\c\\_CodeBlocks\\Monster_utf8\\src\\bin\\Debug\\wordindex.ndx";
-    // string sMainIndex = "D:\\Data\\c\\_CodeBlocks\\Monster_utf8\\src\\bin\\Debug\\main.ndx";
-    string sBuildList = "./buildlist.txt";
-    string sWordIndex = "./wordindex.ndx";
-    string sMainIndex = "./main.ndx";
+/*
+    string sBuildList = "D:\\Data\\c\\_CodeBlocks\\Monster\\src\\bin\\Debug\\buildlist.txt";
+    string sWordIndex = "D:\\Data\\c\\_CodeBlocks\\Monster\\src\\bin\\Debug\\wordindex.ndx";
+    string sMainIndex = "D:\\Data\\c\\_CodeBlocks\\Monster\\src\\bin\\Debug\\main.ndx";
+*/
+    CTinyIni * TinyIni = new CTinyIni(sIniFile);
+    string sBuildList = TinyIni->ReadString("BuildList", "buildlist.txt");
+    string sWordIndex = TinyIni->ReadString("WordIndex", "wordindex.ndx");
+    string sMainIndex = TinyIni->ReadString("MainIndex", "main.ndx");
 
     CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// 宣告全文檢索
 

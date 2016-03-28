@@ -50,6 +50,8 @@
 		<Unit filename="SearchWord.h" />
 		<Unit filename="TestUnit.cpp" />
 		<Unit filename="TestUnit.h" />
+		<Unit filename="TinyIni.cpp" />
+		<Unit filename="TinyIni.h" />
 		<Unit filename="WordData.cpp" />
 		<Unit filename="WordData.h" />
 		<Unit filename="WordIndex.cpp" />

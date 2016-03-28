@@ -1,17 +1,16 @@
 #ifndef mainH
 #define mainH
 
-
 //---------------------------------------------------------------------------
 #include <iostream>
+#include <assert.h>
 #include "TestUnit.h"
 #include "Monster.h"
-#include <assert.h>
+#include "TinyIni.h"
 #include "mydebug.h"
 //---------------------------------------------------------------------------
 
-void RunFullTextSearch();
+void RunFullTextSearch(string sIniFile);
 void ShowTestResult(CMonster * SearchEngine, string sSearchStr, int iResult);
-
 
 #endif

@@ -100,30 +100,30 @@
 
 1456220034 d:\data\c\_codeblocks\monster\mydebug.h
 
-1456047526 source:d:\data\c\_codeblocks\monster\src\bitlist.cpp
+1456733010 source:d:\data\c\_codeblocks\monster\src\bitlist.cpp
 	"BitList.h"
 
-1456047368 d:\data\c\_codeblocks\monster\src\bitlist.h
+1456733015 d:\data\c\_codeblocks\monster\src\bitlist.h
 
-1453366556 source:d:\data\c\_codeblocks\monster\src\filelist.cpp
+1456733054 source:d:\data\c\_codeblocks\monster\src\filelist.cpp
 	"FileList.h"
 
-1453366504 d:\data\c\_codeblocks\monster\src\filelist.h
+1456733058 d:\data\c\_codeblocks\monster\src\filelist.h
 	<iostream>
 	<fstream>
 	<stdlib.h>
 
-1456307045 source:d:\data\c\_codeblocks\monster\src\int2list.cpp
+1456732958 source:d:\data\c\_codeblocks\monster\src\int2list.cpp
 	"Int2List.h"
 
-1453538099 d:\data\c\_codeblocks\monster\src\int2list.h
+1456733037 d:\data\c\_codeblocks\monster\src\int2list.h
 	<iostream>
 	<vector>
 
-1455724685 source:d:\data\c\_codeblocks\monster\src\intlist.cpp
+1456733029 source:d:\data\c\_codeblocks\monster\src\intlist.cpp
 	"IntList.h"
 
-1455724685 d:\data\c\_codeblocks\monster\src\intlist.h
+1456733031 d:\data\c\_codeblocks\monster\src\intlist.h
 
 1456327424 source:d:\data\c\_codeblocks\monster\src\main.cpp
 	"main.h"
@@ -135,14 +135,14 @@
 	<assert.h>
 	"mydebug.h"
 
-1455978732 d:\data\c\_codeblocks\monster\src\testunit.h
+1456733026 d:\data\c\_codeblocks\monster\src\testunit.h
 	<iostream>
 	<vector>
 	"Int2List.h"
 	"Monster.h"
 	"SearchWord.h"
 
-1456219985 d:\data\c\_codeblocks\monster\src\monster.h
+1456732990 d:\data\c\_codeblocks\monster\src\monster.h
 	<iostream>
 	"FileList.h"
 	"WordIndex.h"
@@ -152,53 +152,53 @@
 	"SearchWord.h"
 	"mydebug.h"
 
-1453402116 d:\data\c\_codeblocks\monster\src\wordindex.h
+1456733051 d:\data\c\_codeblocks\monster\src\wordindex.h
 	<iostream>
 	<fstream>
 	<stdlib.h>
 	<vector>
 
-1453450637 d:\data\c\_codeblocks\monster\src\mainindex.h
+1456733043 d:\data\c\_codeblocks\monster\src\mainindex.h
 	<fstream>
 	<iostream>
 
-1455646746 d:\data\c\_codeblocks\monster\src\postfixstack.h
+1456733033 d:\data\c\_codeblocks\monster\src\postfixstack.h
 	"Int2List.h"
 	"FileList.h"
 
-1456065986 d:\data\c\_codeblocks\monster\src\searchword.h
+1456733001 d:\data\c\_codeblocks\monster\src\searchword.h
 	"WordData.h"
 	"WordIndex.h"
 	"MainIndex.h"
 	"FileList.h"
 	"Int2List.h"
 
-1456045710 d:\data\c\_codeblocks\monster\src\worddata.h
+1456733019 d:\data\c\_codeblocks\monster\src\worddata.h
 	"BitList.h"
 
-1456220034 d:\data\c\_codeblocks\monster\src\mydebug.h
+1456732983 d:\data\c\_codeblocks\monster\src\mydebug.h
 
-1453452299 source:d:\data\c\_codeblocks\monster\src\mainindex.cpp
+1456733040 source:d:\data\c\_codeblocks\monster\src\mainindex.cpp
 	"MainIndex.h"
 
-1456221980 source:d:\data\c\_codeblocks\monster\src\monster.cpp
+1456732970 source:d:\data\c\_codeblocks\monster\src\monster.cpp
 	"Monster.h"
 
-1456221370 source:d:\data\c\_codeblocks\monster\src\postfixstack.cpp
+1456732975 source:d:\data\c\_codeblocks\monster\src\postfixstack.cpp
 	"PostfixStack.h"
 
-1456219058 source:d:\data\c\_codeblocks\monster\src\searchword.cpp
+1456739167 source:d:\data\c\_codeblocks\monster\src\searchword.cpp
 	"SearchWord.h"
 
-1456217233 source:d:\data\c\_codeblocks\monster\src\testunit.cpp
+1456732996 source:d:\data\c\_codeblocks\monster\src\testunit.cpp
 	"TestUnit.h"
 
-1456065715 source:d:\data\c\_codeblocks\monster\src\worddata.cpp
+1456733006 source:d:\data\c\_codeblocks\monster\src\worddata.cpp
 	"WordData.h"
 	"FileList.h"
 	"MainIndex.h"
 
-1453402551 source:d:\data\c\_codeblocks\monster\src\wordindex.cpp
+1456733048 source:d:\data\c\_codeblocks\monster\src\wordindex.cpp
 	"WordIndex.h"
 
 1456733010 source:d:\data\c\_codeblocks\monster_utf8\src\bitlist.cpp
@@ -301,4 +301,15 @@
 
 1456733048 source:d:\data\c\_codeblocks\monster_utf8\src\wordindex.cpp
 	"WordIndex.h"
+
+1459066428 source:d:\data\c\_codeblocks\monster\src\tinyini.cpp
+	"TinyIni.h"
+
+1458752113 d:\data\c\_codeblocks\monster\src\tinyini.h
+	<iostream>
+	<fstream>
+	<string>
+	<map>
+	<stdlib.h>
+	<algorithm>
 
