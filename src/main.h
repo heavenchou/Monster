@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 
 void RunFullTextSearch(string sIniFile);
+void TestFullTextSearch(string sIniFile);
 void ShowTestResult(CMonster * SearchEngine, string sSearchStr, int iResult);
 
 #endif

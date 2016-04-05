@@ -77,6 +77,7 @@ bool CMonster::Find(string sSentence, bool bHasSearchRange)
 	FileFound->ClearAll();		// 每一檔找到的數量歸 0
 	SearchWordList.clear();
 	OKSentence = "";			// 全部歸 0
+	FileHintCount = 0;
 
 	AnalysisSentence(sSentence);		// 分析, 並產生 OKSentence
 
@@ -93,7 +94,7 @@ bool CMonster::Find(string sSentence, bool bHasSearchRange)
             FileFound->Total = 0;   // 當成沒找到
             break;
         }
-
+        if(iResult > 0) FileHintCount++;
 		FileFound->Ints[i] = iResult;
 		FileFound->Total = FileFound->Total + iResult;
 	}
@@ -240,4 +241,133 @@ int CMonster::FindOneFile(int iFileNum)
 	// ???? 這是組數, 不是筆數, 例如 佛陀 near 阿難 可能算是 1 組
 	// return (PostfixStack->QueryStack[0]->Int2s->Count);
     return (PostfixStack->GetResult());
+}
+//---------------------------------------------------------------------------
+// 秀出成果
+/* 傳回範例
+
+{
+  "num_found": 2628,
+  "total_term_hits": 3860,
+  "results": [
+    {
+      "id": 12298,
+      "juan": 1,
+      "orig": 1,
+      "category": "法華部類",
+      "canon": "T",
+      "vol": "T09",
+      "work": "T0270",
+      "edition": "大",
+      "term_hits": 31,
+      "work": "T0270",
+      "category": "法華部",
+      "title": "大法鼓經",
+      "creators": "求那跋陀羅",
+      "file": "T09n0270",
+      "juan_start": 1,
+      "byline": "劉宋 求那跋陀羅譯",
+      "time_dynasty": "劉宋",
+      "time_from": 420,
+      "time_to": 479
+    },
+    {
+      "id": 12297,
+      "juan": 1,
+      "orig": 0,
+      "category": "法華部類",
+      "canon": "T",
+      "vol": "T09",
+      "work": "T0270",
+      "edition": "CBETA",
+      "term_hits": 30,
+      "work": "T0270",
+      "category": "法華部",
+      "title": "大法鼓經",
+      "creators": "求那跋陀羅",
+      "file": "T09n0270",
+      "juan_start": 1,
+      "byline": "劉宋 求那跋陀羅譯",
+      "time_dynasty": "劉宋",
+      "time_from": 420,
+      "time_to": 479
+    },
+    {
+      "id": 12299,
+      "juan": 1,
+      "orig": 0,
+      "category": "法華部類",
+      "canon": "T",
+      "vol": "T09",
+      "work": "T0270",
+      "edition": "大→元",
+      "term_hits": 30,
+      "work": "T0270",
+      "category": "法華部",
+      "title": "大法鼓經",
+      "creators": "求那跋陀羅",
+      "file": "T09n0270",
+      "juan_start": 1,
+      "byline": "劉宋 求那跋陀羅譯",
+      "time_dynasty": "劉宋",
+      "time_from": 420,
+      "time_to": 479
+    },
+    ...
+  ]
+}
+*/
+void CMonster::ShowResult(void)
+{
+
+    string sResult = "{\n";
+    sResult = sResult + "\t\"num_found\": " + int_to_string(FileFound->Total) + ",\n";
+    sResult = sResult + "\t\"total_term_hits\": " + int_to_string(FileHintCount) + ",\n";
+    sResult = sResult + "\t\"results\": [\n";
+
+    for(int i=0; i<FileFound->FileCount; i++)
+    {
+        // 有搜尋到才處理
+        if(FileFound->Ints[i]>0)
+        {
+            sResult = sResult + "\t{\n";
+
+            // 各卷的資料
+
+            sResult = sResult + "\t\t" + "\"juan\": " + int_to_string(BuildFileList->JuanNum[i]) + ",\n";
+            sResult = sResult + "\t\t" + "\"canon\": " + BuildFileList->Book[i] + ",\n";
+            sResult = sResult + "\t\t" + "\"vol\": " + BuildFileList->Book[i] + BuildFileList->Vol[i] + ",\n";
+            sResult = sResult + "\t\t" + "\"work\": " + BuildFileList->Book[i] + BuildFileList->SutraNum[i] + ",\n";
+            sResult = sResult + "\t\t" + "\"term_hits\": " + int_to_string(FileFound->Ints[i]) + ",\n";
+            sResult = sResult + "\t\t" + "\"file\": " + BuildFileList->Book[i] + BuildFileList->Vol[i] + "n" + BuildFileList->SutraNum[i] + ",\n";
+
+            sResult = sResult + "\t},\n";
+
+        }
+    }
+
+
+    sResult = sResult + "\t]\n";
+    sResult = sResult + "}\n";
+
+    cout << sResult;
+
+
+    /*
+    cout <<  "{";
+    cout <<  "\t\"num_found\": " << FileFound->Total << "," << endl;
+    cout <<  "\t\"total_term_hits\": " << FileHintCount << "," << endl;
+    cout <<  "\t\"results\": [" << endl;
+    cout <<  "\t]" << endl;
+    cout <<  "}" << endl;
+    */
+
+}
+// int to string
+string CMonster::int_to_string(int i)
+{
+    char c[50];
+    sprintf(c, "%d", i);
+    string s = c;
+    return s;
 }

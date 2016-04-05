@@ -105,10 +105,10 @@
 
 1456733015 d:\data\c\_codeblocks\monster\src\bitlist.h
 
-1456733054 source:d:\data\c\_codeblocks\monster\src\filelist.cpp
+1459676979 source:d:\data\c\_codeblocks\monster\src\filelist.cpp
 	"FileList.h"
 
-1456733058 d:\data\c\_codeblocks\monster\src\filelist.h
+1459676765 d:\data\c\_codeblocks\monster\src\filelist.h
 	<iostream>
 	<fstream>
 	<stdlib.h>
@@ -125,14 +125,15 @@
 
 1456733031 d:\data\c\_codeblocks\monster\src\intlist.h
 
-1456327424 source:d:\data\c\_codeblocks\monster\src\main.cpp
+1459416212 source:d:\data\c\_codeblocks\monster\src\main.cpp
 	"main.h"
 
-1456301308 d:\data\c\_codeblocks\monster\src\main.h
+1459415821 d:\data\c\_codeblocks\monster\src\main.h
 	<iostream>
+	<assert.h>
 	"TestUnit.h"
 	"Monster.h"
-	<assert.h>
+	"TinyIni.h"
 	"mydebug.h"
 
 1456733026 d:\data\c\_codeblocks\monster\src\testunit.h
@@ -142,8 +143,9 @@
 	"Monster.h"
 	"SearchWord.h"
 
-1456732990 d:\data\c\_codeblocks\monster\src\monster.h
+1459440073 d:\data\c\_codeblocks\monster\src\monster.h
 	<iostream>
+	<string>
 	"FileList.h"
 	"WordIndex.h"
 	"MainIndex.h"
@@ -181,7 +183,7 @@
 1456733040 source:d:\data\c\_codeblocks\monster\src\mainindex.cpp
 	"MainIndex.h"
 
-1456732970 source:d:\data\c\_codeblocks\monster\src\monster.cpp
+1459503382 source:d:\data\c\_codeblocks\monster\src\monster.cpp
 	"Monster.h"
 
 1456732975 source:d:\data\c\_codeblocks\monster\src\postfixstack.cpp

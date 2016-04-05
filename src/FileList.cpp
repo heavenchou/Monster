@@ -7,6 +7,7 @@ CFileList::CFileList(string sFileName)		// 建構函式
 	FileName = sFileName;
 	Strings = 0;		// 初值宣告為 NULL
 	Book = 0;           // 初值宣告為 NULL
+	Vol = 0;			// 初值宣告為 NULL
 	VolNum = 0;			// 初值宣告為 NULL
 	SutraNum = 0;		// 初值宣告為 NULL
 	JuanNum = 0;		// 初值宣告為 NULL
@@ -17,6 +18,7 @@ CFileList::~CFileList(void)	// 解構函式
 {
 	if(Strings) delete[] Strings;
 	if(Book   ) delete[] Book;
+	if(Vol    ) delete[] Vol;
 	if(VolNum ) delete[] VolNum;
 	if(SutraNum) delete[] SutraNum;
 	if(JuanNum) delete[] JuanNum;
@@ -45,6 +47,7 @@ bool CFileList::Initial(void)	// 初值化
 
 	Strings = new string[FileCount];
 	Book = new string[FileCount];
+	Vol = new string[FileCount];
 	VolNum = new int[FileCount];
 	SutraNum = new string[FileCount];
 	JuanNum = new int[FileCount];
@@ -72,8 +75,8 @@ bool CFileList::Initial(void)	// 初值化
 		string sVol = sDirName.substr(iPos2+1);    // sVol = T01 , C001, DA01 ... (冊數資料)
 
         Book[i] = GetAlphaFromHead(sVol);                       // 取得 T
-        string sVolNum = sVol.substr(Book[i].length());         // 取得 "01"
-        VolNum[i] = atoi(sVolNum.c_str());                      // 取得 1
+        Vol[i] = sVol.substr(Book[i].length());         // 取得 "01"
+        VolNum[i] = atoi(Vol[i].c_str());                      // 取得 1
 
 		SutraNum[i] = sFileName.substr(Book[i].length(),5);
 		JuanNum[i] = atoi(sFileName.substr(Book[i].length()+5,3).c_str());

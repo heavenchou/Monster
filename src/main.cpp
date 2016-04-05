@@ -14,8 +14,13 @@ int main(int argc, char* argv[])
 
     char cInput;
 
-    cout << "1.執行程式測試 2.執行全文檢索 : ";
+    cout << "1.執行程式測試 2.測試全文檢索  3.執行全文檢索 : ";
     cin >> cInput;
+
+
+    string sProgramPath = argv[0];  // 程式目錄
+    sProgramPath = sProgramPath.substr(0,sProgramPath.find_last_of("\\/")+1);
+    string sIniFile = sProgramPath + "Monster.ini";
 
     if(cInput == '1')
     {
@@ -25,18 +30,19 @@ int main(int argc, char* argv[])
     }
     else if(cInput =='2')
     {
+        cout << "測試全文檢索中..." << endl;
+        TestFullTextSearch(sIniFile);
+    }
+    else if(cInput =='3')
+    {
         cout << "執行全文檢索中..." << endl;
-        string sProgramPath = argv[0];  // 程式目錄
-        sProgramPath = sProgramPath.substr(0,sProgramPath.find_last_of("\\/")+1);
-        string sIniFile = sProgramPath + "Monster.ini";
-
         RunFullTextSearch(sIniFile);
     }
     return 0;
 }
 
-// 執行全文檢索
-void RunFullTextSearch(string sIniFile)
+// 測試全文檢索
+void TestFullTextSearch(string sIniFile)
 {
 /*
     string sBuildList = "D:\\Data\\c\\_CodeBlocks\\Monster\\src\\bin\\Debug\\buildlist.txt";
@@ -60,6 +66,27 @@ void RunFullTextSearch(string sIniFile)
     ShowTestResult(SearchEngine, "覺?法師", 123);
     ShowTestResult(SearchEngine, "覺?法師 - 覺光法師", 4);
     ShowTestResult(SearchEngine, "( 舍利弗 & 阿難 ) + 菩薩", 459);
+}
+
+// 執行全文檢索
+void RunFullTextSearch(string sIniFile)
+{
+
+    CTinyIni * TinyIni = new CTinyIni(sIniFile);
+    string sBuildList = TinyIni->ReadString("BuildList", "buildlist.txt");
+    string sWordIndex = TinyIni->ReadString("WordIndex", "wordindex.ndx");
+    string sMainIndex = TinyIni->ReadString("MainIndex", "main.ndx");
+
+    CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// 宣告全文檢索
+
+    SearchEngine->SearchWordList.clear();                              // Search Engine 一起更新
+    bool bHasRange = false;         // 全部檢索
+
+    string sSearchStr = "覺光法師";
+    bool bFindOK = SearchEngine->Find(sSearchStr, bHasRange);        // 開始搜尋
+
+    SearchEngine->ShowResult(); // 呈現結果
+
 }
 
 // 測試結果

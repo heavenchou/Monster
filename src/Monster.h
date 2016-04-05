@@ -4,6 +4,7 @@
 //---------------------------------------------------------------------------
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 #include "FileList.h"
@@ -31,6 +32,7 @@ class CMonster
         string OpPatten;       			    // 運算用的 Patten
         vector <string> SearchWordList;		// 存放每一個檢索的詞, 日後塗色會用到
         CIntList * FileFound;				// 存放每一檔找到的數量
+        int FileHintCount;                  // 找到有資料的檔案的數量, 例如有 5 個檔案有找到, 此數值為 5
         CPostfixStack * PostfixStack;		// 運算用的
         string OKSentence;				    // 已經分析過的, 例如 佛陀 & 阿難 變成 S&S
         int MaxSearchWordNum;				// 檢索詞中最多可出現的字串數,   "佛陀 & 阿羅漢" 就算 2 個
@@ -46,9 +48,11 @@ class CMonster
 
         // 尋找一個字串, 應該要傳回一個檔案串, 表示哪些檔案有
         //void __fastcall Find_old(AnsiString sSearchWord);
-        bool Find(string sSearchWord,bool bHasSearchRange);  // 若運算失敗, 傳回 false
+        bool Find(string sSearchWord, bool bHasSearchRange);  // 若運算失敗, 傳回 false
         void AnalysisSentence(string sSentence); // 分析輸入字串, 產生 OKSentence
         int FindOneFile(int iFileNum);				// 傳回找到的組數
+        void ShowResult(void);      // 秀出成果
+        string int_to_string(int i);
 
         CMonster(string sFileListFileName, string sWordIndexFileName, string sMainIndexFileName);	// 建構函式
         ~CMonster();		// 解構函式

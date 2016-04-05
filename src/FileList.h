@@ -23,7 +23,8 @@ class CFileList
 
         string * Strings;				// 檔名陣列的指標
         string * Book;					// 找出藏經 'T'(大正), 'X'(卍續)
-        int * VolNum;						// 算出冊數
+        string * Vol;					// 冊數, 若 T01 , 則 Vol 是 "01"
+        int * VolNum;						// 算出冊數, 若 T01 , 則 VolNum 是 1
         string * SutraNum;              // 算出經號
         int * JuanNum;                      // 算出卷號
         bool * SearchMe;					// 判斷要不要檢索
