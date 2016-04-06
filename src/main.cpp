@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        cout << "執行全文檢索中..." << endl;
+        // cout << "執行全文檢索中..." << endl;
         RunFullTextSearch(sIniFile, sSearchStr, iStartNum, iListCount);
     }
     return 0;
