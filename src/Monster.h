@@ -20,42 +20,42 @@ class CMonster
 {
     private:	// User declarations
 
-        void OpenBuildList(void);       // é–‹å•Ÿ build file list æª”
-        void OpenWordIndex(void);		// é–‹å•Ÿ word index æª”
-        void OpenMainIndex(void);		// é–‹å•Ÿ last index æª”
+        void OpenBuildList(void);       // ¶}±Ò build file list ÀÉ
+        void OpenWordIndex(void);		// ¶}±Ò word index ÀÉ
+        void OpenMainIndex(void);		// ¶}±Ò last index ÀÉ
 
     public:		// User declarations
 
-        string MainIndexFileName;		    // ä¸»è¦çš„ index çš„æª”å
-        string WordIndexFileName;		    // word index æª”å
-        string FileListFileName;		    // file list æª”å
-        string OpPatten;       			    // é‹ç®—ç”¨çš„ Patten
-        vector <string> SearchWordList;		// å­˜æ”¾æ¯ä¸€å€‹æª¢ç´¢çš„è©, æ—¥å¾Œå¡—è‰²æœƒç”¨åˆ°
-        CIntList * FileFound;				// å­˜æ”¾æ¯ä¸€æª”æ‰¾åˆ°çš„æ•¸é‡
-        int FileHintCount;                  // æ‰¾åˆ°æœ‰è³‡æ–™çš„æª”æ¡ˆçš„æ•¸é‡, ä¾‹å¦‚æœ‰ 5 å€‹æª”æ¡ˆæœ‰æ‰¾åˆ°, æ­¤æ•¸å€¼ç‚º 5
-        CPostfixStack * PostfixStack;		// é‹ç®—ç”¨çš„
-        string OKSentence;				    // å·²ç¶“åˆ†æéçš„, ä¾‹å¦‚ ä½›é™€ & é˜¿é›£ è®Šæˆ S&S
-        int MaxSearchWordNum;				// æª¢ç´¢è©ä¸­æœ€å¤šå¯å‡ºç¾çš„å­—ä¸²æ•¸,   "ä½›é™€ & é˜¿ç¾…æ¼¢" å°±ç®— 2 å€‹
-        CSearchWord ** swWord;			// æ¯ä¸€å€‹æª¢ç´¢å­—ä¸²çš„æŒ‡æ¨™, æœ€å¤š 20 å€‹, ä¾‹å¦‚ "ä½›é™€ & é˜¿ç¾…æ¼¢" å°±ç®— 2 å€‹
+        string MainIndexFileName;		    // ¥D­nªº index ªºÀÉ¦W
+        string WordIndexFileName;		    // word index ÀÉ¦W
+        string FileListFileName;		    // file list ÀÉ¦W
+        string OpPatten;       			    // ¹Bºâ¥Îªº Patten
+        vector <string> SearchWordList;		// ¦s©ñ¨C¤@­ÓÀË¯Áªºµü, ¤é«á¶î¦â·|¥Î¨ì
+        CIntList * FileFound;				// ¦s©ñ¨C¤@ÀÉ§ä¨ìªº¼Æ¶q
+        int FileHintCount;                  // §ä¨ì¦³¸ê®ÆªºÀÉ®×ªº¼Æ¶q, ¨Ò¦p¦³ 5 ­ÓÀÉ®×¦³§ä¨ì, ¦¹¼Æ­È¬° 5
+        CPostfixStack * PostfixStack;		// ¹Bºâ¥Îªº
+        string OKSentence;				    // ¤w¸g¤ÀªR¹Lªº, ¨Ò¦p ¦òªû & ªüÃø ÅÜ¦¨ S&S
+        int MaxSearchWordNum;				// ÀË¯Áµü¤¤³Ì¦h¥i¥X²{ªº¦r¦ê¼Æ,   "¦òªû & ªüÃ¹º~" ´Nºâ 2 ­Ó
+        CSearchWord ** swWord;			// ¨C¤@­ÓÀË¯Á¦r¦êªº«ü¼Ğ, ³Ì¦h 20 ­Ó, ¨Ò¦p "¦òªû & ªüÃ¹º~" ´Nºâ 2 ­Ó
 
-        // åº•ä¸‹ä¸‰å€‹éƒ½æ”¹æˆå°å¤–å…¬é–‹çš„
+        // ©³¤U¤T­Ó³£§ï¦¨¹ï¥~¤½¶}ªº
         //TmyFileList * BuildFileList;		// build file list;
         //TmyWordIndex * WordIndex;		// build file list;
         //TmyMainIndex * MainIndex;		// Last index file
 
-        // è‡ªå‚³å…¥çš„åƒæ•¸ä¸­å–å‡º Patten , åŸå­—ä¸²ä¹Ÿæœƒè¢«ç å»å–”
+        // ¦Û¶Ç¤Jªº°Ñ¼Æ¤¤¨ú¥X Patten , ­ì¦r¦ê¤]·|³Q¬å¥h³á
         string CutPatten(string & sString);
 
-        // å°‹æ‰¾ä¸€å€‹å­—ä¸², æ‡‰è©²è¦å‚³å›ä¸€å€‹æª”æ¡ˆä¸², è¡¨ç¤ºå“ªäº›æª”æ¡ˆæœ‰
+        // ´M§ä¤@­Ó¦r¦ê, À³¸Ó­n¶Ç¦^¤@­ÓÀÉ®×¦ê, ªí¥Ü­ş¨ÇÀÉ®×¦³
         //void __fastcall Find_old(AnsiString sSearchWord);
-        bool Find(string sSearchWord, bool bHasSearchRange);  // è‹¥é‹ç®—å¤±æ•—, å‚³å› false
-        void AnalysisSentence(string sSentence); // åˆ†æè¼¸å…¥å­—ä¸², ç”¢ç”Ÿ OKSentence
-        int FindOneFile(int iFileNum);				// å‚³å›æ‰¾åˆ°çš„çµ„æ•¸
-        void ShowResult(void);      // ç§€å‡ºæˆæœ
+        bool Find(string sSearchWord, bool bHasSearchRange);  // ­Y¹Bºâ¥¢±Ñ, ¶Ç¦^ false
+        void AnalysisSentence(string sSentence); // ¤ÀªR¿é¤J¦r¦ê, ²£¥Í OKSentence
+        int FindOneFile(int iFileNum);				// ¶Ç¦^§ä¨ìªº²Õ¼Æ
+        void ShowResult(int iStartNum, int iListCount);      // ¨q¥X¦¨ªG iStartNnum : °_©lµ§¼Æ, iListCount : ¦C¥Xµ§¼Æ
         string int_to_string(int i);
 
-        CMonster(string sFileListFileName, string sWordIndexFileName, string sMainIndexFileName);	// å»ºæ§‹å‡½å¼
-        ~CMonster();		// è§£æ§‹å‡½å¼
+        CMonster(string sFileListFileName, string sWordIndexFileName, string sMainIndexFileName);	// «Øºc¨ç¦¡
+        ~CMonster();		// ¸Ñºc¨ç¦¡
 };
 
 #endif

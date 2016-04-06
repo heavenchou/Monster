@@ -2,38 +2,38 @@
 
 #include "Monster.h"
 //---------------------------------------------------------------------------
-// å»ºæ§‹å‡½å¼
+// «Øºc¨ç¦¡
 CMonster::CMonster(string sFileListFileName,
 					string sWordIndexFileName,
 					string sMainIndexFileName)
 {
-	// åˆå€¼æ­¸é›¶
+	// ªì­ÈÂk¹s
 	BuildFileList = 0;
 	///WordIndex = 0;
-	OpPatten = "()&,+*-";		// ç®—é‹ç”¨çš„ Patten
+	OpPatten = "()&,+*-";		// ºâ¹B¥Îªº Patten
 
 	FileListFileName = sFileListFileName;
 	WordIndexFileName = sWordIndexFileName;
 	MainIndexFileName = sMainIndexFileName;
 
-	MaxSearchWordNum = 20;	// æª¢ç´¢è©ä¸­æœ€å¤šå¯å‡ºç¾çš„å­—ä¸²æ•¸, "ä½›é™€ & é˜¿ç¾…æ¼¢" å°±ç®— 2 å€‹ , æœ«ä¾†å¯ä»¥è€ƒæ…®ç”¨ vector ä¸é™æ•¸é‡ ???
+	MaxSearchWordNum = 20;	// ÀË¯Áµü¤¤³Ì¦h¥i¥X²{ªº¦r¦ê¼Æ, "¦òªû & ªüÃ¹º~" ´Nºâ 2 ­Ó , ¥½¨Ó¥i¥H¦Ò¼{¥Î vector ¤£­­¼Æ¶q ???
 	swWord = new CSearchWord*[MaxSearchWordNum];
 
 	for(int i=0; i<MaxSearchWordNum; i++)
 	{
-		swWord[i] = 0;		// è¨­å®šåˆå€¼, æŒ‡æ¨™æ­¸ 0
+		swWord[i] = 0;		// ³]©wªì­È, «ü¼ĞÂk 0
 	}
 
-	// å…ˆè™•ç† build file list
+	// ¥ı³B²z build file list
 	OpenBuildList();
 	OpenWordIndex();
 	OpenMainIndex();
 
 	PostfixStack = new CPostfixStack;
-	FileFound = new CIntList(BuildFileList->FileCount);	// å­˜æ”¾æ¯ä¸€æª”æ‰¾åˆ°çš„çµæœ
+	FileFound = new CIntList(BuildFileList->FileCount);	// ¦s©ñ¨C¤@ÀÉ§ä¨ìªºµ²ªG
 }
 //---------------------------------------------------------------------------
-// è§£æ§‹å‡½å¼
+// ¸Ñºc¨ç¦¡
 CMonster::~CMonster(void)
 {
     /*
@@ -70,28 +70,28 @@ void CMonster::OpenMainIndex(void)
 	MainIndex = new CMainIndex(MainIndexFileName);	// ???? error check
 }
 //---------------------------------------------------------------------------
-// å°‹æ‰¾ä¸€å€‹å­—ä¸², æ‡‰è©²è¦å‚³å›ä¸€å€‹æª”æ¡ˆä¸², è¡¨ç¤ºå“ªäº›æª”æ¡ˆæœ‰
+// ´M§ä¤@­Ó¦r¦ê, À³¸Ó­n¶Ç¦^¤@­ÓÀÉ®×¦ê, ªí¥Ü­ş¨ÇÀÉ®×¦³
 bool CMonster::Find(string sSentence, bool bHasSearchRange)
 {
     bool bResult = true;
-	FileFound->ClearAll();		// æ¯ä¸€æª”æ‰¾åˆ°çš„æ•¸é‡æ­¸ 0
+	FileFound->ClearAll();		// ¨C¤@ÀÉ§ä¨ìªº¼Æ¶qÂk 0
 	SearchWordList.clear();
-	OKSentence = "";			// å…¨éƒ¨æ­¸ 0
+	OKSentence = "";			// ¥ş³¡Âk 0
 	FileHintCount = 0;
 
-	AnalysisSentence(sSentence);		// åˆ†æ, ä¸¦ç”¢ç”Ÿ OKSentence
+	AnalysisSentence(sSentence);		// ¤ÀªR, ¨Ã²£¥Í OKSentence
 
 	for(int i=0; i<BuildFileList->FileCount; i++)
 	{
 		int iResult;
 		if(!bHasSearchRange || BuildFileList->SearchMe[i])
-			iResult = FindOneFile(i);	// æœå°‹å–®ä¸€æª”æ¡ˆ, ä¸¦å‚³å›çµæœ
+			iResult = FindOneFile(i);	// ·j´M³æ¤@ÀÉ®×, ¨Ã¶Ç¦^µ²ªG
 		else iResult = 0;
 
         if(iResult == -1)
         {
-            bResult = false;        // é‹ç®—å¤±æ•—äº†
-            FileFound->Total = 0;   // ç•¶æˆæ²’æ‰¾åˆ°
+            bResult = false;        // ¹Bºâ¥¢±Ñ¤F
+            FileFound->Total = 0;   // ·í¦¨¨S§ä¨ì
             break;
         }
         if(iResult > 0) FileHintCount++;
@@ -99,7 +99,7 @@ bool CMonster::Find(string sSentence, bool bHasSearchRange)
 		FileFound->Total = FileFound->Total + iResult;
 	}
 
-	// çµæŸæ™‚, å°‡ swWord é‡‹æ”¾æ‰
+	// µ²§ô®É, ±N swWord ÄÀ©ñ±¼
 
 	for(int i=0; i<MaxSearchWordNum; i++)
 	{
@@ -110,36 +110,36 @@ bool CMonster::Find(string sSentence, bool bHasSearchRange)
 }
 
 //---------------------------------------------------------------------------
-// å…ˆåˆ†æä¸€ä¸‹è¦æœå°‹çš„å­—ä¸²
+// ¥ı¤ÀªR¤@¤U­n·j´Mªº¦r¦ê
 //
-// å¦‚æœè¼¸å…¥çš„å­—ä¸²æ˜¯ (ä½›é™€ & é˜¿é›£) | å¸ƒæ–½
-// æœ€å¾Œæœƒè®Šæˆ
-// (S&S)|S		S è¡¨ç¤ºä¸€å€‹å­—ä¸², å­˜åœ¨  SearchWordList ä¹‹ä¸­
+// ¦pªG¿é¤Jªº¦r¦ê¬O (¦òªû & ªüÃø) | ¥¬¬I
+// ³Ì«á·|ÅÜ¦¨
+// (S&S)|S		S ªí¥Ü¤@­Ó¦r¦ê, ¦s¦b  SearchWordList ¤§¤¤
 void CMonster::AnalysisSentence(string sSentence)
 {
 	SearchWordList.clear();
 	string sPatten;
 
-	// ç›®å‰ç¬¬å¹¾å€‹å­—ä¸²? ä¾‹å¦‚ (S&S)|S  (ä½›é™€&é˜¿é›£)|å¸ƒæ–½  ä½›é™€æ˜¯ç¬¬ 0 å€‹
+	// ¥Ø«e²Ä´X­Ó¦r¦ê? ¨Ò¦p (S&S)|S  (¦òªû&ªüÃø)|¥¬¬I  ¦òªû¬O²Ä 0 ­Ó
 	int iPattenNum = 0;
 
 	while (sSentence.length())
 	{
 		sPatten = CutPatten(sSentence);
-        // åˆªé™¤å·¦é‚Šçš„ç©ºæ ¼
+        // §R°£¥ªÃäªºªÅ®æ
         if(sSentence[0] == ' ') sSentence = sSentence.substr(sSentence.find_first_not_of(' '));
 
-		if((sPatten.find_first_of(OpPatten) == 0) && (sPatten.length()==1))		// å¦‚æœæ˜¯é‹ç®—ç¬¦è™Ÿçš„è©±
+		if((sPatten.find_first_of(OpPatten) == 0) && (sPatten.length()==1))		// ¦pªG¬O¹Bºâ²Å¸¹ªº¸Ü
 		{
 			//PostfixStack->PushOp(sPatten);
 			OKSentence += sPatten;
 		}
 		else
 		{
-			// è™•ç†ä¸€å€‹å­—
+			// ³B²z¤@­Ó¦r
 
-			SearchWordList.push_back(sPatten);	// å…ˆè¨˜éŒ„èµ·ä¾†
-			swWord[iPattenNum] = new CSearchWord(sPatten);	// å°‡æ­¤å­—æº–å‚™å¥½
+			SearchWordList.push_back(sPatten);	// ¥ı°O¿ı°_¨Ó
+			swWord[iPattenNum] = new CSearchWord(sPatten);	// ±N¦¹¦r·Ç³Æ¦n
 			OKSentence += "S";
 			iPattenNum++;
 		}
@@ -149,32 +149,32 @@ void CMonster::AnalysisSentence(string sSentence)
 //---------------------------------------------------------------------------
 string CMonster::CutPatten(string & sString)
 {
-	// åˆªé™¤å·¦é‚Šçš„ç©ºæ ¼
+	// §R°£¥ªÃäªºªÅ®æ
 	if(sString[0] == ' ')
         sString = sString.substr(sString.find_first_not_of(' '));
 
 	string sTmp = sString;
 
 	/// OpPatten = "&,+*()-";
-	if((sString.find_first_of(OpPatten) == 0) && ((sString.length() == 1)||(sString[1] == ' ')))		// å¦‚æœæ˜¯é‹ç®—ç¬¦è™Ÿ, å¾Œé¢å¿…é ˆæ˜¯ç©ºæ ¼æˆ–æ²’å­—äº†
+	if((sString.find_first_of(OpPatten) == 0) && ((sString.length() == 1)||(sString[1] == ' ')))		// ¦pªG¬O¹Bºâ²Å¸¹, «á­±¥²¶·¬OªÅ®æ©Î¨S¦r¤F
 	{
 		sString = sString.substr(1);
 		return (sTmp.substr(0,1));
 	}
 	else
 	{
-		// æ‰¾å‡ºä¸‹ä¸€å€‹ patten çš„ä½ç½®æˆ–çµæŸ
+		// §ä¥X¤U¤@­Ó patten ªº¦ì¸m©Îµ²§ô
 
 		size_t sPos = sString.find_first_of(OpPatten);
 		while(sPos != std::string::npos)
         {
             if((sString.length() == sPos + 1)||(sString[sPos+1] == ' '))
             {
-                // æ‰¾åˆ°äº†
+                // §ä¨ì¤F
  				sString = sString.substr(sPos);
  				sTmp = sTmp.substr(0,sPos);
 
- 				// ç§»é™¤ sTmp å³é‚Šç©ºæ ¼
+ 				// ²¾°£ sTmp ¥kÃäªÅ®æ
  				sTmp = sTmp.substr(0,sTmp.find_last_not_of(' ')+1);
 				return (sTmp);
             }
@@ -191,60 +191,60 @@ string CMonster::CutPatten(string & sString)
 }
 
 //---------------------------------------------------------------------------
-// å°‹æ‰¾ä¸€å€‹å­—ä¸², æ‡‰è©²è¦å‚³å›ä¸€å€‹æª”æ¡ˆä¸², è¡¨ç¤ºå“ªäº›æª”æ¡ˆæœ‰
+// ´M§ä¤@­Ó¦r¦ê, À³¸Ó­n¶Ç¦^¤@­ÓÀÉ®×¦ê, ªí¥Ü­ş¨ÇÀÉ®×¦³
 int CMonster::FindOneFile(int iFileNum)
 {
 	/*
 	###################################
-	# ç·´ç¿’è¨ˆç®—æ©Ÿé‹ç®—
+	# ½m²ß­pºâ¾÷¹Bºâ
 	#
-	# åŸå‰‡
-	#  å¦‚æœæ˜¯æ•¸å­—, å¦‚æœæœ‰é‹ç®—ç¬¦è™Ÿ, ä¸”å±¤æ•¸éƒ½ä¸€æ¨£, å°±é‹ç®—, çµæœæ¨å…¥ query stack
-	#  å¦‚æœæ˜¯æ•¸å­—, å¦‚æœæœ‰é‹ç®—ç¬¦è™Ÿ, å¦‚æœå±¤æ•¸ä¸ä¸€æ¨£, æ¨å…¥ query stack
-	#  å¦‚æœæ˜¯æ•¸å­—, æ²’æœ‰é‹ç®—ç¬¦è™Ÿ, æ¨å…¥ query stack
+	# ­ì«h
+	#  ¦pªG¬O¼Æ¦r, ¦pªG¦³¹Bºâ²Å¸¹, ¥B¼h¼Æ³£¤@¼Ë, ´N¹Bºâ, µ²ªG±À¤J query stack
+	#  ¦pªG¬O¼Æ¦r, ¦pªG¦³¹Bºâ²Å¸¹, ¦pªG¼h¼Æ¤£¤@¼Ë, ±À¤J query stack
+	#  ¦pªG¬O¼Æ¦r, ¨S¦³¹Bºâ²Å¸¹, ±À¤J query stack
 	#
-	#  å¦‚æœæ˜¯é‹ç®—ç¬¦è™Ÿ, æ¨å…¥ op stack , ä¸”è¨˜éŒ„ç›®å‰å±¤æ•¸
+	#  ¦pªG¬O¹Bºâ²Å¸¹, ±À¤J op stack , ¥B°O¿ı¥Ø«e¼h¼Æ
 	#
-	#  å¦‚æœæ˜¯å·¦æ‹¬è™Ÿ, ç›®å‰å±¤æ•¸ + 1
-	#  å¦‚æœæ˜¯å³æ‹¬è™Ÿ, å±¤æ•¸ - 1 , ä¸¦ä¸”é‹ç®—
+	#  ¦pªG¬O¥ª¬A¸¹, ¥Ø«e¼h¼Æ + 1
+	#  ¦pªG¬O¥k¬A¸¹, ¼h¼Æ - 1 , ¨Ã¥B¹Bºâ
 	###################################
 	*/
 
 	PostfixStack->Initial();
 	string sPatten;
-	string sOKSentence = OKSentence;	// æš«å­˜çš„å­—ä¸²
+	string sOKSentence = OKSentence;	// ¼È¦sªº¦r¦ê
 
-	// ç›®å‰ç¬¬å¹¾å€‹å­—ä¸²? ä¾‹å¦‚ (S&S)|S  (ä½›é™€&é˜¿é›£)|å¸ƒæ–½  ä½›é™€æ˜¯ç¬¬ 0 å€‹
+	// ¥Ø«e²Ä´X­Ó¦r¦ê? ¨Ò¦p (S&S)|S  (¦òªû&ªüÃø)|¥¬¬I  ¦òªû¬O²Ä 0 ­Ó
 	int iPattenNum = 0;
 
 	//while (sOKSentence.Length())
 	for(int i=0; i<OKSentence.length(); i++)
 	{
-		sPatten = sOKSentence.substr(i,1);		// å–å‡º patten
-		if(sPatten.find_first_of(OpPatten) == 0)		// å¦‚æœæ˜¯é‹ç®—ç¬¦è™Ÿçš„è©±
+		sPatten = sOKSentence.substr(i,1);		// ¨ú¥X patten
+		if(sPatten.find_first_of(OpPatten) == 0)		// ¦pªG¬O¹Bºâ²Å¸¹ªº¸Ü
 		{
 			PostfixStack->PushOp(sPatten);
 		}
 		else
 		{
-			// ???? åŠ é€Ÿçš„æ–¹æ³•, å¦‚æœæ˜¯ and å°±åªç®—å‰ä¸€å€‹æœ‰çµæœçš„, å¦‚æœæ˜¯ or å°±åªæŸ¥å‰ä¸€å€‹æ˜¯æ²’æ‰¾åˆ°çš„
-			// ???? åŠ é€Ÿçš„æ–¹æ³•, å¦‚æœä¸çµ±è¨ˆæ¬¡æ•¸, æœ‰æ‰¾åˆ°å°±ç®—æ•¸, é‚£éº¼é€Ÿåº¦æœƒæ›´å¿«
+			// ???? ¥[³tªº¤èªk, ¦pªG¬O and ´N¥uºâ«e¤@­Ó¦³µ²ªGªº, ¦pªG¬O or ´N¥u¬d«e¤@­Ó¬O¨S§ä¨ìªº
+			// ???? ¥[³tªº¤èªk, ¦pªG¤£²Î­p¦¸¼Æ, ¦³§ä¨ì´Nºâ¼Æ, ¨º»ò³t«×·|§ó§Ö
 
-			// è™•ç†ä¸€å€‹å­—
+			// ³B²z¤@­Ó¦r
 
-			sPatten = SearchWordList[iPattenNum];	// å–å‡ºæŸä¸€ç­†å­—ä¸²
-			swWord[iPattenNum]->Search(iFileNum);			// åªåœ¨æŸå€‹æª”æœå°‹
+			sPatten = SearchWordList[iPattenNum];	// ¨ú¥X¬Y¤@µ§¦r¦ê
+			swWord[iPattenNum]->Search(iFileNum);			// ¥u¦b¬Y­ÓÀÉ·j´M
 			PostfixStack->PushQuery(swWord[iPattenNum]->FoundPos, sPatten);
 			iPattenNum++;
 		}
 	}
-	// ???? é€™æ˜¯çµ„æ•¸, ä¸æ˜¯ç­†æ•¸, ä¾‹å¦‚ ä½›é™€ near é˜¿é›£ å¯èƒ½ç®—æ˜¯ 1 çµ„
+	// ???? ³o¬O²Õ¼Æ, ¤£¬Oµ§¼Æ, ¨Ò¦p ¦òªû near ªüÃø ¥i¯àºâ¬O 1 ²Õ
 	// return (PostfixStack->QueryStack[0]->Int2s->Count);
     return (PostfixStack->GetResult());
 }
 //---------------------------------------------------------------------------
-// ç§€å‡ºæˆæœ
-/* å‚³å›ç¯„ä¾‹
+// ¨q¥X¦¨ªG
+/* ¶Ç¦^½d¨Ò
 
 {
   "num_found": 2628,
@@ -254,20 +254,20 @@ int CMonster::FindOneFile(int iFileNum)
       "id": 12298,
       "juan": 1,
       "orig": 1,
-      "category": "æ³•è¯éƒ¨é¡",
+      "category": "ªkµØ³¡Ãş",
       "canon": "T",
       "vol": "T09",
       "work": "T0270",
-      "edition": "å¤§",
+      "edition": "¤j",
       "term_hits": 31,
       "work": "T0270",
-      "category": "æ³•è¯éƒ¨",
-      "title": "å¤§æ³•é¼“ç¶“",
-      "creators": "æ±‚é‚£è·‹é™€ç¾…",
+      "category": "ªkµØ³¡",
+      "title": "¤jªk¹ª¸g",
+      "creators": "¨D¨º¶[ªûÃ¹",
       "file": "T09n0270",
       "juan_start": 1,
-      "byline": "åŠ‰å®‹ æ±‚é‚£è·‹é™€ç¾…è­¯",
-      "time_dynasty": "åŠ‰å®‹",
+      "byline": "¼B§º ¨D¨º¶[ªûÃ¹Ä¶",
+      "time_dynasty": "¼B§º",
       "time_from": 420,
       "time_to": 479
     },
@@ -275,20 +275,20 @@ int CMonster::FindOneFile(int iFileNum)
       "id": 12297,
       "juan": 1,
       "orig": 0,
-      "category": "æ³•è¯éƒ¨é¡",
+      "category": "ªkµØ³¡Ãş",
       "canon": "T",
       "vol": "T09",
       "work": "T0270",
       "edition": "CBETA",
       "term_hits": 30,
       "work": "T0270",
-      "category": "æ³•è¯éƒ¨",
-      "title": "å¤§æ³•é¼“ç¶“",
-      "creators": "æ±‚é‚£è·‹é™€ç¾…",
+      "category": "ªkµØ³¡",
+      "title": "¤jªk¹ª¸g",
+      "creators": "¨D¨º¶[ªûÃ¹",
       "file": "T09n0270",
       "juan_start": 1,
-      "byline": "åŠ‰å®‹ æ±‚é‚£è·‹é™€ç¾…è­¯",
-      "time_dynasty": "åŠ‰å®‹",
+      "byline": "¼B§º ¨D¨º¶[ªûÃ¹Ä¶",
+      "time_dynasty": "¼B§º",
       "time_from": 420,
       "time_to": 479
     },
@@ -296,20 +296,20 @@ int CMonster::FindOneFile(int iFileNum)
       "id": 12299,
       "juan": 1,
       "orig": 0,
-      "category": "æ³•è¯éƒ¨é¡",
+      "category": "ªkµØ³¡Ãş",
       "canon": "T",
       "vol": "T09",
       "work": "T0270",
-      "edition": "å¤§â†’å…ƒ",
+      "edition": "¤j¡÷¤¸",
       "term_hits": 30,
       "work": "T0270",
-      "category": "æ³•è¯éƒ¨",
-      "title": "å¤§æ³•é¼“ç¶“",
-      "creators": "æ±‚é‚£è·‹é™€ç¾…",
+      "category": "ªkµØ³¡",
+      "title": "¤jªk¹ª¸g",
+      "creators": "¨D¨º¶[ªûÃ¹",
       "file": "T09n0270",
       "juan_start": 1,
-      "byline": "åŠ‰å®‹ æ±‚é‚£è·‹é™€ç¾…è­¯",
-      "time_dynasty": "åŠ‰å®‹",
+      "byline": "¼B§º ¨D¨º¶[ªûÃ¹Ä¶",
+      "time_dynasty": "¼B§º",
       "time_from": 420,
       "time_to": 479
     },
@@ -317,7 +317,8 @@ int CMonster::FindOneFile(int iFileNum)
   ]
 }
 */
-void CMonster::ShowResult(void)
+// ¨q¥X¦¨ªG iStartNnum : °_©lµ§¼Æ, iListCount : ¦C¥Xµ§¼Æ
+void CMonster::ShowResult(int iStartNum, int iListCount)
 {
 
     string sResult = "{\n";
@@ -325,27 +326,35 @@ void CMonster::ShowResult(void)
     sResult = sResult + "\t\"total_term_hits\": " + int_to_string(FileHintCount) + ",\n";
     sResult = sResult + "\t\"results\": [\n";
 
+    int iCount = 0; // §ä¨ìªºµ§¼Æ
+
     for(int i=0; i<FileFound->FileCount; i++)
     {
-        // æœ‰æœå°‹åˆ°æ‰è™•ç†
+        // ¦³·j´M¨ì¤~³B²z
         if(FileFound->Ints[i]>0)
         {
-            sResult = sResult + "\t{\n";
+            if(iCount >= iStartNum) // ­n >= «ü©wªºµ§¼Æ¤~¦L¥X¨Ó
+            {
+                sResult = sResult + "\t  {\n";
 
-            // å„å·çš„è³‡æ–™
+                // ¦U¨÷ªº¸ê®Æ
 
-            sResult = sResult + "\t\t" + "\"juan\": " + int_to_string(BuildFileList->JuanNum[i]) + ",\n";
-            sResult = sResult + "\t\t" + "\"canon\": " + BuildFileList->Book[i] + ",\n";
-            sResult = sResult + "\t\t" + "\"vol\": " + BuildFileList->Book[i] + BuildFileList->Vol[i] + ",\n";
-            sResult = sResult + "\t\t" + "\"work\": " + BuildFileList->Book[i] + BuildFileList->SutraNum[i] + ",\n";
-            sResult = sResult + "\t\t" + "\"term_hits\": " + int_to_string(FileFound->Ints[i]) + ",\n";
-            sResult = sResult + "\t\t" + "\"file\": " + BuildFileList->Book[i] + BuildFileList->Vol[i] + "n" + BuildFileList->SutraNum[i] + ",\n";
+                sResult = sResult + "\t\t" + "\"id\": " + int_to_string(iCount) + ",\n";
+                sResult = sResult + "\t\t" + "\"juan\": " + int_to_string(BuildFileList->JuanNum[i]) + ",\n";
+                sResult = sResult + "\t\t" + "\"canon\": " + BuildFileList->Book[i] + ",\n";
+                sResult = sResult + "\t\t" + "\"vol\": " + BuildFileList->Book[i] + BuildFileList->Vol[i] + ",\n";
+                sResult = sResult + "\t\t" + "\"work\": " + BuildFileList->Book[i] + BuildFileList->SutraNum[i] + ",\n";
+                sResult = sResult + "\t\t" + "\"term_hits\": " + int_to_string(FileFound->Ints[i]) + ",\n";
+                sResult = sResult + "\t\t" + "\"file\": " + BuildFileList->Book[i] + BuildFileList->Vol[i] + "n" + BuildFileList->SutraNum[i] + ",\n";
 
-            sResult = sResult + "\t},\n";
+                sResult = sResult + "\t  },\n";
+            }
 
+            iCount++;
+
+            if(iCount >= iListCount + iStartNum ) break;    // ­Y¶W¹L¦C¦Lªºµ§¼Æ, ´N¤¤¤î
         }
     }
-
 
     sResult = sResult + "\t]\n";
     sResult = sResult + "}\n";

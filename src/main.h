@@ -10,7 +10,7 @@
 #include "mydebug.h"
 //---------------------------------------------------------------------------
 
-void RunFullTextSearch(string sIniFile);
+void RunFullTextSearch(string sIniFile, string sSearchStr, int iStartNum, int iListCount);
 void TestFullTextSearch(string sIniFile);
 void ShowTestResult(CMonster * SearchEngine, string sSearchStr, int iResult);
 
