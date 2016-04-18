@@ -28,6 +28,10 @@ bool CWordIndex::Initial(void)	// 初值化
 	sLine = buff;
 	WordCount = atoi(sLine.c_str());		// ???? error check
 
+    #ifdef DEBUG
+	cout << "reading word count : " << sLine << endl;
+    #endif // DEBUG
+
 	// 開啟一個空間
 
 	//StringList = new TStringList();

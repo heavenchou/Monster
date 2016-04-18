@@ -40,6 +40,10 @@ bool CFileList::Initial(void)	// 初值化
 	sLine = buff;
 	FileCount = atoi(sLine.c_str())   ; // sLine.ToInt();		// ???? error check
 
+    #ifdef DEBUG
+	cout << "reading file count : " << sLine << endl;
+    #endif // DEBUG
+
 	FileCountBit = FileCount / 32;
 	if(FileCount % 32) FileCountBit++;
 

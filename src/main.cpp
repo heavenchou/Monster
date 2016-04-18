@@ -87,6 +87,13 @@ void TestFullTextSearch(string sIniFile)
     string sWordIndex = TinyIni->ReadString("WordIndex", "wordindex.ndx");
     string sMainIndex = TinyIni->ReadString("MainIndex", "main.ndx");
 
+    #ifdef DEBUG
+    cout << "BuildList file : " << sBuildList << endl;
+    cout << "WordIndex file : " << sWordIndex << endl;
+    cout << "MainIndex file : " << sMainIndex << endl;
+    #endif // DEBUG
+
+
     CMonster * SearchEngine = new CMonster(sBuildList, sWordIndex, sMainIndex);	// 宣告全文檢索
 
     SearchEngine->SearchWordList.clear();                              // Search Engine 一起更新

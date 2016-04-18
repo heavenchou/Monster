@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
+#include "mydebug.h"
 ///#include "RegExpr.hpp"
 
 using namespace std;
