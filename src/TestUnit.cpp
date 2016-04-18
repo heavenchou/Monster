@@ -169,7 +169,7 @@ void TestUnit::AreEqual(T x, T y, string sTestName)
 void TestUnit::ShowTestResult()
 {
     cout << "======================================" << endl;
-    cout << "= 成功\的測試                         =" << endl;
+    cout << "= 成功的測試                         =" << endl;
     cout << "======================================" << endl;
 
     int iCount = 0;
@@ -182,7 +182,7 @@ void TestUnit::ShowTestResult()
         }
     }
     cout << "======================================" << endl;
-    cout << "全部共有 " << iCount << " 項測試成功\!" << endl << endl;
+    cout << "全部共有 " << iCount << " 項測試成功!" << endl << endl;
 
     cout << "======================================" << endl;
     cout << "= 失敗的測試                         =" << endl;
