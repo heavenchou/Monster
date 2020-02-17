@@ -137,17 +137,16 @@ void CSearchWord::Search(int iFileNum)
 	# 繼續.....
 	*/
 
+	for(int i=0; i<Tokens.size(); i++)
+	{
+		lastK1[i] = 0;	// 初值化
+	}
+
 	// ???? 如果第一個字就沒有, 如何表示?
 	for(int i=0; i<WordData[0].WordCount[iFileNum]; i++)	// 先用最笨的方法, 由第一個 token 的串列, 每一個都去試
 	{
 		iHead =  WordData->WordPos[iFileNum][i];	// 第一個的位置
 		iLastHead = iHead;
-
-		for(int i=0; i<Tokens.size(); i++)
-		{
-			lastK1[i] = 0;	// 初值化
-	   //		lastK2[i] = 0;	// 初值化
-		}
 
 		int iFound = 1; 		// 如果只找一個字, 就是找到了.
 		for(int j=1; j<Tokens.size(); j++)
@@ -161,59 +160,36 @@ void CSearchWord::Search(int iFileNum)
 			iFound = 0;
 			for(int k=lastK1[j]; k<WordData[j].WordCount[iFileNum]; k++)
 			{
-				// /* 第一種方法, 彈性較大的
-				if(WordData[j].WordPos[iFileNum][k]>iLastHead)
+				if(WordData[j].WordPos[iFileNum][k] <= iLastHead)
 				{
-					iLastHead = WordData[j].WordPos[iFileNum][k];
-					lastK1[j] = k;			// 先暫存至 lastK2;
-					if(iLastHead - iHead + 1 > Tokens.size())		// 提前出局
-                    {
-						iFound = -1;
-                    }
-					else
-					{
-						iFound = 1;
-					}
-					break;
 				}
-				//--------  第一種方法, 彈性較大的 ---------- */
-
-				/* 第二種方法, 較嚴格的
-				if(WordData[j].WordPos[iFileNum][k]>iLastHead+1)		// 超過了
+				else if(WordData[j].WordPos[iFileNum][k] > iLastHead+1)        // 超過了
 				{
-					iFound = -1;		// 提前出局
+					iFound = -1;        // 提前出局
+					lastK1[j] = k;
 					break;
 				}
 				else if(WordData[j].WordPos[iFileNum][k] == iLastHead+1)
 				{
-						iLastHead++;
- 						iFound = 1;
-						//lastK2[j] = k;			// 先暫存至 lastK2;
-						break;
+					iLastHead += 1;
+					iFound = 1;
+					lastK1[j] = k;            // 先暫存至 lastK1
+					break;
 				}
-				*/
-				//--------  第二種方法, 較嚴格的 ----------
 			}
-			if (iFound <= 0)   	// 沒找到或提前出局
+			if (iFound == 0)   	// 沒找到
+			{
+				return;
+			}
+			else if (iFound < 0)   // 提前出局
 			{
 				break;
 			}
 		}
 
-		if (iFound == 0)   	// 沒找到
+		if(iFound == 1)	// 找到一組了	???? 這個長度以後若有用到萬用字元, 可能會變
 		{
-			break;
-		}
-
-		if(iLastHead - iHead + 1 == Tokens.size())	// 找到一組了	???? 這個長度以後若有用到萬用字元, 可能會變
-		{
-			//FoundPos->Ints[iFileNum]++;		// 各檔案找到目標的筆數
-			//FoundPos->Total++;				// 全部找到的字數
 			FoundPos->Add(iHead,iLastHead);		// 找到一組
-			//for(int i=0; i<Tokens->Count; i++)
-			//	{
-			//		lastK1[i] = lastK2[i];	// 加速下次找的速度
-			//	}
 		}
 	}
 
